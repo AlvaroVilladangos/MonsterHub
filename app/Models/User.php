@@ -42,4 +42,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function hunter(){
+
+        return $this->hasOne(Hunter::class);
+    }
+
+
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
+
+
 }
