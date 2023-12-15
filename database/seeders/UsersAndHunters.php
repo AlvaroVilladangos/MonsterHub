@@ -21,7 +21,7 @@ class UsersAndHunters extends Seeder
         for ($i = 1; $i < 5 ; $i++){
 
             DB::table('users')->insert([
-                'nombre' => 'usuario' . $i,
+                'name' => 'usuario' . $i,
                 'email' => 'usuario'.$i. '@gmail.com',
                 'password' => Hash::make('usuario'. $i),
                 'admin' => false,

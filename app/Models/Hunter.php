@@ -45,7 +45,7 @@ class Hunter extends Model
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'to_id',);
     }
 
 }

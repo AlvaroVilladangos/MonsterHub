@@ -18,4 +18,8 @@ class Weapon extends Model
     public function hunters(){
         return $this->hasMany(Hunter::class);
     }
+
+    public function name(){
+        return $this->name;
+    }
 }

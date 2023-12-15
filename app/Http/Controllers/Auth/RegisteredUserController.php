@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+
 
 class RegisteredUserController extends Controller
 {
@@ -30,22 +32,41 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed'],
         ]);
 
+        
+
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'admin' => false,
+        ]);
+
+        $id = $user->id;
+
+        $armaduraBasica = DB::table('armors')->where('name', 'Armadura de novato')->first();
+        $armaBasica = DB::table('weapons')->where('name', 'Espada de novato')->first();
+
+        $hunter = DB::table('hunters')->insert([
+            'user_id' => $id,
+            'name' =>' Hunter'.$id,
+            'guild_id' => null, // Puedes cambiar esto según tus necesidades
+            'weapon_id' => $armaBasica->id,
+            'armor_id' => $armaduraBasica->id,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()-> route('dashboard');
     }
+
 }

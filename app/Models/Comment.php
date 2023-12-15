@@ -11,7 +11,7 @@ class Comment extends Model
 
 
 public function hunter(){
-        return $this->belongsTo(Hunter::class);
+        return $this->belongsTo(Hunter::class, 'from_id');
     }
 }
 
