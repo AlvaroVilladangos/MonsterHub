@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name')->unique();
+            $table->string('bio')->default('');
             $table->unsignedBigInteger('guild_id')->nullable();
             $table->unsignedBigInteger('weapon_id');
             $table->unsignedBigInteger('armor_id');

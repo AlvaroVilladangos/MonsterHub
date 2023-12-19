@@ -12,14 +12,14 @@
                 <div class="card-body pt-3">
                     <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">
+                            <a class="nav-link text-dark" href="/salas">
                                 <span>Salas</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#"> <span>Guild</span></a>
+                            <a class="nav-link text-dark" href="/guilds"> <span>Guild</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">
+                            <a class="nav-link text-dark" href="/edit">
                                 <span>Ajustes</span></a>
                         </li>
                     </ul>
@@ -52,9 +52,7 @@
                     <div class="px-2 mt-4">
                         <h5 class="fs-5">Bio :</h5>
                         <p class="fs-6 fw-light">
-                            This book is a treatise on the theory of ethics, very popular
-                            during the Renaissance. The first line of Lorem Ipsum, "Lorem
-                            ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                            {{Auth::user()->hunter->bio}}
                         </p>
                         <div class="mt-3">
                             <button class="btn btn-primary btn-sm">Comentar</button>

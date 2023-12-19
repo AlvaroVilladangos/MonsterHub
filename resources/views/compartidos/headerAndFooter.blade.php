@@ -24,14 +24,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Monstruos</a>
-                <a class="nav-item nav-link" href="#">Armas</a>
-                <a class="nav-item nav-link" href="#">Armaduras</a>
+                <a class="nav-item nav-link" href="/monstruos">Monstruos</a>
+                <a class="nav-item nav-link" href="/armas">Armas</a>
+                <a class="nav-item nav-link" href="/armaduras">Armaduras</a>
             </div>
 
             <div class="ms-auto">
                 @if (auth()->check())
-                <a class="btn btn-light mx-3" href="/logout">Logout</a>
+                <form method="post" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="btn btn-danger mx-3" type="submit">Logout</button>
+                </form>
                 @else
                 <a class="btn btn-light mx-3" href="/login">Login</a>
                 <a class="btn btn-light mx-3" href="/registrar">Registrar</a>

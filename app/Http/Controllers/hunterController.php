@@ -7,10 +7,11 @@ use App\Models\Weapon;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class hunterController extends Controller
 {
-/*     public function weaponName(){
+    /*     public function weaponName(){
         $weaponId = auth()->user()->hunter->weapon_id;
 
         $weapon = Weapon::find($weaponId);
@@ -28,24 +29,53 @@ class hunterController extends Controller
     }
 
  */
-    public function datos(){
+
+    public function datos()
+    {
 
         $hunter = auth()->user()->hunter;
 
-        $weaponId = $hunter->weapon_id;
-        $armorId = $hunter->armor_id;
-        
-        $hunterId = $hunter->id;
-
-/*         $comments = DB::table('comments')->where('to_id', $hunterId)->get();
- */
         $comments = $hunter->comments()->with('hunter')->get();;
-        
-        $weapon = Weapon::find($weaponId);
-        $armor = Armor::find($armorId);
-        
+
+        $weapon = Weapon::find($hunter->weapon_id);
+        $armor = Armor::find($hunter->armor_id);
+
 
         return view('auth.hunterDashboard', compact('weapon', 'armor', 'comments'));
+    }
 
+
+    public function edit()
+    {
+
+        $hunter = auth()->user()->hunter;
+
+        $weapons = Weapon::all();
+        $armors = Armor::all();
+
+        return view('auth.hunterEdit', compact('weapons', 'armors'));
+    }
+
+
+    public function update(){
+
+        $hunter = auth()->user()->hunter;
+
+        $hunter->name = request()->get('hunterName','');
+        
+        $hunter->bio = request()->get('bio','');
+
+
+        $hunter->weapon_id = request()->get('weapon','');
+        $hunter->armor_id = request()->get('armor','');
+
+
+        $comments = $hunter->comments()->with('hunter')->get();;
+
+        $weapon = Weapon::find($hunter->weapon_id);
+        $armor = Armor::find($hunter->armor_id);
+
+
+        return view('auth.hunterDashboard', compact('weapon', 'armor', 'comments'));
     }
 }

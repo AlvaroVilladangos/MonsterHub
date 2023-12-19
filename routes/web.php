@@ -3,8 +3,11 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\hunterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +28,7 @@ Route::get('/', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
  */
 Route::get('/dashboard', [hunterController::class, 'datos'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 Route::middleware('auth')->group(function () {
