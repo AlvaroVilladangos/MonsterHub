@@ -47,7 +47,7 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <label for="weapon" class="fw-bold">ARMA</label>
-                                <select name="weapon" id="weapon" class="select-control">
+                                <select size="1" name="weapon" id="weapon" class="select-control">
                                     @foreach ($weapons as $weapon)
                                         <option value="{{$weapon->id}}"> {{ $weapon->name }} </option>
                                     @endforeach
@@ -56,19 +56,18 @@
 
                             <div class="col">
                                 <label for="armor" class="fw-bold">ARMADURA</label>
-                                <select name="armor" id="armor" class="select-control">
+                                <select size="1" name="armor" id="armor" class="select-control">
                                     @foreach ($armors as $armor)
                                         <option value="{{$armor->id}}"> {{ $armor->name }} </option>
                                     @endforeach
                                 </select>
+
                             </div>
                         </div>
                         <div class="px-2 mt-4">
                             <h5 class="fs-5">Bio :</h5>
 
-                            <textarea style="resize: none" name="bio" id="" cols="50" rows="3">
-
-                            {{ Auth::user()->hunter->bio }}
+                            <textarea style="resize: none" name="bio" id="" cols="30" rows="3">{{Auth::user()->hunter->bio}}
                         </textarea>
 
                             
@@ -84,6 +83,8 @@
 
 
 
+                @foreach ($comments as $comment )
+                
                 <div class="mt-3">
                     <div class="card mb-3">
                         <div class="card-body">
@@ -92,17 +93,23 @@
                                     src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="Luigi Avatar" />
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between">
-                                        <h6 class=""></h6>
+                                        <h6 class="">{{$comment->hunter->name}}</h6>
+                                        <form action="{{route('comment.destroy', $comment->id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-sm btn-danger">X</button>
+                                        </form>
                                     </div>
                                     <p class="fs-6 mt-3 fw-light">
-
+                                        {{$comment->msg}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                @endforeach
+    
 
 
             </div>
@@ -126,4 +133,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+
+
 @endsection

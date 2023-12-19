@@ -67,4 +67,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit', [hunterController::class, 'edit'])->name('edit');
     Route::put('/edit', [hunterController::class, 'update'])->name('edit');
 
+    Route::delete('/edit/comment/delete/{id}', [hunterController::class, 'destroyComment'])->name('comment.destroy');
 });

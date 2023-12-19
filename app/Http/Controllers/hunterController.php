@@ -30,30 +30,35 @@ class hunterController extends Controller
 
  */
 
+ public function getHunterData()
+{
+    $hunter = auth()->user()->hunter;
+
+    $comments = $hunter->comments()->with('hunter')->get();
+
+    $weapon = Weapon::find($hunter->weapon_id);
+    $armor = Armor::find($hunter->armor_id);
+
+    return compact('weapon', 'armor', 'comments');
+}
+
     public function datos()
     {
 
-        $hunter = auth()->user()->hunter;
+        $data = $this->getHunterData();
 
-        $comments = $hunter->comments()->with('hunter')->get();;
-
-        $weapon = Weapon::find($hunter->weapon_id);
-        $armor = Armor::find($hunter->armor_id);
-
-
-        return view('auth.hunterDashboard', compact('weapon', 'armor', 'comments'));
+        return view('auth.hunterDashboard', $data);
     }
 
 
     public function edit()
     {
 
-        $hunter = auth()->user()->hunter;
-
+        $data = $this->getHunterData();
         $weapons = Weapon::all();
         $armors = Armor::all();
-
-        return view('auth.hunterEdit', compact('weapons', 'armors'));
+    
+        return view('auth.hunterEdit', array_merge($data, compact('weapons', 'armors')));
     }
 
 
@@ -63,19 +68,30 @@ class hunterController extends Controller
 
         $hunter->name = request()->get('hunterName','');
         
-        $hunter->bio = request()->get('bio','');
-
-
+        $bio = request()->get('bio');
+        $hunter->bio = $bio !== null ? $bio : ' ';
+        
         $hunter->weapon_id = request()->get('weapon','');
         $hunter->armor_id = request()->get('armor','');
 
-
-        $comments = $hunter->comments()->with('hunter')->get();;
-
-        $weapon = Weapon::find($hunter->weapon_id);
-        $armor = Armor::find($hunter->armor_id);
+        $hunter->save();
 
 
-        return view('auth.hunterDashboard', compact('weapon', 'armor', 'comments'));
+        $data = $this->getHunterData();
+
+
+
+        return view('auth.hunterDashboard', $data);
+    }
+
+
+    public function destroyComment($id){
+        $comment = Comment::where('id',$id)->first();
+
+        $comment->delete();
+    
+        $data = $this->getHunterData();
+    
+        return view('auth.hunterDashboard', $data);
     }
 }

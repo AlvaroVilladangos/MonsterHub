@@ -15,8 +15,8 @@ class comentario extends Seeder
     {
         DB::table('comments')->insert([
 
-            'from_id' => 1,
-            'to_id' => 2,
+            'from_id' => 2,
+            'to_id' => 3,
             'msg' => 'HOLAAAAAAAAAAAAAAAAAAAAAAA'
         ]);
     }

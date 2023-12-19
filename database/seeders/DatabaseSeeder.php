@@ -22,6 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MonstersTableSeeder::class);
         $this->call(WeaponsAndArmorsTableSeeder::class);
         $this->call(UsersAndHunters::class);
-
+        $this->call(Comentario::class);
     }
 }

@@ -26,8 +26,8 @@ Route::get('/', function () {
 /* Route::get('/dashboard', function () {
     return view('auth.hunter');
 })->middleware(['auth', 'verified'])->name('dashboard');
- */
-Route::get('/dashboard', [hunterController::class, 'datos'])->middleware(['auth', 'verified'])->name('dashboard');
+ 
+Route::get('/dashboard', [hunterController::class, 'datos'])->middleware(['auth', 'verified'])->name('dashboard');*/
 
 
 
