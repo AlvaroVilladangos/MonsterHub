@@ -81,17 +81,19 @@ class hunterController extends Controller
 
 
 
-        return view('auth.hunterDashboard', $data);
+        return redirect()->route('dashboard');
     }
 
 
     public function destroyComment($id){
-        $comment = Comment::where('id',$id)->first();
-
-        $comment->delete();
+        $comment = Comment::where('id',$id)->firstOrFail()->delete();
     
         $data = $this->getHunterData();
     
-        return view('auth.hunterDashboard', $data);
+        $data = $this->getHunterData();
+        $weapons = Weapon::all();
+        $armors = Armor::all();
+    
+        return redirect()->route('edit');
     }
 }

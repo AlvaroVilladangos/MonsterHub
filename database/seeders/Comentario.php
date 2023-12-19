@@ -14,10 +14,24 @@ class comentario extends Seeder
     public function run(): void
     {
         DB::table('comments')->insert([
-
-            'from_id' => 2,
-            'to_id' => 3,
-            'msg' => 'HOLAAAAAAAAAAAAAAAAAAAAAAA'
+            [
+                'from_id' => 2,
+                'to_id' => 3,
+                'msg' => 'HOLAAAAAAAAAAAAAAAAAAAAAAA'
+            ],
+            [
+                'from_id' => 2,
+                'to_id' => 3,
+                'msg' => 'pepe'
+            ],            [
+                'from_id' => 2,
+                'to_id' => 3,
+                'msg' => 'antonio'
+            ],            [
+                'from_id' => 2,
+                'to_id' => 3,
+                'msg' => 'javi'
+            ],
         ]);
     }
 }
