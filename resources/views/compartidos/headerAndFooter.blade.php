@@ -12,10 +12,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-
+        <style>
+            body {
+                background-image: url("/storage/fondo.jpeg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
 </head>
 
-<body class="h-100 d-flex flex-column min-vh-100">
+
+{{-- d-flex flex-column min-vh-100
+ --}}<body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/dashboard">MonsterHub</a>
@@ -25,7 +33,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/monstruos">Monstruos</a>
+                <a class="nav-item nav-link" href="/monsters">Monstruos</a>
                 <a class="nav-item nav-link" href="/armas">Armas</a>
                 <a class="nav-item nav-link" href="/armaduras">Armaduras</a>
             </div>
@@ -49,7 +57,8 @@
 
     @yield('content')
 
-    <footer class="mt-auto d-flex flex-wrap justify-content-between align-items-center bg-dark ">
+   
+    <footer class="mt-auto bg-dark">
         <div class="container text-light">
             <div class="col-md-4 d-flex ">
                 <span class="mb-3 mb-md-0 text-light">© 2023 MonsterHub</span>

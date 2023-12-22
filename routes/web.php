@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\hunterController;
+
+use App\Http\Controllers\monsterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +41,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+
+Route::get('/monsters', [monsterController::class, 'getMonsters'])->name('monsters');
+
+Route::resource('/monster', monsterController::class)->only(['show']);

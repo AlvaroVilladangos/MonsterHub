@@ -15,8 +15,11 @@ return new class extends Migration
 
             $table->id();
             $table->string('name')->unique();
+            $table->string('img');
+            $table->string('element');
             $table->string('weakness');
-            $table->string('info');
+            $table->text('physiology');
+            $table->text('abilities');
         });
     }
 

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('def');
-            $table->string('info');
+            $table->text('info');
+            $table->string('img');
             $table->unsignedBigInteger('monster_id');
 
             $table->foreign('monster_id')->references('id')->on('monsters')
