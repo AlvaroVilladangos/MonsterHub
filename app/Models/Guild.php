@@ -9,6 +9,7 @@ class Guild extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
 
     public function leader()
     {
@@ -18,6 +19,12 @@ class Guild extends Model
     public function hunters()
     {
         return $this->hasMany(Hunter::class);
+    }
+
+
+    public function memberCount()
+    {
+        return $this->hunters()->count();
     }
 
 

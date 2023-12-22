@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\guildController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\hunterController;
 
@@ -68,4 +69,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/edit', [hunterController::class, 'update'])->name('edit');
 
     Route::delete('/edit/comment/delete/{id}', [hunterController::class, 'destroyComment'])->name('comment.destroy');
+
+    Route::resource('/guilds', guildController::class)->only(['index', 'create', 'store']);
 });

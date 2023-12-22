@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('leader_id');
             $table->string('info');
-            $table->string('announcement');
+            $table->string('announcement')->default('');
         });
     }
 
