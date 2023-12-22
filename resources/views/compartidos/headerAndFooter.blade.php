@@ -13,8 +13,9 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
         <style>
+            background-image: url("/storage/fondo.jpeg");
             body {
-                background-image: url("/storage/fondo.jpeg");
+                background-image: url();
                 background-repeat: no-repeat;
                 background-size: cover;
             }
@@ -34,8 +35,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/monsters">Monstruos</a>
-                <a class="nav-item nav-link" href="/armas">Armas</a>
-                <a class="nav-item nav-link" href="/armaduras">Armaduras</a>
+                <a class="nav-item nav-link" href="/weapons">Armas</a>
+                <a class="nav-item nav-link" href="/armors">Armaduras</a>
             </div>
 
             <div class="ms-auto">

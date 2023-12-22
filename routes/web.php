@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\weaponController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +44,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/monsters', [monsterController::class, 'getMonsters'])->name('monsters');
+Route::get('/monsters', [monsterController::class, 'index'])->name('monsters');
 
 Route::resource('/monster', monsterController::class)->only(['show']);
+
+Route::get('/weapons', [weaponController::class, 'index'])->name('weapons');
+
+Route::resource('/weapon', weaponController::class)->only(['show']);

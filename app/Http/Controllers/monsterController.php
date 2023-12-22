@@ -9,11 +9,19 @@ use Illuminate\Http\Request;
 
 class monsterController extends Controller
 {
-    public function getMonsters()
+    public function index()
     {
-        $monsters = Monster::paginate(5);
+
+        $monsters = Monster::query();
+
+        if (request()->has('search')){
+            $search = strtolower(request()->get('search', ''));
+            $monsters = $monsters->whereRaw('lower(name) like (?)',["%{$search}%"]);
+        }
     
-        return view( 'monstersTable', compact('monsters') );
+        $monsters = $monsters->paginate(5);
+    
+        return view('monstersTable', compact('monsters'));
     }
 
 
@@ -23,4 +31,6 @@ class monsterController extends Controller
         $armor = Armor:: where('monster_id', $monster->id)->first();
         return view('monster', compact('monster', 'armor', 'weapon'));
     }
+
+
 }

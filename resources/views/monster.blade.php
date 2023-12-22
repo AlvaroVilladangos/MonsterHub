@@ -32,7 +32,7 @@
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
                         Debilidad: <span>{{ $monster->weakness }}</span></li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
-                        Arma: <a href="#" class="card-link">{{$weapon->name}}</a></li>
+                        Arma: <a href="{{ route('weapon.show', $weapon->id) }}" class="card-link">{{$weapon->name}}</a></li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
                         Armadura: <a href="#" class="card-link">{{$armor->name}}</a></li>
                 </ul>
