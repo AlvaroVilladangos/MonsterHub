@@ -41,7 +41,7 @@
                     <div class="row mt-3">
                         <div class="col">
                             <label for="armadura" class="fw-bold">ARMA</label>
-                            <a class="nav-link" href="#">{{$weapon->name}}</a>
+                            <a class="nav-link" href="{{ route('weapon.show', $weapon->id) }}">{{$weapon->name}}</a>
                         </div>
 
                         <div class="col">

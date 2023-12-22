@@ -31,10 +31,22 @@
                         Elemento: <span>{{ $monster->element }}</span></li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
                         Debilidad: <span>{{ $monster->weakness }}</span></li>
-                    <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
-                        Arma: <a href="{{ route('weapon.show', $weapon->id) }}" class="card-link">{{$weapon->name}}</a></li>
-                    <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
-                        Armadura: <a href="#" class="card-link">{{$armor->name}}</a></li>
+                        <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
+                            Arma: 
+                            @isset($weapon)
+                                <a href="{{ route('weapon.show', $weapon->id) }}" class="nav-link text-decoration-underline">{{$weapon->name}}</a>
+                            @else
+                                <span class="nav-link text-decoration-underline">N/A</span>
+                            @endisset
+                        </li>
+                        <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
+                            Armadura: 
+                            @isset($armor)
+                                <a href="{{ route('armor.show', $armor->id) }}" class="nav-link text-decoration-underline">{{$armor->name}}</a>
+                            @else
+                                <span class="nav-link text-decoration-underline">N/A</span>
+                            @endisset
+                        </li>
                 </ul>
             </div>
         </div>

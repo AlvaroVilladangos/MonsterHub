@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\armorController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\hunterController;
 
@@ -51,3 +52,7 @@ Route::resource('/monster', monsterController::class)->only(['show']);
 Route::get('/weapons', [weaponController::class, 'index'])->name('weapons');
 
 Route::resource('/weapon', weaponController::class)->only(['show']);
+
+Route::get('/armors', [armorController::class, 'index'])->name('armors');
+
+Route::resource('/armor', armorController::class)->only(['show']);

@@ -12,8 +12,8 @@
   </form>
 
 
-    <table class="table table-hover table-bordered  ">
-        <tr class="table-dark">
+    <table class="table table-hover table-borderless">
+        <tr class="table-dark ">
           <th class="text-center">Imagen</th>
           <th class="text-center"> Monstruo</th>
           <th class="text-center">Elemento</th>
