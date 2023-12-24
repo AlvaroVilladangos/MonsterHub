@@ -24,8 +24,12 @@ use App\Http\Controllers\weaponController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('compartidos.headerAndFooter');
+}); */
+
+Route::get('/', function () {
+    return  redirect()-> route('guilds.index');
 });
 
 /* Route::get('/dashboard', function () {

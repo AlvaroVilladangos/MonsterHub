@@ -22,7 +22,7 @@ class guildController extends Controller
 
         $guilds = $guilds->paginate(5);
     
-        return view('auth.guild', compact('guilds'));
+        return view('auth.guilds', compact('guilds'));
     }
 
 
@@ -42,5 +42,22 @@ class guildController extends Controller
         $hunter->guild_id = $guild->id;
         $hunter->save();
         return redirect()-> route('guilds.index');
+    }
+
+    public function show(Guild $guild){
+
+        $leader = $guild->leader;
+        
+        $members = $guild->hunters;
+        
+        return view('auth.guild', compact('guild', 'leader', 'members'));
+    }
+
+
+    public function edit(Guild $guild){
+
+        $members = $guild->hunters;
+
+        return view('auth.guildEdit', compact('guild', 'members'));
     }
 }

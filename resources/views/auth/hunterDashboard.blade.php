@@ -60,7 +60,6 @@
                     </div>
                 </div>
             </div>
-            <hr />
 
 
             @foreach ($comments as $comment )

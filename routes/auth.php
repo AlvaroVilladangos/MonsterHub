@@ -70,5 +70,12 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/edit/comment/delete/{id}', [hunterController::class, 'destroyComment'])->name('comment.destroy');
 
-    Route::resource('/guilds', guildController::class)->only(['index', 'create', 'store']);
+    Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['index', 'create', 'store',]);
+
+Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update',]);
+
+
+   /*  Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['show']); */
+
+    Route::resource('/guild', guildController::class)->only(['show']);
 });

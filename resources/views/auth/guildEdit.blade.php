@@ -3,25 +3,13 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-2 mb-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body pt-3">
-                        <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/salas">
-                                    <span>Salas</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/guilds"> <span>Guild</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/edit">
-                                    <span>Ajustes</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
             </div>
             <div class="col-8">
+
+                <form action="{{route('guild.update', $guild)}}" method="post">
+
+                </form>
                 <div class="card">
                     <div class="px-3 pt-4 pb-2">
                         <div class="d-flex align-items-center justify-content-between">
@@ -30,7 +18,7 @@
                                     src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar" />
                                 <div>
                                     <h1 class="card-title mb-0 fw-bold">
-                                        <p> {{ $guild->name }} </p>
+                                        <input name="guildName" type="text" value="{{$guild->name}}">
                                     </h1>
                                 </div>
                             </div>
@@ -38,7 +26,7 @@
                         <div class="row mt-3 justify-content-between">
                             <div class="col-auto">
                                 <h3 for="armadura" class="">Lider</h3>
-                                <a class="nav-link fs-5" href=""> {{ $leader->name }}</a>
+                                <a class="nav-link fs-5" href=""></a>
                             </div>
                             <div class="col-auto">
                                 <p class="fs-1">{{ $guild->memberCount() }}/20</p>
@@ -47,11 +35,10 @@
                         <div class="row">
                             <div class="col-9">
                                 <h3 class="">Información :</h3>
-                                <p class="fs-5 fw-light">
-                                    {{ $guild->info }}
-                                </p>
+                                <textarea style="resize: none" name="guildInfo" id="" cols="30" rows="3">{{$guild->info }}
+                                </textarea>
                             </div>
-                            <div class="col-auto">
+{{--                             <div class="col-auto">
                                 @if (Auth::user()->hunter->guild_id === $guild->id)
                                 <button class="btn btn-danger">Abandonar</button>
                                 @elseif ($guild->memberCount()<20)
@@ -59,36 +46,39 @@
                                 @endif
 
                                 @if ($guild->leader_id == Auth::user()->hunter->id)
-                                <a href="{{route('guild.edit', $guild)}}" class="btn btn-primary">Editar</a>
+                                <button class="btn btn-primary">Editar</button>
                                 @endif
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
 
                 <div class="card my-3 text-center">
                     <h2 class="border-bottom border-primary fw-bold">ANUNCIO</h2>
-                    <p class="fs-5">{{$guild->announcement}}</P>
+                    <textarea style="resize: none" name="announcement" id="" cols="30" rows="3">{{$guild->announcement }}
+                    </textarea>
                 </div>
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark ">
                         <th class="text-center">Rango</th>
                         <th class="text-center"> Nombre</th>
+                        <th class="text-center">Acción</th>
                     </tr>
                     @foreach ($members as $member)
                         <tr>
                             @if ($member->guild_id != $guild->id)
                                 <td class="text-center">Miembro</td>
                                 <td class="align-middle text-center">
-                                    <a href="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
-                                    </td>
+                                    <ahref="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                </td>
+                                
+                                <td class="align-middle text-center"> <button class="btn btn-danger">Expulsar</button></td>
                             @else
                                 <td class="text-center">Lider</td>
                                 <td class="align-middle text-center">
-                                    <a href="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <ahref="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
                                 </td>
                             @endif
-
                         </tr>
                     @endforeach
                 </table>
