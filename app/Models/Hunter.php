@@ -21,19 +21,19 @@ class Hunter extends Model
         return $this->guild && $this->guild->leader_id == $this->id;
     }
 
-    public function isInAGuild(){
+    public function guild(){
 
         return $this->belongsTo(Guild::class);
     }
 
     public function weapon(){
 
-        return $this->hasOne(Weapon::class);
+        return $this->belongsTo(Weapon::class);
     }
 
     public function armor(){
 
-        return $this->hasOne(Armor::class);
+        return $this->belongsTo(Armor::class);
     }
 
     public function room(){

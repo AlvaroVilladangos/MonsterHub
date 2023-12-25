@@ -63,17 +63,20 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
-    Route::get('/dashboard', [hunterController::class, 'datos'])->name('dashboard');
+    Route::get('/dashboard', [hunterController::class, 'index'])->name('dashboard');
 
     Route::get('/edit', [hunterController::class, 'edit'])->name('edit');
     Route::put('/edit', [hunterController::class, 'update'])->name('edit');
 
     Route::delete('/edit/comment/delete/{id}', [hunterController::class, 'destroyComment'])->name('comment.destroy');
 
-    Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['index', 'create', 'store',]);
+    Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['index', 'create', 'store']);
 
-Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update',]);
+    Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update',]);
 
+    Route::put('/guild/{guild}/join', [guildController::class, 'join'])->middleware('checkguild')->name('guild.join');
+
+    Route::put('/hunter/leave', [hunterController::class, 'leaveGuild'])->name('hunter.leaveGuild');
 
    /*  Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['show']); */
 

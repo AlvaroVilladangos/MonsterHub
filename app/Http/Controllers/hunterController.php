@@ -42,23 +42,26 @@ class hunterController extends Controller
     return compact('weapon', 'armor', 'comments');
 }
 
-    public function datos()
+    public function index()
     {
 
-        $data = $this->getHunterData();
+        $datos = $this->getHunterData();
 
-        return view('auth.hunterDashboard', $data);
+        $hunter = Auth::user()->hunter;
+
+        $comments = $hunter->comments()->with('hunter')->get();
+        return view('auth.hunterDashboard', compact('hunter', 'datos', 'comments'));
     }
 
 
     public function edit()
     {
 
-        $data = $this->getHunterData();
+        $datos = $this->getHunterData();
         $weapons = Weapon::all();
         $armors = Armor::all();
     
-        return view('auth.hunterEdit', array_merge($data, compact('weapons', 'armors')));
+        return view('auth.hunterEdit', array_merge($datos, compact('weapons', 'armors')));
     }
 
 
@@ -77,7 +80,7 @@ class hunterController extends Controller
         $hunter->save();
 
 
-        $data = $this->getHunterData();
+        $datos = $this->getHunterData();
 
 
 
@@ -88,12 +91,24 @@ class hunterController extends Controller
     public function destroyComment($id){
         $comment = Comment::where('id',$id)->firstOrFail()->delete();
     
-        $data = $this->getHunterData();
+        $datos = $this->getHunterData();
     
-        $data = $this->getHunterData();
+        $datos = $this->getHunterData();
         $weapons = Weapon::all();
         $armors = Armor::all();
     
         return redirect()->route('edit');
+    }
+
+
+    public function leaveGuild(){
+
+        $hunter = Auth::user()->hunter;
+
+        $hunter->guild_id = null;
+
+        $hunter->save();
+
+        return redirect()->route('dashboard');
     }
 }

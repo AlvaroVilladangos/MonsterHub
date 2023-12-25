@@ -40,8 +40,8 @@
                 
                     @foreach ($guilds as $guild )        
                     <tr>
-                      <td class="d-flex justify-content-center">{{$guild->name}}</td>
-                      <td class="align-middle text-center"><a href=""class="nav-link text-decoration-underline"> {{$guild->leader->name}}</a></td>
+                      <td class="d-flex justify-content-center"><a href="/guild/{{$guild->id}}" class="nav-link text-decoration-underline" >{{$guild->name}}</a></td>
+                      <td class="align-middle text-center"><a href="/hunter/{{$guild->leader->id}}"class="nav-link text-decoration-underline"> {{$guild->leader->name}}</a></td>
                       <td class="align-middle text-center"> {{$guild->memberCount()}}</td>
                       @if ($guild->memberCount() >= 1)
                         <td></td>

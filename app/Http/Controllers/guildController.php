@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Guild;
 use App\Models\Hunter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Return_;
 
 class guildController extends Controller
 {
@@ -46,11 +48,10 @@ class guildController extends Controller
 
     public function show(Guild $guild){
 
-        $leader = $guild->leader;
         
         $members = $guild->hunters;
         
-        return view('auth.guild', compact('guild', 'leader', 'members'));
+        return view('auth.guild', compact('guild', 'members'));
     }
 
 
@@ -60,4 +61,26 @@ class guildController extends Controller
 
         return view('auth.guildEdit', compact('guild', 'members'));
     }
+
+    public function update(Guild $guild){
+
+        $guild->name = request()->get('guildName');        
+        $guild->info = request()->get('guildInfo') ? request()->get('guildInfo') : '';
+        $guild->announcement = request()->get('announcement') ? request()->get('announcement') : '';      
+        $guild->save();
+
+        $members = $guild->hunters;
+
+        return view('auth.guild', compact('guild', 'members'));
+    }
+
+    public function join(Guild $guild){
+
+        $hunter = Auth::user()->hunter;
+        $hunter->guild_id = $guild->id;
+        $hunter->save();
+
+        return redirect()->route('guild.show', $guild);
+    }
+
 }

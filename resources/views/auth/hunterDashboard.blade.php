@@ -34,19 +34,25 @@
                             <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
                                 src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar" />
                             <div>
-                                <h3 class="card-title mb-0"><p> {{Auth::user()->hunter->name}} </p></h3>
+                                <h3 class="card-title mb-0"><p> {{$hunter->name}} </p></h3>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col">
                             <label for="armadura" class="fw-bold">ARMA</label>
-                            <a class="nav-link" href="{{ route('weapon.show', $weapon->id) }}">{{$weapon->name}}</a>
+                            <p>{{$hunter->weapon->name}}</p>
                         </div>
 
                         <div class="col">
                             <label for="armadura" class="fw-bold">ARMADURA</label>
-                            <a class="nav-link" href="#">{{$armor->name}}</a>
+                            <p>{{$hunter->armor->name}}</p>
+                        </div>
+
+                        
+                        <div class="col">
+                            <label for="" class="fw-bold">GUILD</label>
+                            <p>{{ $hunter->guild ? $hunter->guild->name : '' }}</p>
                         </div>
                     </div>
                     <div class="px-2 mt-4">

@@ -38,7 +38,7 @@
                         <div class="row mt-3 justify-content-between">
                             <div class="col-auto">
                                 <h3 for="armadura" class="">Lider</h3>
-                                <a class="nav-link fs-5" href=""> {{ $leader->name }}</a>
+                                <a class="nav-link fs-5" href=""> {{ $guild->leader->name}}</a>
                             </div>
                             <div class="col-auto">
                                 <p class="fs-1">{{ $guild->memberCount() }}/20</p>
@@ -52,10 +52,18 @@
                                 </p>
                             </div>
                             <div class="col-auto">
-                                @if (Auth::user()->hunter->guild_id === $guild->id)
-                                <button class="btn btn-danger">Abandonar</button>
-                                @elseif ($guild->memberCount()<20)
-                                <button class="btn btn-success">Unirse</button>
+                                @if (Auth::user()->hunter->guild_id === $guild->id && Auth::user()->hunter->guild_id != $guild->leader->id)
+                                <form action="{{ route('hunter.leaveGuild') }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-danger">Abandonar</button>
+                                </form>
+                                @elseif ($guild->memberCount()<20 && Auth::user()->hunter->guild_id === null )
+                                <form action="{{ route('guild.join', $guild) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit" class="btn btn-success">Unirse</button>
+                                </form>
                                 @endif
 
                                 @if ($guild->leader_id == Auth::user()->hunter->id)
@@ -77,7 +85,7 @@
                     </tr>
                     @foreach ($members as $member)
                         <tr>
-                            @if ($member->guild_id != $guild->id)
+                            @if ($member->id != $guild->leader->id)
                                 <td class="text-center">Miembro</td>
                                 <td class="align-middle text-center">
                                     <a href="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
