@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>MonsterHub</title>
-{{--     @vite('/resources/css/bootstrap.min.css')
+    {{--     @vite('/resources/css/bootstrap.min.css')
     <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
@@ -17,26 +17,36 @@
  --}}
 
 
- <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <style>
-            background-image: url("/storage/fondo.jpeg");
-            body {
-                background-image: url();
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-        </style>
+    <style>
+        background-image: url("/storage/fondo.jpeg");
+
+        body {
+            background-image: url();
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    @vite('resources/js/app.js')
+    @vite('resources/css/app.css')
+
 </head>
 
 
-{{-- d-flex flex-column min-vh-100
- --}}<body class="d-flex flex-column min-vh-100">
 
+<body class="d-flex flex-column min-vh-100">
+
+    <div>
+
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/dashboard">MonsterHub</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -49,52 +59,54 @@
 
             <div class="ms-auto">
                 @if (auth()->check())
-                <form method="post" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="btn btn-danger mx-3" type="submit">Logout</button>
-                </form>
+                    <form method="post" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn btn-danger mx-3" type="submit">Logout</button>
+                    </form>
                 @else
-                <a class="btn btn-light mx-3" href="/login">Login</a>
+                    <a class="btn btn-light mx-3" href="/login">Login</a>
                 @endif
-            
+
             </div>
         </div>
     </nav>
 
     <div class="container d-flex flex-column align-items-center">
 
-        <div class="card my-3"  style="width: 50rem;">
-            <img src="{{URL('storage/registerBanner.jpg')}}" class="img-top" alt="...">
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/registerBanner.jpg') }}" class="img-top" alt="...">
             <div class="card-body">
-                <p class="fs-2">Podrás tener acceso a un sistema de  guilds, amigos, personalizar tu perfil y mucho más!</p>
-              <a href="/register" class="btn btn-primary">REGISTRAR</a>
-            </div>
-        </div>
-        
-        <div class="card my-3"  style="width: 50rem;">
-            <img src="{{URL('storage/monsterBanner.webp')}}" class="img-top" alt="...">
-            <div class="card-body">
-              <h1 class="card-title">MONSTRUOS</h1>
-              <p class="card-text">Aquí encontrarás toda la infromación necesaria sobres los monstruos que te encontrarás en tus cazarías.</p>
-              <a href="/monsters" class="btn btn-primary">Ir a monstruos</a>
+                <p class="fs-2">Podrás tener acceso a un sistema de guilds, amigos, personalizar tu perfil y mucho
+                    más!</p>
+                <a href="/register" class="btn btn-primary">REGISTRAR</a>
             </div>
         </div>
 
-        <div class="card my-3"  style="width: 50rem;">
-            <img src="{{URL('storage/weaponsBanner.jpg')}}" class="img-top" alt="...">
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/monsterBanner.webp') }}" class="img-top" alt="...">
             <div class="card-body">
-              <h1 class="card-title">ARMAS</h1>
-              <p class="card-text">Aquí encontrarás toda la infromación sobre las armas</p>
-              <a href="/weapons" class="btn btn-primary">Ir a armas</a>
+                <h1 class="card-title">MONSTRUOS</h1>
+                <p class="card-text">Aquí encontrarás toda la infromación necesaria sobres los monstruos que te
+                    encontrarás en tus cazarías.</p>
+                <a href="/monsters" class="btn btn-primary">Ir a monstruos</a>
             </div>
         </div>
 
-        <div class="card my-3"  style="width: 50rem;">
-            <img src="{{URL('storage/armorsBanner.jpg')}}" class="img-top" alt="...">
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/weaponsBanner.jpg') }}" class="img-top" alt="...">
             <div class="card-body">
-              <h1 class="card-title">ARMADURAS</h1>
-              <p class="card-text">Aquí encontrarás toda la infromación sobre las armaduras.</p>
-              <a href="/armors" class="btn btn-primary">Ir a armaduras</a>
+                <h1 class="card-title">ARMAS</h1>
+                <p class="card-text">Aquí encontrarás toda la infromación sobre las armas</p>
+                <a href="/weapons" class="btn btn-primary">Ir a armas</a>
+            </div>
+        </div>
+
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/armorsBanner.jpg') }}" class="img-top" alt="...">
+            <div class="card-body">
+                <h1 class="card-title">ARMADURAS</h1>
+                <p class="card-text">Aquí encontrarás toda la infromación sobre las armaduras.</p>
+                <a href="/armors" class="btn btn-primary">Ir a armaduras</a>
             </div>
         </div>
 
@@ -102,7 +114,7 @@
 
 
 
-   
+
     <footer class="mt-auto bg-dark">
         <div class="container text-light">
             <div class="col-md-4 d-flex ">
@@ -117,6 +129,15 @@
             </a>
         </div>
     </footer>
+
+
+    <div id="cb-cookie-banner" class="alert alert-dark text-center bg-dark mb-0" role="alert">
+        <p class="text-light"> 🍪 Esta paginautiliza cookies para un mejor uso de la página. </p>
+        <a class="text-light" href="https://www.cookiesandyou.com/" target="blank">Aprender más</a>
+        <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_esconderCookieBanner()">
+            Entendido
+        </button>
+    </div>
 
 
 
