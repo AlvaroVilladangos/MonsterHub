@@ -6,10 +6,10 @@
 
             </div>
 
-            <form action="{{ route('guild.update', $guild) }}" method="post">
-                @csrf
-                @method('PUT')
-                <div class="col-8">
+            <div class="col-8">
+                    <form action="{{ route('guild.update', $guild) }}" method="post">
+                        @csrf
+                        @method('PUT')
 
                     <div class="card">
                         <div class="px-3 pt-4 pb-2">
@@ -72,12 +72,16 @@
                 </tr>
                 @foreach ($members as $member)
                     <tr>
-                        @if ($member->guild_id != $guild->id)
+                        @if ($member->id != $guild->leader->id)
                             <td class="text-center">Miembro</td>
                             <td class="align-middle text-center">
                                 <ahref="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
                             </td>
-                            <td class="align-middle text-center"> <button class="btn btn-danger">Expulsar</button></td>
+                            <form id="expulsionForm-{{ $member->id }}" action="{{route('guild.expulsar', ['guild' => $guild, 'member' => $member])}}" method="post">
+                                @csrf
+                                @method('put')
+                                <td class="align-middle text-center"><button type="button" class="btn btn-danger" onclick="confirmExpulsion({{ $member->id }})">Expulsar</button></td>
+                            </form>
                         @else
                             <td class="text-center">Lider</td>
                             <td class="align-middle text-center">
@@ -99,10 +103,10 @@
 
 
 <script>
-    function confirmDelete(commentId) {
+    function confirmExpulsion(memberId) {
         Swal.fire({
-            title: '¿Estás seguro?',
-            text: "No podrás revertir esto!",
+            title: '¿Estás seguro que quieres expulsar a este miembro?',
+            text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -111,11 +115,10 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById('deleteForm-' + commentId).submit();
+                document.getElementById('expulsionForm-' + memberId).submit();
             }
         })
     }
-    </script>
-    
+</script>
     
 @endsection

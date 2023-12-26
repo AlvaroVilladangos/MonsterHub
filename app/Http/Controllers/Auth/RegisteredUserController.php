@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
         $hunter = DB::table('hunters')->insert([
             'user_id' => $id,
             'name' =>' Hunter'.$id,
-            'guild_id' => null, // Puedes cambiar esto según tus necesidades
+            'guild_id' => null,
             'weapon_id' => $armaBasica->id,
             'armor_id' => $armaduraBasica->id,
         ]);

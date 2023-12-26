@@ -7,7 +7,7 @@
 
 <div class="container py-4">
     <div class="row">
-        <div class="col-auto mb-3">
+        <div class="col-2 mb-3">
             <div class="card overflow-hidden">
                 <div class="card-body pt-3">
                     <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start">
@@ -92,7 +92,7 @@
 
 
         </div>
-        <div class="col-auto mb-3">
+        <div class="col-2 mb-3">
             <div class="card overflow-hidden">
                 <div class="card-body pt-3">
                     <table class="table table-hover text-center">

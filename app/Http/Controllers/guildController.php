@@ -83,4 +83,14 @@ class guildController extends Controller
         return redirect()->route('guild.show', $guild);
     }
 
+    public function expulsar(Guild $guild, Hunter $member){
+
+        $member->guild_id = null;
+        $member->save();
+
+        $members = $guild->hunters;
+
+        return redirect()->route('guild.edit', $guild);
+    }
+
 }

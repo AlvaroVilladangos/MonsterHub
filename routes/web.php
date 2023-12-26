@@ -29,7 +29,7 @@ use App\Http\Controllers\weaponController;
 }); */
 
 Route::get('/', function () {
-    return  redirect()-> route('guilds.index');
+    return  view('index');
 });
 
 /* Route::get('/dashboard', function () {
