@@ -73,6 +73,7 @@
 
     <div class="container d-flex flex-column align-items-center">
 
+        @guest
         <div class="card my-3" style="width: 50rem;">
             <img src="{{ URL('storage/registerBanner.jpg') }}" class="img-top" alt="...">
             <div class="card-body">
@@ -81,6 +82,7 @@
                 <a href="/register" class="btn btn-primary">REGISTRAR</a>
             </div>
         </div>
+        @endguest
 
         <div class="card my-3" style="width: 50rem;">
             <img src="{{ URL('storage/monsterBanner.webp') }}" class="img-top" alt="...">

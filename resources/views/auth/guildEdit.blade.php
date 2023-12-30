@@ -68,7 +68,8 @@
                 <tr class="table-dark ">
                     <th class="text-center">Rango</th>
                     <th class="text-center"> Nombre</th>
-                    <th class="text-center">Acción</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
                 </tr>
                 @foreach ($members as $member)
                     <tr>
@@ -81,6 +82,12 @@
                                 @csrf
                                 @method('put')
                                 <td class="align-middle text-center"><button type="button" class="btn btn-danger" onclick="confirmExpulsion({{ $member->id }})">Expulsar</button></td>
+                            </form>
+
+                            <form id="ascensionForm-{{ $member->id }}" action="{{route('guild.ascender', ['guild' => $guild, 'member' => $member])}}" method="post">
+                                @csrf
+                                @method('put')
+                                <td class="align-middle text-center"><button type="button" class="btn btn-success" onclick="confirmAscension({{ $member->id }})">Ascender</button></td>
                             </form>
                         @else
                             <td class="text-center">Lider</td>
@@ -116,6 +123,24 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('expulsionForm-' + memberId).submit();
+            }
+        })
+    }
+
+
+    function confirmAscension(memberId) {
+        Swal.fire({
+            title: '¿Estás seguro que quieres ascender a este miembro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('ascensionForm-' + memberId).submit();
             }
         })
     }

@@ -16,10 +16,11 @@ class Hunter extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function isLeader()
+    public function isLeader($guild)
     {
-        return $this->guild && $this->guild->leader_id == $this->id;
+        return $this->id == $guild->leader_id;
     }
+
 
     public function guild(){
 

@@ -42,7 +42,11 @@
  --}}<body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        @if (auth()->check())
         <a class="navbar-brand" href="/dashboard">MonsterHub</a>
+        @else
+        <a class="navbar-brand" href="/">MonsterHub</a>
+        @endif
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,6 +56,10 @@
                 <a class="nav-item nav-link" href="/monsters">Monstruos</a>
                 <a class="nav-item nav-link" href="/weapons">Armas</a>
                 <a class="nav-item nav-link" href="/armors">Armaduras</a>
+                @if (auth()->check())
+                <a class="nav-item nav-link" href="/guilds">Guilds</a>
+                <a class="nav-item nav-link" href="/hunters">Hunters</a>
+                @endif
             </div>
 
             <div class="ms-auto">
@@ -68,6 +76,8 @@
             </div>
         </div>
     </nav>
+
+
 
     {{--contenido--}}
 

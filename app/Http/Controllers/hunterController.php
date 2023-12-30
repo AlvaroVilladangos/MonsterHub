@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Armor;
 use App\Models\Weapon;
 use App\Models\Comment;
+use App\Models\Hunter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,7 @@ class hunterController extends Controller
     return compact('weapon', 'armor', 'comments');
 }
 
-    public function index()
+    public function dashboard()
     {
 
         $datos = $this->getHunterData();
@@ -53,6 +54,27 @@ class hunterController extends Controller
         return view('auth.hunterDashboard', compact('hunter', 'datos', 'comments'));
     }
 
+    public function show(Hunter $hunter){
+
+        $datos = $this->getHunterData();
+        $comments = $hunter->comments()->with('hunter')->get();
+        return view('auth.hunter', compact('hunter', 'comments', 'datos'));
+    }
+
+
+    public function index(){
+
+        $hunters = hunter::query();
+
+        if (request()->has('search')){
+            $search = strtolower(request()->get('search', ''));
+            $hunters = $hunters->whereRaw('lower(name) like (?)',["%{$search}%"]);
+        }
+    
+        $hunters = $hunters->paginate(5);
+    
+        return view('auth.hunters', compact('hunters'));
+    }
 
     public function edit()
     {

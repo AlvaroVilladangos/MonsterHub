@@ -3,23 +3,7 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-2 mb-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body pt-3">
-                        <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/salas">
-                                    <span>Salas</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/guilds"> <span>Guild</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/edit">
-                                    <span>Ajustes</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
             <div class="col-8">
                 <div class="card">
@@ -52,12 +36,12 @@
                                 </p>
                             </div>
                             <div class="col-auto">
-                                @if (Auth::user()->hunter->guild_id === $guild->id && Auth::user()->hunter->guild_id != $guild->leader->id)
-                                <form action="{{ route('hunter.leaveGuild') }}" method="post">
+                                @if (!(Auth::user()->hunter->isLeader($guild)) && Auth::user()->hunter->guild_id != null && Auth::user()->hunter->guild_id == $guild->id)
+                                <form id="leaveGuildForm" action="{{ route('hunter.leaveGuild') }}" method="post">
                                     @csrf
                                     @method('put')
-                                    <button class="btn btn-danger">Abandonar</button>
-                                </form>
+                                    <button type="button" class="btn btn-danger" onclick="confirmLeaveGuild()">Abandonar</button>
+                                </form>                                
                                 @elseif ($guild->memberCount()<20 && Auth::user()->hunter->guild_id === null )
                                 <form action="{{ route('guild.join', $guild) }}" method="post">
                                     @csrf
@@ -66,7 +50,7 @@
                                 </form>
                                 @endif
 
-                                @if ($guild->leader_id == Auth::user()->hunter->id)
+                                @if (Auth::user()->hunter->isLeader($guild))
                                 <a href="{{route('guild.edit', $guild)}}" class="btn btn-primary">Editar</a>
                                 @endif
                             </div>
@@ -88,12 +72,12 @@
                             @if ($member->id != $guild->leader->id)
                                 <td class="text-center">Miembro</td>
                                 <td class="align-middle text-center">
-                                    <a href="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <a href="/hunter/{{$member->id}}"class="nav-link text-decoration-underline">{{ $member->name }}</a>
                                     </td>
                             @else
                                 <td class="text-center">Lider</td>
                                 <td class="align-middle text-center">
-                                    <a href="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <a href="/hunter/{{$member->id}}"class="nav-link text-decoration-underline">{{ $member->name }}</a>
                                 </td>
                             @endif
 
@@ -103,4 +87,31 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    function confirmLeaveGuild() {
+        Swal.fire({
+            title: '¿Estás seguro de que quieres abandonar el gremio?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('leaveGuildForm').submit();
+            }
+        })
+    }
+</script>
+    
+    
 @endsection

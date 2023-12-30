@@ -48,7 +48,12 @@ class guildController extends Controller
 
     public function show(Guild $guild){
 
-        
+        if ($guild->id == null){
+
+            redirect() -> route('guilds.index');
+        }
+
+
         $members = $guild->hunters;
         
         return view('auth.guild', compact('guild', 'members'));
@@ -91,6 +96,14 @@ class guildController extends Controller
         $members = $guild->hunters;
 
         return redirect()->route('guild.edit', $guild);
+    }
+
+    public function ascender(Guild $guild, Hunter $member){
+
+        $guild->leader_id = $member->id;
+        $guild->save();
+
+        return redirect()->route('dashboard');
     }
 
 }

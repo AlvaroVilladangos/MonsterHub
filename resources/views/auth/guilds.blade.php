@@ -4,24 +4,8 @@
 @section('content')
     <div class="container py-4">
         <div class="row">
-            <div class="col-auto mb-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body pt-3">
-                        <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/salas">
-                                    <span>Salas</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/guilds"> <span>Guild</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/edit">
-                                    <span>Ajustes</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-2 mb-3">
+
             </div>           
             <div class="col-8 mb-3">
                 <form action="{{route('guilds.index')}}" method="get"> 
@@ -54,7 +38,7 @@
             </div>
 
 
-            <div class="col-auto">
+            <div class="col-2">
                 <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#guildModal">
                     CREA TU GUILD AQUÍ
                 </button>
@@ -92,7 +76,5 @@
               </div>
             </div>
         </div>
-
-
     </div>
 @endsection
