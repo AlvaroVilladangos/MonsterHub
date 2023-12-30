@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreign('guild_id')->references('id')->on('guilds')->onDelete('set null');
         });
 
-
     }
 
     /**

@@ -9,8 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
 
-public function hunter(){
+    public function hunter(){
         return $this->belongsTo(Hunter::class, 'from_id');
     }
 }

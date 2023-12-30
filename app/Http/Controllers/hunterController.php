@@ -54,10 +54,12 @@ class hunterController extends Controller
         return view('auth.hunterDashboard', compact('hunter', 'datos', 'comments'));
     }
 
+
+
     public function show(Hunter $hunter){
 
         $datos = $this->getHunterData();
-        $comments = $hunter->comments()->with('hunter')->get();
+        $comments = $hunter->comments()->with('hunter')->paginate(5);
         return view('auth.hunter', compact('hunter', 'comments', 'datos'));
     }
 
@@ -132,5 +134,27 @@ class hunterController extends Controller
         $hunter->save();
 
         return redirect()->route('dashboard');
+    }
+
+    public function comment(){
+
+        $msg = request() -> get('commentMsg');
+
+        $from = Auth::user()->hunter->id;
+
+        $to = request()->get('hunter_id');   
+
+        $comment = new Comment;
+
+        $comment->from_id = $from;
+
+        $comment->to_id = $to;
+
+        $comment->msg = $msg;
+
+        $comment->save();
+
+        return redirect()->route('hunter.show', ['hunter' => $to]);
+
     }
 }

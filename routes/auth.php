@@ -84,6 +84,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/hunter', hunterController::class)->only(['show']);
 
+    Route::post('/hunter/{hunter/comment', [hunterController::class, 'comment'])->name('hunter.comment');
+
     Route::get('/hunters', [hunterController::class, 'index'])->name('hunters');
 
 

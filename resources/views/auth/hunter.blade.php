@@ -5,6 +5,7 @@
 
 @section('content')
 
+
 <div class="container py-4">
     <div class="row">
         <div class="col-2 mb-3">
@@ -45,13 +46,19 @@
                             {{$hunter->bio}}
                         </p>
                         <div class="mt-3">
-                            <button class="btn btn-primary btn-sm">Comentar</button>
+                            <button x-data x-on:click="$dispatch('open-modal')" class="btn btn-primary btn-sm">Comentar</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-
+  
+    <div data-hunter-id="{{ $hunter->id }}">
+        <x-modal-comment>
+        </x-modal-comment>
+    </div>
+    
+            
             @foreach ($comments as $comment )
                 
             <div class="mt-3">
@@ -73,6 +80,8 @@
                 </div>
             </div>
             @endforeach
+
+            {{ $comments->links() }}
 
 
         </div>
