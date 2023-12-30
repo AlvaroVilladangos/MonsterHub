@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/guilds', guildController::class)/* ->middleware('checkguild') */->only(['index', 'create', 'store']);
 
-    Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update', 'show']);
+    Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update', 'show', 'destroy']);
 
     Route::put('/guild/{guild}/join', [guildController::class, 'join'])->middleware('checkguild')->name('guild.join');
 
@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/hunter', hunterController::class)->only(['show']);
 
     Route::get('/hunters', [hunterController::class, 'index'])->name('hunters');
+
 
    /*  Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['show']); */
 

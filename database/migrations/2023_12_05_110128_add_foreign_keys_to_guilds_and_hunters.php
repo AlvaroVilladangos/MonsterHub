@@ -12,13 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('guilds', function (Blueprint $table) {
-
             $table->foreign('leader_id')->references('id')->on('hunters')
-            ->onDelete('cascade');
+                ->onDelete('cascade');
         });
-
+    
         Schema::table('hunters', function (Blueprint $table) {
-            $table->foreign('guild_id')->references('id')->on('guilds')->onDelete('cascade');
+            $table->foreign('guild_id')->references('id')->on('guilds')->onDelete('set null');
         });
 
 

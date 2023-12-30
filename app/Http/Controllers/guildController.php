@@ -49,7 +49,6 @@ class guildController extends Controller
     public function show(Guild $guild){
 
         if ($guild->id == null){
-
             redirect() -> route('guilds.index');
         }
 
@@ -99,9 +98,16 @@ class guildController extends Controller
     }
 
     public function ascender(Guild $guild, Hunter $member){
-
         $guild->leader_id = $member->id;
         $guild->save();
+        return redirect()->route('dashboard');
+    }
+
+
+    public function destroy(Guild $guild){
+
+
+        Guild::where('id',$guild->id)->firstOrFail()->delete();
 
         return redirect()->route('dashboard');
     }

@@ -3,7 +3,6 @@
     <div class="container">
         <div class="row mt-3">
             <div class="col-2 mb-3">
-
             </div>
 
             <div class="col-8">
@@ -42,17 +41,8 @@
                                 <div class="col">
                                     <button class="btn btn-primary" type="submit">Editar</button>
                                 </div>
-                                {{--                             <div class="col-auto">
-                                @if (Auth::user()->hunter->guild_id === $guild->id)
-                                <button class="btn btn-danger">Abandonar</button>
-                                @elseif ($guild->memberCount()<20)
-                                <button class="btn btn-success">Unirse</button>
-                                @endif
-
-                                @if ($guild->leader_id == Auth::user()->hunter->id)
-                                <button class="btn btn-primary">Editar</button>
-                                @endif
-                            </div> --}}
+                                <div class="col">
+                                </div>
                             </div>
                         </div>
 
@@ -99,6 +89,16 @@
                 @endforeach
             </table>
         </div>
+
+        <div class="col-2 mb-3">
+
+            <form id="deleteGuildForm" action="{{route('guild.destroy', $guild)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger btn-lg" type="button" onclick="confirmDeleteGuild()">ELIMINAR GREMIO</button>
+            </form>
+            
+        </div>
     </div>
     </div>
 @endsection
@@ -144,6 +144,24 @@
             }
         })
     }
+
+    function confirmDeleteGuild() {
+    Swal.fire({
+        title: '¿Estás seguro que quieres eliminar este gremio?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('deleteGuildForm').submit();
+        }
+    })
+}
+
 </script>
     
 @endsection
