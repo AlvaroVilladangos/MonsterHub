@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('guild_id')->nullable();
             $table->unsignedBigInteger('weapon_id');
             $table->unsignedBigInteger('armor_id');
+            $table->unsignedBigInteger('room_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')
@@ -28,6 +29,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->foreign('armor_id')->references('id')->on('armors')
                 ->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms') ->onDelete('set null');
         });
     }
 

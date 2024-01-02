@@ -146,6 +146,22 @@ class hunterController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function leaveRoom(){
+
+        $hunter = Auth::user()->hunter;
+        $room = $hunter->room;
+
+        $hunter->room_id = null;
+
+        $hunter->save();
+
+        if ($room->hunters()->count() == 0) {
+            $room->delete();
+        }
+
+        return redirect()->route('dashboard');
+    }
+
     public function comment(){
 
         $msg = request() -> get('commentMsg');

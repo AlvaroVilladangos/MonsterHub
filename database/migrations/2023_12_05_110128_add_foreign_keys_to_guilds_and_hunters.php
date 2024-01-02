@@ -19,7 +19,6 @@ return new class extends Migration
         Schema::table('hunters', function (Blueprint $table) {
             $table->foreign('guild_id')->references('id')->on('guilds')->onDelete('set null');
         });
-
     }
 
     /**

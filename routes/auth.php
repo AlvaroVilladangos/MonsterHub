@@ -12,7 +12,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\guildController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\hunterController;
-
+use App\Http\Controllers\roomController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -78,6 +78,8 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/hunter/leave', [hunterController::class, 'leaveGuild'])->name('hunter.leaveGuild');
 
+    Route::put('/hunter/leaveRoom', [hunterController::class, 'leaveRoom'])->name('hunter.leaveRoom');
+
     Route::put('/guild/{guild}/expulsar/hunter/{member}', [guildController::class, 'expulsar'])->middleware('checkLeader:guild')->name('guild.expulsar');
 
     Route::put('/guild/{guild}/ascender/hunter/{member}', [guildController::class, 'ascender'])->middleware('checkLeader:guild')->name('guild.ascender');
@@ -88,8 +90,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/hunters', [hunterController::class, 'index'])->name('hunters');
 
-
+    Route::get('/rooms', [roomController::class, 'index'])->name('rooms');
    /*  Route::resource('/guilds', guildController::class)->middleware('checkguild')->only(['show']); */
 
     Route::resource('/guild', guildController::class)->only(['show']);
+
+    Route::resource('/rooms', roomController::class)->only(['store']);
 });

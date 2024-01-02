@@ -38,7 +38,7 @@ class Hunter extends Model
     }
 
     public function room(){
-        return $this->hasOne(Room::class);
+        return $this->belongsTo(Room::class);
     }
 
     public function friends(){
