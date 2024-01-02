@@ -17,7 +17,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar" />
+                                src="{{URL('storage/' . $hunter->img)}}" />
                             <div>
                                 <h3 class="card-title mb-0"><p> {{$hunter->name}} </p></h3>
                             </div>
@@ -66,7 +66,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-start">
                             <img style="width: 35px" class="me-2 avatar-sm rounded-circle"
-                                src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="Luigi Avatar" />
+                                src="{{URL('storage/' . $comment->hunter->img)}}" />
                             <div class="w-100">
                                 <div class="d-flex justify-content-between">
                                     <h6 class="">{{$comment->hunter->name}}</h6>

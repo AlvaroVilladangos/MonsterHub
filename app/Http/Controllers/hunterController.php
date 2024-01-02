@@ -9,6 +9,7 @@ use App\Models\Hunter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class hunterController extends Controller
 {
@@ -92,25 +93,34 @@ class hunterController extends Controller
     public function update(){
 
         $hunter = auth()->user()->hunter;
-
+    
+        if (request()->has('img')){
+            $validateIMG = request()->validate(['img' => 'image']);
+            $imgPath = request()->file('img')->store('imgProfile', 'public');
+            $validateIMG = $imgPath;
+    
+            if ($hunter->img != 'imgProfile/defaultProfile.webp'){
+                Storage::disk('public')->delete($hunter->img);
+            }
+        } else {
+            $validateIMG = $hunter->img;
+        }
+    
         $hunter->name = request()->get('hunterName','');
         
         $bio = request()->get('bio');
         $hunter->bio = $bio !== null ? $bio : ' ';
-        
+        $hunter->img = $validateIMG;
         $hunter->weapon_id = request()->get('weapon','');
         $hunter->armor_id = request()->get('armor','');
-
+    
         $hunter->save();
-
-
+    
         $datos = $this->getHunterData();
-
-
-
+    
         return redirect()->route('dashboard');
     }
-
+    
 
     public function destroyComment($id){
         $comment = Comment::where('id',$id)->firstOrFail()->delete();

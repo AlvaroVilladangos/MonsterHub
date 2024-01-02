@@ -10,23 +10,26 @@
             <div class="col-8 mb-3">
 
                 <div class="card">
-                    <form method="post" action="{{ route('edit') }}">
+                    <form enctype="multipart/form-data" method="post" action="{{ route('edit') }}">
                         @csrf
                         @method('PUT')
                         <div class="px-3 pt-4 pb-2">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                        src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar" />
+                                            src="{{URL('storage/' . Auth::user()->hunter->img)}}"/>
                                     <div>
-
                                         <div>
                                             <input type="text" name="hunterName" class ="form-control" id="hunterName"
                                                 value="{{ Auth::user()->hunter->name }}"> </input>
                                         </div>
-
                                     </div>
                                 </div>
+                            </div>
+
+                            <div>
+                                <label for=""> Imagen de perfil</label>
+                                <input type="file" name="img" class="form-control">
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
@@ -73,7 +76,7 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-start">
                                     <img style="width: 35px" class="me-2 avatar-sm rounded-circle"
-                                        src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Luigi" alt="Luigi Avatar" />
+                                    src="{{URL('storage/' . $comment->hunter->img)}}" />
                                     <div class="w-100">
                                         <div class="d-flex justify-content-between">
                                             <h6 class="">{{ $comment->hunter->name }}</h6>
