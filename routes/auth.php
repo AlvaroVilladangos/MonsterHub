@@ -74,11 +74,12 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update', 'show', 'destroy']);
 
-    Route::put('/guild/{guild}/join', [guildController::class, 'join'])->middleware('checkguild')->name('guild.join');
+    Route::put('/guild/{guild}/join', [hunterController::class, 'joinGuild'])->middleware('checkguild')->name('hunter.joinGuild');
 
     Route::put('/hunter/leave', [hunterController::class, 'leaveGuild'])->name('hunter.leaveGuild');
 
     Route::put('/hunter/leaveRoom', [hunterController::class, 'leaveRoom'])->name('hunter.leaveRoom');
+    Route::put('/hunter/joinRoom', [hunterController::class, 'joinRoom'])->name('hunter.joinRoom');
 
     Route::put('/guild/{guild}/expulsar/hunter/{member}', [guildController::class, 'expulsar'])->middleware('checkLeader:guild')->name('guild.expulsar');
 

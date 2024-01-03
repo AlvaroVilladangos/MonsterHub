@@ -6,6 +6,8 @@ use App\Models\Armor;
 use App\Models\Weapon;
 use App\Models\Comment;
 use App\Models\Hunter;
+use App\Models\Guild;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -162,6 +164,22 @@ class hunterController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function joinRoom(){
+        $room_id = request()->get('room_id');
+        $room = Room::find($room_id);
+    
+        if($room && $room->roomCount() < 4){
+            $hunter = Auth::user()->hunter;
+            $hunter->room_id = $room_id;
+            $hunter->save();
+            return redirect()->route('dashboard');
+        } else {
+            session()->flash('error', 'No se ha podido unir a la sala');
+            return redirect()->route('dashboard');
+        }
+    }
+    
+    
     public function comment(){
 
         $msg = request() -> get('commentMsg');
@@ -183,4 +201,14 @@ class hunterController extends Controller
         return redirect()->route('hunter.show', ['hunter' => $to]);
 
     }
+
+    public function joinGuild(Guild $guild){
+
+        $hunter = Auth::user()->hunter;
+        $hunter->guild_id = $guild->id;
+        $hunter->save();
+
+        return redirect()->route('guild.show', $guild);
+    }
+
 }

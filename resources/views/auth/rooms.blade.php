@@ -33,7 +33,14 @@
                             <td class="d-flex justify-content-center"></td>
                             <td class="align-middle text-center">{{$room->monster->name}}</td>
                             <td class="align-middle text-center">{{$room->roomCount()}}</td>
-                            <td class="align-middle text-center"></td>
+                            <td class="align-middle text-center">
+                                <form action="{{route('hunter.joinRoom')}}" method="post">
+                                    @csrf  
+                                    @method('put')
+                                    <input type="" name="room_id" id="" value="{{$room->id}}" hidden>
+                                    <button class="btn btn-success btn-sm" type="submit">Unirse</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

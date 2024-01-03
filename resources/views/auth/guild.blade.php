@@ -43,7 +43,7 @@
                                     <button type="button" class="btn btn-danger" onclick="confirmLeaveGuild()">Abandonar</button>
                                 </form>                                
                                 @elseif ($guild->memberCount()<20 && Auth::user()->hunter->guild_id === null )
-                                <form action="{{ route('guild.join', $guild) }}" method="post">
+                                <form action="{{ route('hunter.joinGuild', $guild) }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="submit" class="btn btn-success">Unirse</button>

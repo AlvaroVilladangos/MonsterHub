@@ -78,14 +78,6 @@ class guildController extends Controller
         return view('auth.guild', compact('guild', 'members'));
     }
 
-    public function join(Guild $guild){
-
-        $hunter = Auth::user()->hunter;
-        $hunter->guild_id = $guild->id;
-        $hunter->save();
-
-        return redirect()->route('guild.show', $guild);
-    }
 
     public function expulsar(Guild $guild, Hunter $member){
 

@@ -3,7 +3,15 @@
 
 @section('content')
 
+
     <div class="container py-4">
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-2 mb-3">
                 <div class="card overflow-hidden">
@@ -97,36 +105,37 @@
 
 
             </div>
-                @isset($hunter->room)
-                    <div class="col-2 mb-3">
-                        <div class="card overflow-hidden">
-                            <div class="card-body pt-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h1>Sala</h1>
-                                    <form action="{{route('hunter.leaveRoom')}}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn btn-primary">Salir</button>
-                                    </form>
-                                </div>
-
-                                <label for="codigo">Codigo</label>
-                                <p id="codigo">{{ $hunter->room->room_number }}</p>
-                                <label for="monstruo">Monstruo</label>
-                                <p id="monstruo"><img style="width: 90px" class=""
-                                        src="{{ URL('storage/' . $hunter->room->monster->img) }}" /></p>
-                                <h2>Cazadores</h2>
-                                <ul>
-                                    @foreach ($hunter->room->hunters as $hunterInRoom)
-
-                                        @if ($hunterInRoom->id != Auth::user()->hunter->id)
-                                            <li><a href="/hunter/{{$hunterInRoom->id}}"class="nav-link text-decoration-underline"> {{$hunterInRoom->name}}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
+            @isset($hunter->room)
+                <div class="col-2 mb-3">
+                    <div class="card overflow-hidden">
+                        <div class="card-body pt-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h1>Sala</h1>
+                                <form action="{{ route('hunter.leaveRoom') }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary">Salir</button>
+                                </form>
                             </div>
+
+                            <label for="codigo">Codigo</label>
+                            <p id="codigo">{{ $hunter->room->room_number }}</p>
+                            <label for="monstruo">Monstruo</label>
+                            <p id="monstruo"><img style="width: 90px" class=""
+                                    src="{{ URL('storage/' . $hunter->room->monster->img) }}" /></p>
+                            <h2>Cazadores</h2>
+                            <ul>
+                                @foreach ($hunter->room->hunters as $hunterInRoom)
+                                    @if ($hunterInRoom->id != Auth::user()->hunter->id)
+                                        <li><a
+                                                href="/hunter/{{ $hunterInRoom->id }}"class="nav-link text-decoration-underline">
+                                                {{ $hunterInRoom->name }}</a></li>
+                                    @endif
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
+                </div>
             @else
             @endisset
         </div>
