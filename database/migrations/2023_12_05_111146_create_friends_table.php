@@ -12,18 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('friends', function (Blueprint $table) {
-
+    
             $table->id();
-            $table->unsignedBigInteger('hunter_id1');
-            $table->unsignedBigInteger('friend_id');
-
-            $table->foreign('hunter_id1')->references('id')->on('hunters')
+            $table->unsignedBigInteger('hunter_1');
+            $table->unsignedBigInteger('hunter_2');
+            $table->unsignedBigInteger('requester_id');
+            $table->string('status');
+    
+            $table->foreign('hunter_1')->references('id')->on('hunters')
                 ->onDelete('cascade');
-            $table->foreign('friend_id')->references('id')->on('hunters')
+            $table->foreign('hunter_2')->references('id')->on('hunters')
                 ->onDelete('cascade');
-
+            $table->foreign('requester_id')->references('id')->on('hunters')
+                ->onDelete('cascade');
+    
         });
     }
+    
 
     /**
      * Reverse the migrations.

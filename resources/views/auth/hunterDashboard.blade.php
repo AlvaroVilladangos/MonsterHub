@@ -33,6 +33,10 @@
                                 <a class="nav-link text-dark" href="/edit">
                                     <span>Ajustes</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/friends">
+                                    <span>Amigos</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>

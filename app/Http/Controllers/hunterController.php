@@ -15,36 +15,18 @@ use Illuminate\Support\Facades\Storage;
 
 class hunterController extends Controller
 {
-    /*     public function weaponName(){
-        $weaponId = auth()->user()->hunter->weapon_id;
 
-        $weapon = Weapon::find($weaponId);
+    public function getHunterData()
+    {
+        $hunter = auth()->user()->hunter;
 
-        return view('auth.hunter', compact('weapon'));
+        $comments = $hunter->comments()->with('hunter')->get();
+
+        $weapon = Weapon::find($hunter->weapon_id);
+        $armor = Armor::find($hunter->armor_id);
+
+        return compact('weapon', 'armor', 'comments');
     }
-
-
-    public function armorName(){
-        $armorId = auth()->user()->hunter->armor_id;
-
-        $armor = Armor::find($armorId);
-
-        return view('auth.hunter', compact('armor'));
-    }
-
- */
-
- public function getHunterData()
-{
-    $hunter = auth()->user()->hunter;
-
-    $comments = $hunter->comments()->with('hunter')->get();
-
-    $weapon = Weapon::find($hunter->weapon_id);
-    $armor = Armor::find($hunter->armor_id);
-
-    return compact('weapon', 'armor', 'comments');
-}
 
     public function dashboard()
     {
@@ -59,7 +41,8 @@ class hunterController extends Controller
 
 
 
-    public function show(Hunter $hunter){
+    public function show(Hunter $hunter)
+    {
 
         $datos = $this->getHunterData();
         $comments = $hunter->comments()->with('hunter')->paginate(5);
@@ -67,17 +50,18 @@ class hunterController extends Controller
     }
 
 
-    public function index(){
+    public function index()
+    {
 
         $hunters = hunter::query();
 
-        if (request()->has('search')){
+        if (request()->has('search')) {
             $search = strtolower(request()->get('search', ''));
-            $hunters = $hunters->whereRaw('lower(name) like (?)',["%{$search}%"]);
+            $hunters = $hunters->whereRaw('lower(name) like (?)', ["%{$search}%"]);
         }
-    
+
         $hunters = $hunters->paginate(5);
-    
+
         return view('auth.hunters', compact('hunters'));
     }
 
@@ -87,57 +71,60 @@ class hunterController extends Controller
         $datos = $this->getHunterData();
         $weapons = Weapon::all();
         $armors = Armor::all();
-    
+
         return view('auth.hunterEdit', array_merge($datos, compact('weapons', 'armors')));
     }
 
 
-    public function update(){
+    public function update()
+    {
 
         $hunter = auth()->user()->hunter;
-    
-        if (request()->has('img')){
+
+        if (request()->has('img')) {
             $validateIMG = request()->validate(['img' => 'image']);
             $imgPath = request()->file('img')->store('imgProfile', 'public');
             $validateIMG = $imgPath;
-    
-            if ($hunter->img != 'imgProfile/defaultProfile.webp'){
+
+            if ($hunter->img != 'imgProfile/defaultProfile.webp') {
                 Storage::disk('public')->delete($hunter->img);
             }
         } else {
             $validateIMG = $hunter->img;
         }
-    
-        $hunter->name = request()->get('hunterName','');
-        
+
+        $hunter->name = request()->get('hunterName', '');
+
         $bio = request()->get('bio');
         $hunter->bio = $bio !== null ? $bio : ' ';
         $hunter->img = $validateIMG;
-        $hunter->weapon_id = request()->get('weapon','');
-        $hunter->armor_id = request()->get('armor','');
-    
+        $hunter->weapon_id = request()->get('weapon', '');
+        $hunter->armor_id = request()->get('armor', '');
+
         $hunter->save();
-    
+
         $datos = $this->getHunterData();
-    
+
         return redirect()->route('dashboard');
     }
-    
 
-    public function destroyComment($id){
-        $comment = Comment::where('id',$id)->firstOrFail()->delete();
-    
+
+    public function destroyComment($id)
+    {
+        $comment = Comment::where('id', $id)->firstOrFail()->delete();
+
         $datos = $this->getHunterData();
-    
+
         $datos = $this->getHunterData();
         $weapons = Weapon::all();
         $armors = Armor::all();
-    
+
         return redirect()->route('edit');
     }
 
 
-    public function leaveGuild(){
+    public function leaveGuild()
+    {
 
         $hunter = Auth::user()->hunter;
 
@@ -148,7 +135,8 @@ class hunterController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function leaveRoom(){
+    public function leaveRoom()
+    {
 
         $hunter = Auth::user()->hunter;
         $room = $hunter->room;
@@ -164,11 +152,12 @@ class hunterController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function joinRoom(){
+    public function joinRoom()
+    {
         $room_id = request()->get('room_id');
         $room = Room::find($room_id);
-    
-        if($room && $room->roomCount() < 4){
+
+        if ($room && $room->roomCount() < 4) {
             $hunter = Auth::user()->hunter;
             $hunter->room_id = $room_id;
             $hunter->save();
@@ -178,15 +167,16 @@ class hunterController extends Controller
             return redirect()->route('dashboard');
         }
     }
-    
-    
-    public function comment(){
 
-        $msg = request() -> get('commentMsg');
+
+    public function comment()
+    {
+
+        $msg = request()->get('commentMsg');
 
         $from = Auth::user()->hunter->id;
 
-        $to = request()->get('hunter_id');   
+        $to = request()->get('hunter_id');
 
         $comment = new Comment;
 
@@ -199,10 +189,10 @@ class hunterController extends Controller
         $comment->save();
 
         return redirect()->route('hunter.show', ['hunter' => $to]);
-
     }
 
-    public function joinGuild(Guild $guild){
+    public function joinGuild(Guild $guild)
+    {
 
         $hunter = Auth::user()->hunter;
         $hunter->guild_id = $guild->id;
@@ -211,4 +201,103 @@ class hunterController extends Controller
         return redirect()->route('guild.show', $guild);
     }
 
+    public function friendsList()
+    {
+        $user = Auth::user()->hunter;
+    
+        $friendsOfThisUser = $user->friendsOfThisUser()->get();
+        $thisUserIsFriendOf = $user->thisUserIsFriendOf()->get();
+    
+        $acceptedFriends = $friendsOfThisUser->concat($thisUserIsFriendOf);
+    
+        $id= $user->id;
+
+        
+        $receivedRequests = DB::table('friends')
+        ->where('status', 'pending')
+        ->where('requester_id', '!=', $id)
+        ->where(function ($query) use ($id) {
+            $query->where('hunter_1', $id)
+                  ->orWhere('hunter_2', $id);
+        })
+        ->get();
+    
+        $receivedRequestsData = $receivedRequests->map(function ($request) {
+            $requesterId = $request->requester_id;
+            $requesterData = Hunter::find($requesterId);
+            return $requesterData;
+        });
+    
+        return view('auth.friends', compact('acceptedFriends', 'receivedRequestsData'));
+    }
+    
+
+    public function addFriend($requesterId, $receiverId)
+    {
+        $existingFriendship = DB::table('friends')
+            ->where(function ($query) use ($requesterId, $receiverId) {
+                $query->where('hunter_1', min($requesterId, $receiverId))
+                      ->where('hunter_2', max($requesterId, $receiverId));
+            })
+            ->first();
+    
+        if (!$existingFriendship) {
+            DB::table('friends')->insert(
+                ['hunter_1' => min($requesterId, $receiverId), 'hunter_2' => max($requesterId, $receiverId), 'requester_id' => $requesterId, 'status' => 'pending']
+            );
+        }
+    
+        return redirect()->route('dashboard');
+    }
+    
+
+    public function acceptFriend()
+    {
+        $requesterId = request('requestId');
+    
+        $currentUserId = auth()->user()->hunter->id;
+        
+        $friendRequest = DB::table('friends')
+            ->where(function ($query) use ($requesterId, $currentUserId) {
+                $query->where('hunter_1', min($requesterId, $currentUserId))
+                      ->where('hunter_2', max($requesterId, $currentUserId))
+                      ->where('requester_id', $requesterId);
+            })
+            ->where('status', 'pending')
+            ->first();
+    
+        if ($friendRequest) {
+            DB::table('friends')
+                ->where('id', $friendRequest->id)
+                ->update(['status' => 'accepted']);
+        }
+    
+        return redirect()->route('friends');
+    }
+    
+    public function deleteFriend()
+    {
+        $requesterId = request('requestId');
+    
+        $currentUserId = auth()->user()->hunter->id;
+    
+        $friendRelation = DB::table('friends')
+            ->where(function ($query) use ($requesterId, $currentUserId) {
+                $query->where('hunter_1', min($requesterId, $currentUserId))
+                      ->where('hunter_2', max($requesterId, $currentUserId))
+                      ->where('requester_id', $requesterId);
+            })
+            ->first();
+    
+        if ($friendRelation) {
+            DB::table('friends')
+                ->where('id', $friendRelation->id)
+                ->delete();
+        }
+    
+        return redirect()->route('friends');
+    }
+    
+    
+    
 }

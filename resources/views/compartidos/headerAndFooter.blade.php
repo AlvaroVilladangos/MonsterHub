@@ -66,7 +66,7 @@
                 @if (auth()->check())
                 <form method="post" action="{{ route('logout') }}">
                     @csrf
-                    <button class="btn btn-danger mx-3" type="submit">Logout</button>
+                    <button class="btn btn-primary mx-3" type="submit">Logout</button>
                 </form>
                 @else
                 <a class="btn btn-light mx-3" href="/login">Login</a>

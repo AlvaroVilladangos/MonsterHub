@@ -97,4 +97,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('/guild', guildController::class)->only(['show']);
 
     Route::resource('/rooms', roomController::class)->only(['store']);
+
+    Route::get('/friends', [hunterController::class, 'friendsList'])->name('friends');
+
+    Route::post('/addfriend/{requesterId}/{receiverId}', [hunterController::class, 'addFriend'])->name('addfriend');
+
+    Route::put('/accept', [hunterController::class, 'acceptFriend'])->name('acceptfriend');
+
+    Route::delete('/delete', [hunterController::class, 'deleteFriend'])->name('deleteFriend');
+
 });

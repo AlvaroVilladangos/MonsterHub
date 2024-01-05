@@ -20,19 +20,30 @@
 
 
             @foreach ($hunters as $hunter)
+                @if (Auth::user()->hunter->id == $hunter->id)
+                    @continue
+                @endif
                 <tr>
-                    <td class="align-middle text-center"><a
-                            href="/hunter/{{ $hunter->id }}  "class="nav-link text-decoration-underline">{{ $hunter->name }}</a>
+                    <td class="align-middle text-center">
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                            <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
+                                src="{{ URL('storage/' . $hunter->img) }}" />
+                            <a href="/hunter/{{ $hunter->id }}"
+                                class="nav-link text-decoration-underline">{{ $hunter->name }}</a>
+                        </div>
                     </td>
                     @isset($hunter->guild)
-                        <td class="align-middle text-center"><a href="/guild/{{$hunter->guild->id}}">{{ $hunter->guild->name }}</a>
-                            </td>
+                        <td class="align-middle text-center"><a
+                                href="/guild/{{ $hunter->guild->id }}">{{ $hunter->guild->name }}</a></td>
                     @else
                         <td class="align-middle text-center">N/A</td>
                     @endisset
                     <td class="align-middle text-center"></td>
                 </tr>
             @endforeach
+
+
+
         </table>
 
         {{ $hunters->links() }}
