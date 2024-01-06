@@ -16,9 +16,11 @@
 
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark ">
+                        <th class="text-center">Acción</th>
                         <th class="text-center">Amigo</th>
                         <th class="text-center">Guild</th>
-                        <th class="text-center"></th>
+                        <th>Sala</th>
+                        <th></th>
                     </tr>
 
 
@@ -27,6 +29,15 @@
                             @continue
                         @endif
                         <tr>
+                            <td class="align-middle text-center">
+                                <form action="{{ route('deleteFriend') }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="text" name="requestId" value="{{ $acceptedFriend->id }}" hidden>
+                                    </input>
+                                    <button type="submit" class="btn btn-primary btn-sm">Borrar</button>
+                                </form>
+                            </td>
                             <td class="align-middle text-center">
                                 <div style="display: flex; align-items: center; justify-content: center;">
                                     <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
@@ -42,15 +53,29 @@
                             @else
                                 <td class="align-middle text-center">N/A</td>
                             @endisset
+                           
+                            @isset($acceptedFriend->room)
+                                <td>
+                                    {{$acceptedFriend->room->roomCount()}}/4
+                                </td>
+                            @else
+                                <td class="align-middle text-center">N/A</td>
+                            @endisset
+                            
+                            @isset(auth()->user()->hunter->room)
+
+                            <td class="align-middle text-center"></td>
+
+                            @else
                             <td class="align-middle text-center">
-                                <form action="{{ route('deleteFriend') }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <input type="text" name="requestId" value="{{ $acceptedFriend->id }}" hidden>
-                                    </input>
-                                    <button type="submit" class="btn btn-primary btn-sm">Borrar</button>
+                                <form action="{{route('hunter.joinRoom')}}" method="post">
+                                    @csrf  
+                                    @method('put')
+                                    <input type="" name="room_id" id="" value="{{$acceptedFriend->room->id}}" hidden>
+                                    <button class="btn btn-success btn-sm" type="submit">Unirse</button>
                                 </form>
                             </td>
+                            @endisset
                         </tr>
                     @endforeach
 
