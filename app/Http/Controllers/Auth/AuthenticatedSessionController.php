@@ -27,6 +27,16 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        if (auth()->user()->blocked) {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            session()->flash('error', 'Este usuario ha sido bloqueado.');
+
+            return redirect('/login');
+        }
+
         $request->session()->regenerate();
 
         if (auth()->user()->admin) {
