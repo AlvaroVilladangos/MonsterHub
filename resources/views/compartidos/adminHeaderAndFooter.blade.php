@@ -9,20 +9,6 @@
     @vite('/resources/css/bootstrap.min.css')
     <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-
-
-{{--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
- --}}
-
-
-
-{{--  <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-     crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-
         <style>
             background-image: url("/storage/fondo.jpeg");
             body {
@@ -32,9 +18,10 @@
             }
         </style>
 
+
 @vite('resources/js/app.js')
 @vite('resources/css/app.css')
-
+@vite('resources/css/admin.css')
 </head>
 
 
@@ -43,7 +30,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         @if (auth()->check())
-        <a class="navbar-brand" href="/dashboard">MonsterHub</a>
+        <a class="navbar-brand" href="/indexAdmin">MonsterHub</a>
         @else
         <a class="navbar-brand" href="/">MonsterHub</a>
         @endif
@@ -56,11 +43,8 @@
                 <a class="nav-item nav-link" href="/monsters">Monstruos</a>
                 <a class="nav-item nav-link" href="/weapons">Armas</a>
                 <a class="nav-item nav-link" href="/armors">Armaduras</a>
+                <a class="nav-item nav-link" href="/users">Users</a>
 
-                @if (auth()->check())
-                <a class="nav-item nav-link" href="/guilds">Guilds</a>
-                <a class="nav-item nav-link" href="/hunters">Hunters</a>
-                @endif
             </div>
 
             <div class="ms-auto">

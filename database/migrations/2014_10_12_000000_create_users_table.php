@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('admin')->default(false);
+            $table->boolean('blocked')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

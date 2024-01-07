@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -40,6 +41,24 @@ Route::middleware('guest')->group(function () {
     Route::get('/registrar', [RegisteredUserController::class, 'create'])->name('registrar');
     Route::post('/registrar', [RegisteredUserController::class, 'store'])->name('registrar.store');
 });
+
+
+
+
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/indexAdmin', [adminController::class, 'index']);
+
+    Route::get('/usersAdmin', [adminController::class, 'users'])->name('usersAdmin');
+
+    Route::resource('/hunter', hunterController::class)->only(['show']);
+
+    Route::put('/blockUser/{id}', [adminController::class, 'blockUser'])->name('blockUser');
+    Route::put('/unBlockUser/{id}', [adminController::class, 'unBlockUser'])->name('unBlockUser');
+});
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
