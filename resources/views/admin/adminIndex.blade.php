@@ -55,7 +55,7 @@
                             <img class="img-fluid rounded" src="{{ URL('storage/monsterBanner.webp') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/weapons">Monstruos</a>
+                    <a class="card-button nav-link" href ="/monstersAdmin">Monstruos</a>
                 </div>
 
             </div>

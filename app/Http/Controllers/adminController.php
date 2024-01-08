@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Monster;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class adminController extends Controller
     
     public function index(){
 
-        return view('auth.adminIndex');
+        return view('admin.adminIndex');
     }
 
     public function users(){
@@ -23,9 +24,9 @@ class adminController extends Controller
             $users = $users->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $users = $users->paginate(5);
+        $users = $users->paginate(10);
 
-        return view('auth.adminUsers', compact('users'));
+        return view('admin.adminUsers', compact('users'));
     }
 
 
@@ -43,4 +44,21 @@ class adminController extends Controller
         $user->save();
         return redirect()->route('usersAdmin');
     }
+
+
+
+    public function monsters(){
+
+        $monsters = Monster::query();
+
+        if (request()->has('search')){
+            $search = strtolower(request()->get('search', ''));
+            $monsters = $monsters->whereRaw('lower(name) like (?)',["%{$search}%"]);
+        }
+    
+        $monsters = $monsters->paginate(5);
+
+        return view('admin.adminMonsters', compact('monsters'));
+    }
+
 }

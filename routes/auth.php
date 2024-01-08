@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\guildController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\hunterController;
+use App\Http\Controllers\monsterController;
 use App\Http\Controllers\roomController;
 
 Route::middleware('guest')->group(function () {
@@ -56,6 +57,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/blockUser/{id}', [adminController::class, 'blockUser'])->name('blockUser');
     Route::put('/unBlockUser/{id}', [adminController::class, 'unBlockUser'])->name('unBlockUser');
+    Route::get('/monstersAdmin', [adminController::class, 'monsters'])->name('monstersAdmin');
+
+
+    Route::get('/monster/{id}/data', [monsterController::class, 'data']);
+    Route::put('/monster/{id}/update', [monsterController::class, 'update'])->name('monsterUpdate');
+
 });
 
 

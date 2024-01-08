@@ -6,6 +6,7 @@ use App\Models\Monster;
 use App\Models\Weapon;
 use App\Models\Armor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class monsterController extends Controller
 {
@@ -33,4 +34,48 @@ class monsterController extends Controller
     }
 
 
+
+    public function data($id)
+    {
+    $monster = Monster::find($id);
+    return response()->json($monster);
+    }
+
+
+
+    public function update(Request $request, $id){
+        $monster = Monster::find($id);
+        $newName = $request->input('monsterName');
+    
+        $existingMonster = Monster::where('name', $newName)->first();
+        if ($existingMonster && $existingMonster->id != $id) {
+            return redirect()->route('monstersAdmin')->with('error', 'El nombre ya existe en la base de datos');
+        }
+    
+        if ($request->hasFile('monsterImg')) {
+            $validateIMG = $request->validate(['monsterImg' => 'image']);
+            $imgPath = $request->file('monsterImg')->store('imgMonsters', 'public');
+            $validateIMG = $imgPath;
+    
+            if ($monster->img != 'imgMonsters/defaultMonster.webp') {
+                Storage::disk('public')->delete($monster->img);
+            }
+        } else {
+            $validateIMG = $monster->img;
+        }
+    
+        $monster->img = $validateIMG;
+        $monster->name = $newName;
+        $monster->weakness = $request->input('monsterWeakness');
+        $monster->element = $request->input('monsterElement');
+        $monster->physiology = $request->input('monsterPhysiology');
+        $monster->abilities = $request->input('monsterAbilities');
+    
+        $monster->save();
+    
+        return redirect()->route('monstersAdmin');
+    }
+    
+    
+    
 }
