@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\hunterController;
 use App\Http\Controllers\monsterController;
 use App\Http\Controllers\roomController;
+use App\Http\Controllers\weaponController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -57,11 +58,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/blockUser/{id}', [adminController::class, 'blockUser'])->name('blockUser');
     Route::put('/unBlockUser/{id}', [adminController::class, 'unBlockUser'])->name('unBlockUser');
+
     Route::get('/monstersAdmin', [adminController::class, 'monsters'])->name('monstersAdmin');
-
-
     Route::get('/monster/{id}/data', [monsterController::class, 'data']);
     Route::put('/monster/{id}/update', [monsterController::class, 'update'])->name('monsterUpdate');
+    Route::delete('/monster/{id}/destroy', [monsterController::class, 'destroy'])->name('monsterDestroy');
+    Route::post('/monsterCreate', [monsterController::class, 'store'])->name('monsterStore');
+
+
+    Route::get('/weaponsAdmin', [adminController::class, 'weapons'])->name('weaponsAdmin');
+    Route::get('/weapon/{id}/data', [weaponController::class, 'data']);
+    Route::put('/weapon/{id}/update', [weaponController::class, 'update'])->name('weaponUpdate');
+    Route::delete('/weapon/{id}/destroy', [weaponController::class, 'destroy'])->name('weaponDestroy');
+    Route::post('/weaponCreate', [weaponController::class, 'store'])->name('weaponStore');
 
 });
 

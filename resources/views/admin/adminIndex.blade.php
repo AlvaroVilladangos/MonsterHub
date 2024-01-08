@@ -42,7 +42,7 @@
                             <img class="img-fluid rounded" src="{{ URL('storage/weaponsBanner.jpg') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/weapons">Armas</a>
+                    <a class="card-button nav-link" href ="/weaponsAdmin">Armas</a>
                 </div>
 
             </div>

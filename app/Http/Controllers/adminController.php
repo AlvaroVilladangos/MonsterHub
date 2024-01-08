@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Monster;
 use App\Models\User;
+use App\Models\Weapon;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -59,6 +60,22 @@ class adminController extends Controller
         $monsters = $monsters->paginate(5);
 
         return view('admin.adminMonsters', compact('monsters'));
+    }
+
+
+
+    public function weapons(){
+
+        $weapons = Weapon::query();
+
+        if (request()->has('search')){
+            $search = strtolower(request()->get('search', ''));
+            $weapons = $weapons->whereRaw('lower(name) like (?)',["%{$search}%"]);
+        }
+    
+        $weapons = $weapons->paginate(5);
+
+        return view('admin.adminWeapons', compact('weapons'));
     }
 
 }

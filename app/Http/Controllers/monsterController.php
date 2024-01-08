@@ -77,5 +77,39 @@ class monsterController extends Controller
     }
     
     
+    public function destroy($id){
+
+        Monster::where('id',$id)->firstOrFail()->delete();
+        return redirect()->route('monstersAdmin');
+
+    }
+
+    public function store(Request $request){
+        $monster = new Monster();
+    
+        $existingMonster = Monster::where('name', $request->monsterName)->first();
+        if ($existingMonster) {
+            return redirect()->route('monsterAdmin')->with('error', 'El nombre ya existe en la base de datos');
+        }
+    
+        if ($request->hasFile('monsterImg')) {
+            $request->validate(['monsterImg' => 'image']);
+            $imgPath = $request->file('monsterImg')->store('imgMonsters', 'public');
+            $monster->img = $imgPath;
+        } else {
+            return redirect()->route('monstersAdmin')->with('error', 'Debes subir una imagen para el monstruo');
+        }
+    
+        $monster->name = $request->monsterName;
+        $monster->weakness = $request->monsterWeakness;
+        $monster->element = $request->monsterElement;
+        $monster->physiology = $request->monsterPhysiology;
+        $monster->abilities = $request->monsterAbilities;
+    
+        $monster->save();
+    
+        return redirect()->route('monstersAdmin')->with('success', 'Monstruo creado con éxito');
+    }
+    
     
 }
