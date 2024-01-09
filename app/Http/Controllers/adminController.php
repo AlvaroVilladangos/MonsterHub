@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Armor;
 use App\Models\Monster;
 use App\Models\User;
 use App\Models\Weapon;
@@ -57,7 +58,7 @@ class adminController extends Controller
             $monsters = $monsters->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $monsters = $monsters->paginate(5);
+        $monsters = $monsters->paginate(10);
 
         return view('admin.adminMonsters', compact('monsters'));
     }
@@ -73,11 +74,28 @@ class adminController extends Controller
             $weapons = $weapons->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $weapons = $weapons->paginate(5);
+        $weapons = $weapons->paginate(10);
 
         $monsters = Monster::doesntHave('weapon')->get();
 
         return view('admin.adminWeapons', compact('weapons', 'monsters'));
+    }
+
+
+    public function armors(){
+
+        $armors = Armor::query();
+
+        if (request()->has('search')){
+            $search = strtolower(request()->get('search', ''));
+            $armors = $armors->whereRaw('lower(name) like (?)',["%{$search}%"]);
+        }
+    
+        $armors = $armors->paginate(10);
+
+        $monsters = Monster::doesntHave('armor')->get();
+
+        return view('admin.adminArmors', compact('armors', 'monsters'));
     }
 
 }

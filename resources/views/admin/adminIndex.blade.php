@@ -26,7 +26,7 @@
                             <img class="img-fluid rounded" src="{{ URL('storage/armorsBanner.jpg') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/weapons">Armaduras</a>
+                    <a class="card-button nav-link" href ="/armorsAdmin">Armaduras</a>
                 </div>
 
             </div>

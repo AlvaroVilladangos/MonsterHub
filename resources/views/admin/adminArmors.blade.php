@@ -24,7 +24,7 @@
 
         <div class="row">
             <div class="col">
-                <form action="{{ route('weaponsAdmin') }}" method="get">
+                <form action="{{ route('armorsAdmin') }}" method="get">
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
                         <button type="submit" class="btn btn-dark">search</button>
@@ -33,8 +33,8 @@
             </div>
 
             <div class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#weaponCreateModal">
-                    Crear Arma
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#armorCreateModal">
+                    Crear Armadura
                 </button>
             </div>
         </div>
@@ -44,82 +44,77 @@
         <table class="table table-hover table-borderless">
             <tr class="table-dark ">
                 <th class="text-center">Imagen</th>
-                <th class="text-center"> Arma</th>
+                <th class="text-center"> Armadura</th>
                 <th class="text-center"> Monstruo</th>
                 <th class="text-center"></th>
                 <th class="text-center"></th>
             </tr>
 
-            @foreach ($weapons as $weapon)
+            @foreach ($armors as $armor)
                 <tr>
-                    <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
+                    <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $armor->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/weapon/{{ $weapon->id }}  "class="nav-link text-decoration-underline">{{ $weapon->name }}</a>
+                            href="/armor/{{ $armor->id }}  "class="nav-link text-decoration-underline">{{ $armor->name }}</a>
                     </td>
 
                     <td class="align-middle text-center"><a
-                        href="/monster/{{ $weapon->monster->id }}  "class="nav-link text-decoration-underline">{{ $weapon->monster->name }}</a>
+                        href="/monster/{{ $armor->monster->id }}  "class="nav-link text-decoration-underline">{{ $armor->monster->name }}</a>
+                    </td>
+                
+                    <td class="align-middle text-center">
+                        <button type="button" class="btn btn-warning btn-sm" data-id="{{ $armor->id }}"
+                            data-bs-toggle="modal" data-bs-target="#armorEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
-                        <button type="button" class="btn btn-warning btn-sm" data-id="{{ $weapon->id }}"
-                            data-bs-toggle="modal" data-bs-target="#weaponEditModal">EDITAR</button>
-                    </td>
-                    <td class="align-middle text-center">
-                        <form id="deleteweaponForm" action="{{ route('weaponDestroy', ['id' => $weapon->id]) }}"
+                        <form id="deleteArmorForm" action="{{ route('armorDestroy', ['id' => $armor->id]) }}"
                             method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-primary btn-sm" type="button"
-                                onclick="confirmDeleteweapon()">ELIMINAR</button>
+                                onclick="confirmDeleteArmor()">ELIMINAR</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </table>
 
-        {{ $weapons->links() }}
+        {{ $armors->links() }}
 
 
 
     </div>
 
 
-    <div class="modal fade" id="weaponEditModal" tabindex="-1"aria-hidden="true">
+    <div class="modal fade" id="armorEditModal" tabindex="-1"aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="guildModalLabel">Modificar Arma</h1>
+                    <h1 class="modal-title" id="guildModalLabel">Modificar armadura</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
 
-                    @isset ($weapon)
-                        <form id="weaponForm" method="post" action="{{ route('weaponUpdate', ['id' => $weapon->id]) }}"
+                    @isset ($armor)
+                        <form id="armorForm" method="post" action="{{ route('armorUpdate', ['id' => $armor->id]) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
-                            <img class="img-fluid mb-3" src="" alt="" name="weaponImg">
-                            <input type="file" class="form-control mb-3" name="weaponImg">
+                            <img class="img-fluid mb-3" src="" alt="" name="armorImg">
+                            <input type="file" class="form-control mb-3" name="armorImg">
 
-                            <label for="weaponName" class="form-label">Nombre de la arma</label>
-                            <input type="text" class="form-control mb-3" id="weaponName" name="weaponName">
+                            <label for="armorName" class="form-label">Nombre de la armadura</label>
+                            <input type="text" class="form-control mb-3" id="armorName" name="armorName">
 
-                            <label for="weaponAtk" class="form-label">Ataque</label>
-                            <input type="text" class="form-control mb-3" id="weaponAtk" name="weaponAtk">
+                            <label for="armorDef" class="form-label">Defensa</label>
+                            <input type="text" class="form-control mb-3" id="armorDef" name="armorDef">
 
-                            <label for="weaponElement" class="form-label">Elemento</label>
-                            <input type="text" class="form-control mb-3" id="weaponElement" name="weaponElement">
-
-                            <label for="weaponCrit" class="form-label">Critico</label>
-                            <input type="text" class="form-control mb-3" id="weaponCrit" name="weaponCrit">
-
-                            <label for="weaponInfo" class="form-label">info</label>
-                            <textarea type="text" class="form-control mb-3" id="weaponInfo" name="weaponInfo"> </textarea>
+                            <label for="armorInfo" class="form-label">info</label>
+                            <textarea type="text" class="form-control mb-3" id="armorInfo" name="armorInfo"> </textarea>
 
 
-                            <select name="weaponMonster_id" id="weaponMonster_id" required>
+                            <select name="armorMonster_id" id="armorMonster_id" required>
                                 @foreach ($monsters as $monster)
                                     <option value="{{ $monster->id }}"> {{ $monster->name }} </option>
                                 @endforeach
@@ -139,37 +134,30 @@
         </div>
     </div>
 
-    <div class="modal fade" id="weaponCreateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="armorCreateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="weaponModalLabel">Crear Arma</h1>
+                    <h1 class="modal-title" id="armorModalLabel">Crear armadura</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="weaponCreateForm" method="post" action="{{ route('weaponStore') }}"
+                    <form id="armorCreateForm" method="post" action="{{ route('armorStore') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <img class="img-fluid mb-3" src="" alt="" name="weaponImg">
-                        <input type="file" class="form-control mb-3" name="weaponImg" required>
+                        <img class="img-fluid mb-3" src="" alt="" name="armorImg">
+                        <input type="file" class="form-control mb-3" name="armorImg" required>
 
-                        <label for="weaponName" class="form-label">Nombre del Arma</label>
-                        <input type="text" class="form-control mb-3" id="weaponName" name="weaponName" required>
+                        <label for="armorName" class="form-label">Nombre del armadura</label>
+                        <input type="text" class="form-control mb-3" id="armorName" name="armorName" required>
 
-                        <label for="weaponAtk" class="form-label">Ataque</label>
-                        <input type="text" class="form-control mb-3" id="weaponAtk" name="weaponAtk" required>
+                        <label for="armorDef" class="form-label">Defensa</label>
+                        <input type="text" class="form-control mb-3" id="armorDef" name="armorDef" required>
 
-                        <label for="weaponElement" class="form-label">Elemento</label>
-                        <input type="text" class="form-control mb-3" id="weaponElement" name="weaponElement"
-                            required>
+                        <label for="armorInfo" class="form-label">Inforomación</label>
+                        <textarea type="text" class="form-control mb-3" id="armorInfo" name="armorInfo"> </textarea>
 
-                        <label for="weaponCrit" class="form-label">Crítico</label>
-                        <input type="text" class="form-control mb-3" id="weaponCrit" name="weaponCrit" required>
-
-                        <label for="weaponInfo" class="form-label">Inforomación</label>
-                        <textarea type="text" class="form-control mb-3" id="weaponInfo" name="weaponInfo"> </textarea>
-
-                        <select name="weaponMonster_id" id="weaponMonster_id" required>
+                        <select name="armorMonster_id" id="armorMonster_id" required>
                             @foreach ($monsters as $monster)
                                 <option value="{{ $monster->id }}"> {{ $monster->name }} </option>
                             @endforeach
@@ -198,36 +186,34 @@
     <script>
         $(document).ready(function() {
             $('.btn-warning').click(function() {
-                var weaponId = $(this).data('id');
+                var armorId = $(this).data('id');
 
                 $.ajax({
-                    url: '/weapon/' + weaponId + '/data',
+                    url: '/armor/' + armorId + '/data',
                     method: 'GET',
                     success: function(data) {
                         var imgPath = 'storage/' + data.img;
-                        $('#weaponEditModal .modal-body img[name="weaponImg"]').attr('src',
+                        $('#armorEditModal .modal-body img[name="armorImg"]').attr('src',
                             imgPath);
-                        $('#weaponEditModal .modal-body input[name="weaponName"]').val(data
+                        $('#armorEditModal .modal-body input[name="armorName"]').val(data
                             .name);
-                        $('#weaponEditModal .modal-body input[name="weaponElement"]').val(data
-                            .element);
-                        $('#weaponEditModal .modal-body input[name="weaponAtk"]').val(
-                            data.atk);
-                        $('#weaponEditModal .modal-body input[name="weaponCrit"]').val(
-                            data.crit);
-                        $('#weaponEditModal .modal-body textarea[name="weaponInfo"]')
+
+                        $('#armorEditModal .modal-body input[name="armorDef"]').val(
+                            data.def);
+
+                        $('#armorEditModal .modal-body textarea[name="armorInfo"]')
                             .val(data.info);
 
-                        $('#weaponForm').attr('action', '/weapon/' + weaponId + '/update');
+                        $('#armorForm').attr('action', '/armor/' + armorId + '/update');
                     }
                 });
-                weapon / {
+                armor / {
                     id
                 }
                 /update
 
 
-                $('#weaponEditModal').modal('show');
+                $('#armorEditModal').modal('show');
             });
         });
     </script>
@@ -238,9 +224,9 @@
 
 
     <script>
-        function confirmDeleteweapon() {
+        function confirmDeleteArmor() {
             Swal.fire({
-                title: '¿Estás seguro de que quieres eliminar la arma?',
+                title: '¿Estás seguro de que quieres eliminar la armadura?',
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -250,7 +236,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('deleteweaponForm').submit();
+                    document.getElementById('deleteArmorForm').submit();
                 }
             })
         }

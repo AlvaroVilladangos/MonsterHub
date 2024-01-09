@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\armorController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -71,6 +72,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/weapon/{id}/update', [weaponController::class, 'update'])->name('weaponUpdate');
     Route::delete('/weapon/{id}/destroy', [weaponController::class, 'destroy'])->name('weaponDestroy');
     Route::post('/weaponCreate', [weaponController::class, 'store'])->name('weaponStore');
+
+    Route::get('/armorsAdmin', [adminController::class, 'armors'])->name('armorsAdmin');
+    Route::get('/armor/{id}/data', [armorController::class, 'data']);
+    Route::put('/armor/{id}/update', [armorController::class, 'update'])->name('armorUpdate');
+    Route::delete('/armor/{id}/destroy', [armorController::class, 'destroy'])->name('armorDestroy');
+    Route::post('/armorCreate', [armorController::class, 'store'])->name('armorStore');
 
 });
 
