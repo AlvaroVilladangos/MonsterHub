@@ -75,7 +75,9 @@ class adminController extends Controller
     
         $weapons = $weapons->paginate(5);
 
-        return view('admin.adminWeapons', compact('weapons'));
+        $monsters = Monster::doesntHave('weapon')->get();
+
+        return view('admin.adminWeapons', compact('weapons', 'monsters'));
     }
 
 }

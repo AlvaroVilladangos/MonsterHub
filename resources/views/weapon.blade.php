@@ -29,8 +29,12 @@
                         Ataque: <span>{{ $weapon->atk }}</span></li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
                         Elemento: <span>{{ $weapon->element }}</span></li>
+
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
-                        Monstruo: <a href="{{ route('monster.show', $monster->id) }}" class="nav-link text-decoration-underline">{{$monster->name}}</a></li>
+                        Crítico: <span>{{ $weapon->crit }}</span></li>
+                    <li class="list-group-item list-group-item d-flex justify-content-between align-items-center">
+                        Monstruo: <a href="{{ route('monster.show', $monster->id) }}"
+                            class="nav-link text-decoration-underline">{{ $monster->name }}</a></li>
                 </ul>
             </div>
         </div>

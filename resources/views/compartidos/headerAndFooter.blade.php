@@ -43,7 +43,11 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         @if (auth()->check())
-        <a class="navbar-brand" href="/dashboard">MonsterHub</a>
+            @if(auth()->user()->admin)
+                <a class="navbar-brand" href="/indexAdmin">MonsterHub</a>
+            @else
+                <a class="navbar-brand" href="/dashboard">MonsterHub</a>
+            @endif
         @else
         <a class="navbar-brand" href="/">MonsterHub</a>
         @endif

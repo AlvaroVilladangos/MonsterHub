@@ -1,24 +1,23 @@
 @extends('compartidos.adminHeaderAndFooter')
 
 @section('content')
+    @if (session('error'))
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
 
-@if (session('error'))
-<div class="position-absolute top-50 start-50 translate-middle">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
-@endif
-
-@if (session('success'))
-<div class="position-absolute top-50 start-50 translate-middle">
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-</div>
-@endif
+    @if (session('success'))
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
 
     <div class="container py-4">
 
@@ -61,10 +60,12 @@
                             data-bs-toggle="modal" data-bs-target="#monsterEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
-                        <form id="deleteMonsterForm" action="{{route('monsterDestroy', ['id' => $monster->id])}}" method="post">
+                        <form id="deleteMonsterForm" action="{{ route('monsterDestroy', ['id' => $monster->id]) }}"
+                            method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-primary btn-sm" type="button" onclick="confirmDeleteMonster()">ELIMINAR</button>
+                            <button class="btn btn-primary btn-sm" type="button"
+                                onclick="confirmDeleteMonster()">ELIMINAR</button>
                         </form>
                     </td>
                 </tr>
@@ -74,7 +75,7 @@
         {{ $monsters->links() }}
 
 
- 
+
     </div>
 
 
@@ -87,7 +88,8 @@
                 </div>
                 <div class="modal-body">
 
-                    <form id="monsterForm" method="post" action="{{ route('monsterUpdate', ['id' => $monster->id]) }}"  enctype="multipart/form-data">
+                    <form id="monsterForm" method="post" action="{{ route('monsterUpdate', ['id' => $monster->id]) }}"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
@@ -129,26 +131,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="monsterCreateForm" method="post" action="{{ route('monsterStore') }}" enctype="multipart/form-data">
+                    <form id="monsterCreateForm" method="post" action="{{ route('monsterStore') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
                         <input type="file" class="form-control mb-3" name="monsterImg" required>
-    
+
                         <label for="monsterName" class="form-label">Nombre del Monstruo</label>
                         <input type="text" class="form-control mb-3" id="monsterName" name="monsterName" required>
-    
+
                         <label for="monsterWeakness" class="form-label">Debilidad</label>
-                        <input type="text" class="form-control mb-3" id="monsterWeakness" name="monsterWeakness" required>
-    
+                        <input type="text" class="form-control mb-3" id="monsterWeakness" name="monsterWeakness"
+                            required>
+
                         <label for="monsterElement" class="form-label">Elemento</label>
-                        <input type="text" class="form-control mb-3" id="monsterElement" name="monsterElement" required>
-    
+                        <input type="text" class="form-control mb-3" id="monsterElement" name="monsterElement"
+                            required>
+
                         <label for="monsterPhysiology" class="form-label">Physiology</label>
                         <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology" required> </textarea>
-    
+
                         <label for="monsterAbilities" class="form-label">Abilities</label>
                         <textarea type="text" class="form-control mb-3" id="monster " name="monsterAbilities" required></textarea>
-    
+
                         <button type="submit" class="btn btn-dark"> Crear</button>
                     </form>
                 </div>
@@ -158,7 +163,6 @@
             </div>
         </div>
     </div>
-    
 @endsection
 
 
@@ -191,10 +195,13 @@
                         $('#monsterEditModal .modal-body textarea[name="monsterAbilities"]')
                             .val(data.abilities);
 
-                        $('#monsterForm').attr('action', '/monster/'+ monsterId + '/update');  
+                        $('#monsterForm').attr('action', '/monster/' + monsterId + '/update');
                     }
                 });
-                monster/{id}/update
+                monster / {
+                    id
+                }
+                /update
 
 
                 $('#monsterEditModal').modal('show');
@@ -204,25 +211,25 @@
 
 
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<script>
-      function confirmDeleteMonster() {
-        Swal.fire({
-            title: '¿Estás seguro de que quieres eliminar el monstruo?',
-            text: "¡No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('deleteMonsterForm').submit();
-            }
-        })
-    }
-</script>
+    <script>
+        function confirmDeleteMonster() {
+            Swal.fire({
+                title: '¿Estás seguro de que quieres eliminar el monstruo?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteMonsterForm').submit();
+                }
+            })
+        }
+    </script>
 @endsection

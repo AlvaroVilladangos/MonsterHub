@@ -10,6 +10,9 @@ class Weapon extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+
     public function monster() {
 
         return $this->belongsTo(Monster::class);

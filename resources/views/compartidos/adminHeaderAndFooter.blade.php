@@ -40,11 +40,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/monsters">Monstruos</a>
-                <a class="nav-item nav-link" href="/weapons">Armas</a>
-                <a class="nav-item nav-link" href="/armors">Armaduras</a>
-                <a class="nav-item nav-link" href="/users">Users</a>
-
             </div>
 
             <div class="ms-auto">
