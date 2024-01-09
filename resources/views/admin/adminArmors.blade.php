@@ -110,7 +110,7 @@
                             <label for="armorDef" class="form-label">Defensa</label>
                             <input type="text" class="form-control mb-3" id="armorDef" name="armorDef">
 
-                            <label for="armorInfo" class="form-label">info</label>
+                            <label for="armorInfo" class="form-label">Información</label>
                             <textarea type="text" class="form-control mb-3" id="armorInfo" name="armorInfo"> </textarea>
 
 
@@ -154,7 +154,7 @@
                         <label for="armorDef" class="form-label">Defensa</label>
                         <input type="text" class="form-control mb-3" id="armorDef" name="armorDef" required>
 
-                        <label for="armorInfo" class="form-label">Inforomación</label>
+                        <label for="armorInfo" class="form-label">Información</label>
                         <textarea type="text" class="form-control mb-3" id="armorInfo" name="armorInfo"> </textarea>
 
                         <select name="armorMonster_id" id="armorMonster_id" required>

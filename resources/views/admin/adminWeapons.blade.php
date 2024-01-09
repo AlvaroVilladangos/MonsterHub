@@ -115,7 +115,7 @@
                             <label for="weaponCrit" class="form-label">Critico</label>
                             <input type="text" class="form-control mb-3" id="weaponCrit" name="weaponCrit">
 
-                            <label for="weaponInfo" class="form-label">info</label>
+                            <label for="weaponInfo" class="form-label">Información</label>
                             <textarea type="text" class="form-control mb-3" id="weaponInfo" name="weaponInfo"> </textarea>
 
 
@@ -166,7 +166,7 @@
                         <label for="weaponCrit" class="form-label">Crítico</label>
                         <input type="text" class="form-control mb-3" id="weaponCrit" name="weaponCrit" required>
 
-                        <label for="weaponInfo" class="form-label">Inforomación</label>
+                        <label for="weaponInfo" class="form-label">Información</label>
                         <textarea type="text" class="form-control mb-3" id="weaponInfo" name="weaponInfo"> </textarea>
 
                         <select name="weaponMonster_id" id="weaponMonster_id" required>

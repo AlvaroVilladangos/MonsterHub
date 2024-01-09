@@ -68,9 +68,7 @@ class armorController extends Controller
         }
 
         $armor->name = $request->armorName;
-        $armor->atk = $request->armorAtk;
-        $armor->element = $request->armorElement;
-        $armor->crit = $request->armorCrit . '%';
+        $armor->def = $request->armorDef;
         $armor->info = $request->armorInfo;
         $armor->monster_id = $request->armorMonster_id;
 
@@ -104,9 +102,7 @@ class armorController extends Controller
 
         $armor->img = $validateIMG;
         $armor->name = $newName;
-        $armor->atk = $request->input('armorAtk');
-        $armor->element = $request->input('armorElement');
-        $armor->crit = $request->input('armorCrit') . '%';
+        $armor->def = $request->input('armorDef');
         $armor->info = $request->input('armorInfo');
         $armor->monster_id = $request->input('armorMonster_id');
 
