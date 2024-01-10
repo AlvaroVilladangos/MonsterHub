@@ -17,13 +17,13 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                            src="{{URL('storage/' . Auth::user()->hunter->img)}}"/>
+                                        src="{{ URL('storage/' . Auth::user()->hunter->img) }}" />
+
                                     <div>
-                                        <div>
-                                            <input type="text" name="hunterName" class ="form-control" id="hunterName"
-                                                value="{{ Auth::user()->hunter->name }}"> </input>
-                                        </div>
+                                        <input type="text" name="hunterName" class ="form-control" id="hunterName"
+                                            value="{{ Auth::user()->hunter->name }}"> </input>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -76,15 +76,17 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-start">
                                     <img style="width: 35px" class="me-2 avatar-sm rounded-circle"
-                                    src="{{URL('storage/' . $comment->hunter->img)}}" />
+                                        src="{{ URL('storage/' . $comment->hunter->img) }}" />
                                     <div class="w-100">
                                         <div class="d-flex justify-content-between">
                                             <h6 class="">{{ $comment->hunter->name }}</h6>
-                                            <form id="deleteForm-{{ $comment->id }}" action="{{route('comment.destroy', $comment->id)}}" method="post">
+                                            <form id="deleteForm-{{ $comment->id }}"
+                                                action="{{ route('comment.destroy', $comment->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $comment->id }})">Borrar</button>
-                                            </form>                                            
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    onclick="confirmDelete({{ $comment->id }})">Borrar</button>
+                                            </form>
                                         </div>
                                         <p class="fs-6 mt-3 fw-light">
                                             {{ $comment->msg }}
@@ -122,27 +124,25 @@
 
 
 @section('scripts')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<script>
-    function confirmDelete(commentId) {
-        Swal.fire({
-            title: '¿Estás seguro que quieres borrar el comentario?',
-            text: "No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('deleteForm-' + commentId).submit();
-            }
-        })
-    }
+    <script>
+        function confirmDelete(commentId) {
+            Swal.fire({
+                title: '¿Estás seguro que quieres borrar el comentario?',
+                text: "No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteForm-' + commentId).submit();
+                }
+            })
+        }
     </script>
-    
-    
 @endsection

@@ -24,8 +24,13 @@
 
                     @foreach ($guilds as $guild)
                         <tr>
-                            <td class="d-flex justify-content-center"><a href="/guild/{{ $guild->id }}"
-                                    class="nav-link text-decoration-underline">{{ $guild->name }}</a></td>
+                            <td class="d-flex justify-content-center">
+                                <div  class="d-flex align-items-center">
+                                    <img style="width: 50px" class="me-3 avatar-sm rounded"
+                                    src="{{URL('storage/' . $guild->img)}}" />
+                                    <a href="/guild/{{ $guild->id }}"class="nav-link text-decoration-underline">{{ $guild->name }}</a>
+                                </div>
+                            </td>
                             <td class="align-middle text-center"><a
                                     href="/hunter/{{ $guild->leader->id }}"class="nav-link text-decoration-underline">
                                     {{ $guild->leader->name }}</a></td>
@@ -41,11 +46,15 @@
             </div>
 
 
+
+            @isset( Auth::user()->hunter->guild)
+            @else
             <div class="col-2">
                 <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#guildModal">
                     CREA TU GUILD AQUÍ
                 </button>
             </div>
+            @endisset
 
             <div class="modal fade" id="guildModal" tabindex="-1" aria-labelledby="guildModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

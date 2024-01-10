@@ -7,6 +7,8 @@ use App\Models\Hunter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Storage;
+
 
 class guildController extends Controller
 {
@@ -68,6 +70,19 @@ class guildController extends Controller
 
     public function update(Guild $guild){
 
+        if (request()->has('img')) {
+            $validateIMG = request()->validate(['img' => 'image']);
+            $imgPath = request()->file('img')->store('imgProfile', 'public');
+            $validateIMG = $imgPath;
+
+            if ($guild->img != 'imgGuildProfile/defaultGuildProfile.jpg') {
+                Storage::disk('public')->delete($guild->img);
+            }
+        } else {
+            $validateIMG = $guild->img;
+        }
+
+        $guild->img = $validateIMG;
         $guild->name = request()->get('guildName');        
         $guild->info = request()->get('guildInfo') ? request()->get('guildInfo') : '';
         $guild->announcement = request()->get('announcement') ? request()->get('announcement') : '';      

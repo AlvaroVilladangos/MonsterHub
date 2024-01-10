@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('leader_id');
             $table->string('info');
+            $table->string('img')->default('imgGuildProfile/defaultGuildProfile.jpg');
             $table->string('announcement')->default('');
         });
     }
