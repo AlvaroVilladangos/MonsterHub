@@ -111,7 +111,7 @@
             </div>
             @isset($hunter->room)
                 <div class="col-2 mb-3">
-                    <div class="card overflow-hidden">
+{{--                     <div class="card overflow-hidden">
                         <div class="card-body pt-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h1>Sala</h1>
@@ -138,7 +138,32 @@
                                 @endforeach
                             </ul>
                         </div>
-                    </div>
+                    </div> 
+                     --}}
+                     <div class="card" style="width: 18rem;">
+                        <img style="" class="card-img-top"
+                        src="{{ URL('storage/' . $hunter->room->monster->img) }}" />
+                        <div class="card-body">
+                          <h5 class="card-title">Codigo: {{ $hunter->room->room_number }}</h5>
+                          <h2>Cazadores</h2>
+                          <ul>
+                              @foreach ($hunter->room->hunters as $hunterInRoom)
+                                  @if ($hunterInRoom->id != Auth::user()->hunter->id)
+                                      <li><a
+                                              href="/hunter/{{ $hunterInRoom->id }}"class="nav-link text-decoration-underline">
+                                              {{ $hunterInRoom->name }}</a></li>
+                                  @endif
+                              @endforeach
+                          </ul>
+                          <form action="{{ route('hunter.leaveRoom') }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-primary">Salir</button>
+                        </form>
+                        </div>
+                      </div>
+                      
+                  
                 </div>
             @else
             @endisset

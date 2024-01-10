@@ -4,6 +4,7 @@ x-show = "show"
 x-on:open-modal.window = "show = true"
 x-on:close-modal.window = "show = false"
 x-on:keydown.escape.window ="show = false"
+x-cloak
 >   
 
     <div class="card mt-3" style="width: 30rem; position: relative;">
