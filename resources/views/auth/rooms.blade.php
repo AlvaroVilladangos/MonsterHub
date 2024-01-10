@@ -14,8 +14,6 @@
                         <button type="submit" class="btn btn-dark">search</button>
                     </div>
                 </form>
-
-
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark ">
                         <th class="text-center"></th>
@@ -23,9 +21,12 @@
                         <th class="text-center">Numero jugadores</th>
                         <th class="text-center"></th>
                     </tr>
-
                     @foreach ($rooms as $room)
                         @if ($room->roomCount() == 4)
+                            @continue
+                        @endif
+
+                        @if ($room->roomCount() == 4 || (isset(Auth::user()->hunter->room) && $room->id == Auth::user()->hunter->room->id))
                             @continue
                         @endif
                         <tr>
@@ -33,12 +34,15 @@
                             <td class="align-middle text-center">{{ $room->monster->name }}</td>
                             <td class="align-middle text-center">{{ $room->roomCount() }}</td>
                             <td class="align-middle text-center">
-                                <form action="{{ route('hunter.joinRoom') }}" method="post">
-                                    @csrf
-                                    @method('put')
-                                    <input type="" name="room_id" id="" value="{{ $room->id }}" hidden>
-                                    <button class="btn btn-success btn-sm" type="submit">Unirse</button>
-                                </form>
+                                @if (!isset(Auth::user()->hunter->room))
+                                    <form action="{{ route('hunter.joinRoom') }}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <input type="" name="room_id" id="" value="{{ $room->id }}"
+                                            hidden>
+                                        <button class="btn btn-success btn-sm" type="submit">Unirse</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -76,12 +80,7 @@
                                 <div>
                                     <input name="hunter_1" type="text" value="{{ Auth::user()->hunter->id }}" hidden>
                                 </div>
-
-
-
                                 <button type="submit" class="btn btn-primary">Crear sala</button>
-
-
                             </form>
                         </div>
                         <div class="modal-footer">

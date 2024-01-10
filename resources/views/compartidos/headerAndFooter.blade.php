@@ -38,8 +38,7 @@
 </head>
 
 
-{{-- d-flex flex-column min-vh-100
- --}}<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         @if (auth()->check())
@@ -103,14 +102,6 @@
             </a>
         </div>
     </footer>
-
-    <div id="cb-cookie-banner" class="alert alert-dark text-center bg-dark mb-0" role="alert">
-        <p class="text-light"> 🍪 Esta paginautiliza cookies para un mejor uso de la página. </p>
-        <a class="text-light" href="https://www.cookiesandyou.com/" target="blank">Aprender más</a>
-        <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_esconderCookieBanner()">
-            Entendido
-        </button>
-    </div>
 
 
     @yield('scripts')

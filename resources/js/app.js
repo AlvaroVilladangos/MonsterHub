@@ -6,21 +6,41 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+let banner = document.createElement("div");
+let texto = document.createElement("p");
+let enlace = document.createElement("a");
+let boton = document.createElement("button");
 
-function popBannerCookie() {
-  let cookieBanner = document.getElementById("cb-cookie-banner");
-  cookieBanner.style.display = "block";
-}
+banner.id = "cb-cookie-banner";
+banner.className = "alert alert-dark text-center bg-dark mb-0";
+banner.role = "alert";
 
+texto.className = "text-light";
+texto.textContent =
+  "🍪 Esta pagina utiliza cookies para un mejor uso de la página.";
+
+enlace.className = "text-light";
+enlace.href = "https://www.cookiesandyou.com/";
+enlace.target = "blank";
+enlace.textContent = "Aprender más";
+
+boton.type = "button";
+boton.className = "btn btn-primary btn-sm ms-3";
+boton.textContent = "Entendido";
+boton.onclick = esconderCookieBanner;
+
+banner.appendChild(texto);
+banner.appendChild(enlace);
+banner.appendChild(boton);
+
+document.body.appendChild(banner);
 
 function esconderCookieBanner() {
   let fecha = new Date();
-  fecha.setFullYear(fecha.getFullYear() + 1); // Establece la fecha para un año a partir de ahora
+  fecha.setFullYear(fecha.getFullYear() + 1);
   document.cookie = `MonsterHub_Cookie=yes; expires=${fecha.toUTCString()}; path=/`;
-  let cookieBanner = document.getElementById("cb-cookie-banner");
-  cookieBanner.style.display = "none";
+  banner.style.display = "none";
 }
-
 
 function comprobarCookie() {
   let cookieFila = document.cookie
@@ -28,10 +48,8 @@ function comprobarCookie() {
     .find((fila) => fila.startsWith("MonsterHub_Cookie"));
   let cookieAceptada = cookieFila ? cookieFila.split("=")[1] : undefined;
   if (cookieAceptada === undefined || cookieAceptada === "no") {
-    popBannerCookie();
+    banner.style.display = "block";
   }
 }
 
-// Assigning values to window object
 window.onload = comprobarCookie;
-window.cb_esconderCookieBanner = esconderCookieBanner;

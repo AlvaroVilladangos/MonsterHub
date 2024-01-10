@@ -79,14 +79,14 @@
         </div>
     </footer>
 
-    <div id="cb-cookie-banner" class="alert alert-dark text-center bg-dark mb-0" role="alert">
+{{--     <div id="cb-cookie-banner" class="alert alert-dark text-center bg-dark mb-0" role="alert">
         <p class="text-light"> 🍪 Esta paginautiliza cookies para un mejor uso de la página. </p>
         <a class="text-light" href="https://www.cookiesandyou.com/" target="blank">Aprender más</a>
         <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_esconderCookieBanner()">
             Entendido
         </button>
     </div>
-
+ --}}
 
     @yield('scripts')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
