@@ -55,7 +55,7 @@
                 </button>
             </div>
             @endisset
-
+            
             <div class="modal fade" id="guildModal" tabindex="-1" aria-labelledby="guildModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
