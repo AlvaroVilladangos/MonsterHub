@@ -55,11 +55,10 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/weapon/{{ $weapon->id }}  "class="nav-link text-decoration-underline">{{ $weapon->name }}</a>
+                            href="/weapon/{{ $weapon->id }}  "class="nav-link text-decoration-underline" target="_blank">{{ $weapon->name }}</a>
                     </td>
-
                     <td class="align-middle text-center"><a
-                        href="/monster/{{ $weapon->monster->id }}  "class="nav-link text-decoration-underline">{{ $weapon->monster->name }}</a>
+                        href="/monster/{{ $weapon->monster->id }}  "class="nav-link text-decoration-underline" target="_blank"> {{ $weapon->monster->name }}</a>
                     </td>
                     <td class="align-middle text-center">
                         <button type="button" class="btn btn-warning btn-sm" data-id="{{ $weapon->id }}"

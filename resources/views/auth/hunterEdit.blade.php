@@ -59,7 +59,7 @@
 
 
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-primary btn-sm">EDITAR</button>
+                                    <button type="submit" class="btn btn-dark btn-sm">EDITAR</button>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                                 action="{{ route('comment.destroy', $comment->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-sm btn-danger"
+                                                <button type="button" class="btn btn-sm btn-primary"
                                                     onclick="confirmDelete({{ $comment->id }})">Borrar</button>
                                             </form>
                                         </div>

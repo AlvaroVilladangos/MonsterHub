@@ -55,7 +55,7 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $armor->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/armor/{{ $armor->id }}  "class="nav-link text-decoration-underline">{{ $armor->name }}</a>
+                            href="/armor/{{ $armor->id }}  "class="nav-link text-decoration-underline" target="_blank">{{ $armor->name }}</a>
                     </td>
 
                     <td class="align-middle text-center"><a

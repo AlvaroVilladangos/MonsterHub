@@ -75,14 +75,14 @@
             @foreach ($comments as $comment )
                 
             <div class="mt-3">
-                <div class="card mb-3">
+                <div  class="card mb-3">
                     <div class="card-body">
                         <div class="d-flex align-items-start">
-                            <img style="width: 35px" class="me-2 avatar-sm rounded-circle"
+                            <img style="width: 50px" class="me-2 avatar-sm rounded-circle"
                                 src="{{URL('storage/' . $comment->hunter->img)}}" />
                             <div class="w-100">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="">{{$comment->hunter->name}}</h6>
+                                    <h4><a class="nav-item nav-link" href="/hunter/{{ $comment->hunter->id }} " > {{$comment->hunter->name}}</a></h4>
                                 </div>
                                 <p class="fs-6 mt-3 fw-light">
                                     {{$comment->msg}}

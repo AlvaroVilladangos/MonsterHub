@@ -53,7 +53,7 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/monster/{{ $monster->id }}  "class="nav-link text-decoration-underline">{{ $monster->name }}</a>
+                            href="/monster/{{ $monster->id }}  "class="nav-link text-decoration-underline" target="_blank">{{ $monster->name }}</a>
                     </td>
                     <td class="align-middle text-center">
                         <button type="button" class="btn btn-warning btn-sm" data-id="{{ $monster->id }}"

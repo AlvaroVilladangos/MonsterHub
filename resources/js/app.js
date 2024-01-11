@@ -40,6 +40,7 @@ function esconderCookieBanner() {
   fecha.setFullYear(fecha.getFullYear() + 1);
   document.cookie = `MonsterHub_Cookie=yes; expires=${fecha.toUTCString()}; path=/`;
   banner.style.display = "none";
+
 }
 
 function comprobarCookie() {

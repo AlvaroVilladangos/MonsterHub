@@ -8,32 +8,32 @@
     <title>MonsterHub</title>
     @vite('/resources/css/bootstrap.min.css')
     <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="icon" href="{{ URL('storage/favicon.jpg') }}">
 
-
-
-{{--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    {{--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
  --}}
 
 
 
-{{--  <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    {{--  <link href="https://bootswatch.com/5/sketchy/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
      crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
-        <style>
-            background-image: url("/storage/fondo.jpeg");
-            body {
-                background-image: url();
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-        </style>
+    <style>
+        background-image: url("/storage/fondo.jpeg");
 
-@vite('resources/js/app.js')
-@vite('resources/css/app.css')
+        body {
+            background-image: url();
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    @vite('resources/js/app.js')
+    @vite('resources/css/app.css')
 
 </head>
 
@@ -42,13 +42,13 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         @if (auth()->check())
-            @if(auth()->user()->admin)
+            @if (auth()->user()->admin)
                 <a class="navbar-brand" href="/indexAdmin">MonsterHub</a>
             @else
                 <a class="navbar-brand" href="/dashboard">MonsterHub</a>
             @endif
         @else
-        <a class="navbar-brand" href="/">MonsterHub</a>
+            <a class="navbar-brand" href="/">MonsterHub</a>
         @endif
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,33 +61,44 @@
                 <a class="nav-item nav-link" href="/armors">Armaduras</a>
 
                 @if (auth()->check())
-                <a class="nav-item nav-link" href="/guilds">Guilds</a>
-                <a class="nav-item nav-link" href="/hunters">Hunters</a>
+                    <a class="nav-item nav-link" href="/guilds">Guilds</a>
+                    <a class="nav-item nav-link" href="/hunters">Hunters</a>
                 @endif
             </div>
 
-            <div class="ms-auto">
+            <div class="ms-auto d-flex align-items-center">
                 @if (auth()->check())
-                <form method="post" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="btn btn-primary mx-3" type="submit">Logout</button>
-                </form>
+                    @if (!(auth()->user()->admin))
+                    <div class="navbar-nav">
+                        <img style="width:30px" class="me-3 avatar-sm rounded-circle"
+                        src="{{ URL('storage/' . auth()->user()->hunter->img) }}" />
+                        <a class="nav-item nav-link" href="/dashboard">{{ auth()->user()->hunter->name }}</a>
+                    </div>
+                    @else
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="/indexAdmin">{{ auth()->user()->name }}</a>
+                    </div>
+                    @endif
+                    <form method="post" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn btn-primary mx-3" type="submit">Logout</button>
+                    </form>
                 @else
-                <a class="btn btn-light mx-3" href="/login">Login</a>
-                <a class="btn btn-light mx-3" href="/registrar">Registrar</a>
+                    <a class="btn btn-light mx-3" href="/login">Login</a>
+                    <a class="btn btn-light mx-3" href="/registrar">Registrar</a>
                 @endif
-            
             </div>
+            
         </div>
     </nav>
 
 
 
-    {{--contenido--}}
+    {{-- contenido --}}
 
     @yield('content')
 
-   
+
     <footer class="mt-auto bg-dark">
         <div class="container text-light">
             <div class="col-md-4 d-flex ">

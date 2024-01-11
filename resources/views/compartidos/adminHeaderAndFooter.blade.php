@@ -42,17 +42,20 @@
             <div class="navbar-nav">
             </div>
 
-            <div class="ms-auto">
+            <div class="ms-auto d-flex align-items-center">
                 @if (auth()->check())
-                <form method="post" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="btn btn-primary mx-3" type="submit">Logout</button>
-                </form>
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="/indexAdmin">{{ auth()->user()->name }}</a>
+                    </div>
+
+                    <form method="post" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="btn btn-primary mx-3" type="submit">Logout</button>
+                    </form>
                 @else
-                <a class="btn btn-light mx-3" href="/login">Login</a>
-                <a class="btn btn-light mx-3" href="/registrar">Registrar</a>
+                    <a class="btn btn-light mx-3" href="/login">Login</a>
+                    <a class="btn btn-light mx-3" href="/registrar">Registrar</a>
                 @endif
-            
             </div>
         </div>
     </nav>

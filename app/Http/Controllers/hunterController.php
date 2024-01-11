@@ -149,7 +149,7 @@ class hunterController extends Controller
             $room->delete();
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('rooms');
     }
 
     public function joinRoom()
@@ -161,10 +161,10 @@ class hunterController extends Controller
             $hunter = Auth::user()->hunter;
             $hunter->room_id = $room_id;
             $hunter->save();
-            return redirect()->route('dashboard');
+            return redirect()->route('rooms');
         } else {
             session()->flash('error', 'No se ha podido unir a la sala');
-            return redirect()->route('dashboard');
+            return redirect()->route('rooms');
         }
     }
 

@@ -65,7 +65,7 @@
             <div class="card-body">
                 <p class="fs-2">Podrás tener acceso a un sistema de guilds, amigos, personalizar tu perfil y mucho
                     más!</p>
-                <a href="/register" class="btn btn-primary">REGISTRAR</a>
+                <a href="/register" class="btn btn-dark">REGISTRAR</a>
             </div>
         </div>
         @endguest
@@ -76,7 +76,7 @@
                 <h1 class="card-title">MONSTRUOS</h1>
                 <p class="card-text">Aquí encontrarás toda la infromación necesaria sobres los monstruos que te
                     encontrarás en tus cazarías.</p>
-                <a href="/monsters" class="btn btn-primary">Ir a monstruos</a>
+                <a href="/monsters" class="btn btn-dark">Ir a monstruos</a>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
             <div class="card-body">
                 <h1 class="card-title">ARMAS</h1>
                 <p class="card-text">Aquí encontrarás toda la infromación sobre las armas</p>
-                <a href="/weapons" class="btn btn-primary">Ir a armas</a>
+                <a href="/weapons" class="btn btn-dark">Ir a armas</a>
             </div>
         </div>
 
@@ -94,7 +94,7 @@
             <div class="card-body">
                 <h1 class="card-title">ARMADURAS</h1>
                 <p class="card-text">Aquí encontrarás toda la infromación sobre las armaduras.</p>
-                <a href="/armors" class="btn btn-primary">Ir a armaduras</a>
+                <a href="/armors" class="btn btn-dark">Ir a armaduras</a>
             </div>
         </div>
 
