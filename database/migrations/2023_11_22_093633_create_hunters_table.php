@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id')->nullable();
             $table->timestamps();
 
+            
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade');
             $table->foreign('weapon_id')->references('id')->on('weapons')

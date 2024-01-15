@@ -3,6 +3,15 @@
 
 @section('content')
     <div class="container py-4">
+        @if (session('error'))
+            <div class="position-absolute top-50 start-50 translate-middle" style="z-index: 1;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-2 mb-3">
 
@@ -67,19 +76,16 @@
                 </div>
                 <hr />
 
-
-
-
                 @foreach ($comments as $comment)
                     <div class="mt-3">
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex align-items-start">
-                                    <img style="width: 35px" class="me-2 avatar-sm rounded-circle"
+                                    <img style="width: 50px" class="me-2 avatar-sm rounded-circle"
                                         src="{{ URL('storage/' . $comment->hunter->img) }}" />
                                     <div class="w-100">
                                         <div class="d-flex justify-content-between">
-                                            <h6 class="">{{ $comment->hunter->name }}</h6>
+                                            <h4 class="">{{ $comment->hunter->name }}</h4>
                                             <form id="deleteForm-{{ $comment->id }}"
                                                 action="{{ route('comment.destroy', $comment->id) }}" method="post">
                                                 @csrf
@@ -101,22 +107,7 @@
 
             </div>
             <div class="col-2 mb-3">
-                <div class="card overflow-hidden">
-                    <div class="card-body pt-3">
-                        <table class="table table-hover text-center">
-                            <thead>
-                                <tr class="table-dark">
-                                    <th scope="col">Amigos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td> Miembro </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

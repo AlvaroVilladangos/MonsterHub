@@ -55,7 +55,7 @@
                             @endisset
                            
                             @isset($acceptedFriend->room)
-                                <td>
+                                <td class="align-middle text-center">
                                     {{$acceptedFriend->room->roomCount()}}/4
                                 </td>
                             @else

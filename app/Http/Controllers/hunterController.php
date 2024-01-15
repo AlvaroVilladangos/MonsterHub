@@ -81,6 +81,13 @@ class hunterController extends Controller
 
         $hunter = auth()->user()->hunter;
 
+
+        $existingHunter = Hunter::where('name', request()->get('hunterName'))->first();
+
+        if ($existingHunter !== null && $existingHunter->id !== $hunter->id) {
+            // El nombre ya existe y no pertenece al cazador actual
+            return redirect()->back()->with('error', 'El nombre del cazador ya existe');
+        }
         if (request()->has('img')) {
             $validateIMG = request()->validate(['img' => 'image']);
             $imgPath = request()->file('img')->store('imgProfile', 'public');
@@ -204,100 +211,99 @@ class hunterController extends Controller
     public function friendsList()
     {
         $user = Auth::user()->hunter;
-    
+
         $friendsOfThisUser = $user->friendsOfThisUser()->get();
         $thisUserIsFriendOf = $user->thisUserIsFriendOf()->get();
-    
-        $acceptedFriends = $friendsOfThisUser->concat($thisUserIsFriendOf);
-    
-        $id= $user->id;
 
-        
+        $acceptedFriends = $friendsOfThisUser->concat($thisUserIsFriendOf);
+
+        $id = $user->id;
+
+
         $receivedRequests = DB::table('friends')
-        ->where('status', 'pending')
-        ->where('requester_id', '!=', $id)
-        ->where(function ($query) use ($id) {
-            $query->where('hunter_1', $id)
-                  ->orWhere('hunter_2', $id);
-        })
-        ->get();
-    
+            ->where('status', 'pending')
+            ->where('requester_id', '!=', $id)
+            ->where(function ($query) use ($id) {
+                $query->where('hunter_1', $id)
+                    ->orWhere('hunter_2', $id);
+            })
+            ->get();
+
         $receivedRequestsData = $receivedRequests->map(function ($request) {
             $requesterId = $request->requester_id;
             $requesterData = Hunter::find($requesterId);
             return $requesterData;
         });
-    
+
         return view('auth.friends', compact('acceptedFriends', 'receivedRequestsData'));
     }
-    
+
 
     public function addFriend($requesterId, $receiverId)
     {
         $existingFriendship = DB::table('friends')
             ->where(function ($query) use ($requesterId, $receiverId) {
                 $query->where('hunter_1', min($requesterId, $receiverId))
-                      ->where('hunter_2', max($requesterId, $receiverId));
+                    ->where('hunter_2', max($requesterId, $receiverId));
             })
             ->first();
-    
+
         if (!$existingFriendship) {
             DB::table('friends')->insert(
                 ['hunter_1' => min($requesterId, $receiverId), 'hunter_2' => max($requesterId, $receiverId), 'requester_id' => $requesterId, 'status' => 'pending']
             );
         }
-    
+
         return redirect()->route('dashboard');
     }
-    
+
 
     public function acceptFriend()
     {
         $requesterId = request('requestId');
-    
+
         $currentUserId = auth()->user()->hunter->id;
-        
+
         $friendRequest = DB::table('friends')
             ->where(function ($query) use ($requesterId, $currentUserId) {
                 $query->where('hunter_1', min($requesterId, $currentUserId))
-                      ->where('hunter_2', max($requesterId, $currentUserId))
-                      ->where('requester_id', $requesterId);
+                    ->where('hunter_2', max($requesterId, $currentUserId))
+                    ->where('requester_id', $requesterId);
             })
             ->where('status', 'pending')
             ->first();
-    
+
         if ($friendRequest) {
             DB::table('friends')
                 ->where('id', $friendRequest->id)
                 ->update(['status' => 'accepted']);
         }
-    
+
         return redirect()->route('friends');
     }
-    
+
     public function deleteFriend()
     {
         $requesterId = request('requestId');
-    
         $currentUserId = auth()->user()->hunter->id;
-    
+
         $friendRelation = DB::table('friends')
             ->where(function ($query) use ($requesterId, $currentUserId) {
-                $query->where('hunter_1', min($requesterId, $currentUserId))
-                      ->where('hunter_2', max($requesterId, $currentUserId))
-                      ->where('requester_id', $requesterId);
+                $query->where('hunter_1', $requesterId)
+                    ->where('hunter_2', $currentUserId);
+            })
+            ->orWhere(function ($query) use ($requesterId, $currentUserId) {
+                $query->where('hunter_1', $currentUserId)
+                    ->where('hunter_2', $requesterId);
             })
             ->first();
-    
+
         if ($friendRelation) {
             DB::table('friends')
                 ->where('id', $friendRelation->id)
                 ->delete();
         }
-    
+
         return redirect()->route('friends');
     }
-    
-    
-    
 }

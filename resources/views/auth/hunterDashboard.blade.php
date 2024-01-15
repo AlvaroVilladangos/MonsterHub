@@ -35,7 +35,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="/friends">
-                                    <span>Amigos</span></a>
+                                    <span>Amigos</span>
+
+                                    @if ($hunter->hasPendingRequest())
+                                        <span class="badge bg-warning">Nueva solicitud</span>
+                                    @endif
+                                </a>
                             </li>
                         </ul>
                     </div>
