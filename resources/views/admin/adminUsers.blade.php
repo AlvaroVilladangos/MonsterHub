@@ -29,7 +29,7 @@
               @endif        
               <tr>
                 <td class="align-middle text-center">{{$user->name}}</td>
-                <td class="align-middle text-center">{{$user->hunter->name}}</td>
+                <td class="align-middle text-center"><a class="nav-link text-decoration-underline" href="/hunter/{{$user->hunter->id}}">{{$user->hunter->name}}</a></td>
                 <td class="align-middle text-center">{{$user->email}}</a></td>
 
 
@@ -45,7 +45,7 @@
 
                 </td>
                 @else
-                <td class="align-middle text-center">NO</td>
+                <td class="align-middle text-center">No</td>
                 <td class="align-middle text-center">
 
                     <form action="{{route('blockUser', ['id' => $user->id])}}" method="post">

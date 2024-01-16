@@ -16,38 +16,23 @@ use Illuminate\Support\Facades\Storage;
 class hunterController extends Controller
 {
 
-    public function getHunterData()
-    {
-        $hunter = auth()->user()->hunter;
-
-        $comments = $hunter->comments()->with('hunter')->get();
-
-        $weapon = Weapon::find($hunter->weapon_id);
-        $armor = Armor::find($hunter->armor_id);
-
-        return compact('weapon', 'armor', 'comments');
-    }
-
     public function dashboard()
     {
-
-        $datos = $this->getHunterData();
-
-        $hunter = Auth::user()->hunter;
-
+        $hunter = auth()->user()->hunter;
+        $weapon = Weapon::find($hunter->weapon_id);
+        $armor = Armor::find($hunter->armor_id);
         $comments = $hunter->comments()->with('hunter')->get();
-        return view('auth.hunterDashboard', compact('hunter', 'datos', 'comments'));
+        return view('auth.hunterDashboard', compact('hunter', 'weapon', 'armor', 'comments'));
     }
-
-
-
+    
     public function show(Hunter $hunter)
     {
-
-        $datos = $this->getHunterData();
+        $weapon = Weapon::find($hunter->weapon_id);
+        $armor = Armor::find($hunter->armor_id);
         $comments = $hunter->comments()->with('hunter')->paginate(5);
-        return view('auth.hunter', compact('hunter', 'comments', 'datos'));
+        return view('auth.hunter', compact('hunter', 'comments', 'weapon', 'armor'));
     }
+    
 
 
     public function index()
@@ -67,12 +52,13 @@ class hunterController extends Controller
 
     public function edit()
     {
-
-        $datos = $this->getHunterData();
+        $hunter = auth()->user()->hunter;
+        $weapon = Weapon::find($hunter->weapon_id);
+        $armor = Armor::find($hunter->armor_id);
+        $comments = $hunter->comments()->with('hunter')->paginate(5);
         $weapons = Weapon::all();
         $armors = Armor::all();
-
-        return view('auth.hunterEdit', array_merge($datos, compact('weapons', 'armors')));
+        return view('auth.hunterEdit', compact('weapon', 'armor', 'weapons', 'armors', 'comments'));
     }
 
 
@@ -110,7 +96,6 @@ class hunterController extends Controller
 
         $hunter->save();
 
-        $datos = $this->getHunterData();
 
         return redirect()->route('dashboard');
     }
@@ -119,13 +104,6 @@ class hunterController extends Controller
     public function destroyComment($id)
     {
         $comment = Comment::where('id', $id)->firstOrFail()->delete();
-
-        $datos = $this->getHunterData();
-
-        $datos = $this->getHunterData();
-        $weapons = Weapon::all();
-        $armors = Armor::all();
-
         return redirect()->route('edit');
     }
 

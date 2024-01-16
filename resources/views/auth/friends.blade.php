@@ -13,16 +13,18 @@
                     </div>
                 </form>
 
+                <h2 class="mb-4">Lista de amigos</h2>
 
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark ">
                         <th class="text-center">Acción</th>
                         <th class="text-center">Amigo</th>
                         <th class="text-center">Guild</th>
-                        <th>Sala</th>
+                        <th class="text-center">Sala</th>
+                        <th class="text-center">Monstruo</th>
+                        <th class="text-center">Jugadores</th>
                         <th></th>
                     </tr>
-
 
                     @foreach ($acceptedFriends as $acceptedFriend)
                         @if (Auth::user()->hunter->id == $acceptedFriend->id)
@@ -30,12 +32,11 @@
                         @endif
                         <tr>
                             <td class="align-middle text-center">
-                                <form action="{{ route('deleteFriend') }}" method="post">
+                                <form id="deleteFriendForm" action="{{ route('deleteFriend') }}" method="post">
                                     @csrf
                                     @method('delete')
-                                    <input type="text" name="requestId" value="{{ $acceptedFriend->id }}" hidden>
-                                    </input>
-                                    <button type="submit" class="btn btn-primary btn-sm">Borrar</button>
+                                    <input type="hidden" name="requestId" value="{{ $acceptedFriend->id }}">
+                                    <button type="button" onclick="confirmDeleteFriend()" class="btn btn-primary btn-sm">Borrar</button>
                                 </form>
                             </td>
                             <td class="align-middle text-center">
@@ -46,38 +47,52 @@
                                         class="nav-link text-decoration-underline">{{ $acceptedFriend->name }}</a>
                                 </div>
                             </td>
-                            @isset($acceptedFriend->guild)
-                                <td class="align-middle text-center"><a
-                                        href="/guild/{{ $acceptedFriend->guild->id }}">{{ $acceptedFriend->guild->name }}</a>
-                                </td>
-                            @else
-                                <td class="align-middle text-center">N/A</td>
-                            @endisset
-                           
-                            @isset($acceptedFriend->room)
-                                <td class="align-middle text-center">
-                                    {{$acceptedFriend->room->roomCount()}}/4
-                                </td>
-                            @else
-                                <td class="align-middle text-center">N/A</td>
-                            @endisset
-                            
-                            @isset(auth()->user()->hunter->room)
-
-                            <td class="align-middle text-center"></td>
-
-                            @else
                             <td class="align-middle text-center">
-                                <form action="{{route('hunter.joinRoom')}}" method="post">
-                                    @csrf  
-                                    @method('put')
-                                    <input type="" name="room_id" id="" value="{{$acceptedFriend->room->id}}" hidden>
-                                    <button class="btn btn-success btn-sm" type="submit">Unirse</button>
-                                </form>
+                                @isset($acceptedFriend->guild)
+                                    <a href="/guild/{{ $acceptedFriend->guild->id }}">{{ $acceptedFriend->guild->name }}</a>
+                                @else
+                                    N/A
+                                @endisset
                             </td>
+                            <td class="align-middle text-center">
+                                @isset($acceptedFriend->room)
+                                    {{ $acceptedFriend->room->roomCount() }}/4
+                                <td class="align-middle text-center">{{ $acceptedFriend->room->monster->name }}</td>
+
+                                <td class="align-middle text-center">
+                                    <ul class="list-unstyled">
+                                        @foreach ($acceptedFriend->room->hunters as $hunterInRoom)
+                                            @if ($hunterInRoom->id != Auth::user()->hunter->id)
+                                                <li><a href="/hunter/{{ $hunterInRoom->id }}" class="nav-link text-decoration-underline">
+                                                    {{ $hunterInRoom->name }}</a></li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </td>
+                            @else
+                                N/A
                             @endisset
+                            </td>
+                            <td class="align-middle text-center">
+                                @isset(auth()->user()->hunter->room)
+                                    <!-- Empty cell -->
+                                @else
+                                    @isset($acceptedFriend->room)
+                                        <form action="{{ route('hunter.joinRoom') }}" method="post">
+                                            @csrf
+                                            @method('put')
+                                            <input type="hidden" name="room_id" value="{{ $acceptedFriend->room->id }}">
+                                            <button class="btn btn-success btn-sm" type="submit">Unirse</button>
+                                        </form>
+                                    @else
+                                        <!-- Empty cell -->
+                                    @endisset
+                                @endisset
+                            </td>
                         </tr>
                     @endforeach
+
+
 
                 </table>
 
@@ -119,4 +134,34 @@
 
         </div>
     </div>
+@endsection
+
+
+
+
+
+@section('scripts')
+
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmDeleteFriend() {
+        Swal.fire({
+            title: '¿Estás seguro de que quieres eliminar a este amigo?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('deleteFriendForm').submit();
+            }
+        })
+    }
+</script>
 @endsection
