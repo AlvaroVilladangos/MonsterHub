@@ -73,6 +73,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/weapon/{id}/update', [weaponController::class, 'update'])->name('weaponUpdate');
     Route::delete('/weapon/{id}/destroy', [weaponController::class, 'destroy'])->name('weaponDestroy');
     Route::post('/weaponCreate', [weaponController::class, 'store'])->name('weaponStore');
+    Route::put('/weapon/{id}/block', [weaponController::class, 'blockWeapon'])->name('blockWeapon');
+    Route::put('/weapon/{id}/unblock', [weaponController::class, 'unBlockWeapon'])->name('unBlockWeapon');
 
     Route::get('/armorsAdmin', [adminController::class, 'armors'])->name('armorsAdmin');
     Route::get('/armor/{id}/data', [armorController::class, 'data']);

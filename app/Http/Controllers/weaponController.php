@@ -14,7 +14,7 @@ class weaponController extends Controller
     public function index()
     {
 
-        $weapons = Weapon::query();
+        $weapons = Weapon::query()->where('blocked', false);;
 
         if (request()->has('search')) {
             $search = strtolower(request()->get('search', ''));
@@ -51,6 +51,26 @@ class weaponController extends Controller
         weapon::where('id', $id)->firstOrFail()->delete();
         return redirect()->route('weaponsAdmin');
     }
+
+
+
+    public function blockWeapon($id){
+
+        $weapon = Weapon::find($id);
+        $weapon->blocked = true;
+        $weapon->save();
+        return redirect()->back();
+    }
+
+
+    public function unBlockWeapon($id){
+
+        $weapon = Weapon::find($id);
+        $weapon->blocked = false;
+        $weapon->save();
+        return redirect()->back();
+    }
+
 
     public function store(Request $request)
     {

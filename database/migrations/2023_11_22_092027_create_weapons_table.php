@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('crit');
             $table->text('info');
             $table->string('img');
+            $table->boolean('blocked')->default(false);
             $table->unsignedBigInteger('monster_id');
 
             $table->foreign('monster_id')->references('id')->on('monsters')

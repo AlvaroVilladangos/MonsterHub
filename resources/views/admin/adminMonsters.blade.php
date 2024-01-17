@@ -54,7 +54,8 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/monster/{{ $monster->id }}  "class="nav-link text-decoration-underline" target="_blank">{{ $monster->name }}</a>
+                            href="/monster/{{ $monster->id }}  "class="nav-link text-decoration-underline"
+                            target="_blank">{{ $monster->name }}</a>
                     </td>
                     <td class="align-middle text-center">
                         <button type="button" class="btn btn-warning btn-sm" data-id="{{ $monster->id }}"
@@ -71,25 +72,25 @@
                     </td>
 
                     @if ($monster->blocked)
-                    <td class="align-middle text-center">
+                        <td class="align-middle text-center">
 
-                        <form action="{{ route('unBlockMonster', ['id' => $monster->id]) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <button class="btn btn-sm btn-success" type="submit">Desbloquear</button>
-                        </form>
+                            <form action="{{ route('unBlockMonster', ['id' => $monster->id]) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button class="btn btn-sm btn-success" type="submit">Habilitar</button>
+                            </form>
 
-                    </td>
-                @else
-                    <td class="align-middle text-center">
+                        </td>
+                    @else
+                        <td class="align-middle text-center">
 
-                        <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <button class="btn btn-sm btn-primary" type="submit">Bloquear</button>
-                        </form>
-                    </td>
-                @endif
+                            <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button class="btn btn-sm btn-primary" type="submit">Deshabilitar</button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </table>
