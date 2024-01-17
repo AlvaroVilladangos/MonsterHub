@@ -23,14 +23,14 @@
                             </div>
                         </div>
 
-                        @if (!auth()->user()->hunter->isInRelation($hunter->id))
+                        @if (auth()->user()->hunter && !auth()->user()->hunter->isInRelation($hunter->id))
                         <div class="mt-3">
                             <form action="{{ route('addfriend', ['requesterId' => auth()->user()->hunter->id, 'receiverId' => $hunter->id]) }}" method="post">
                                 @csrf
                                 <button class="btn btn-success btn-sm" type="submit">Agregar</button>
                             </form>
                         </div>
-                    @endif
+                        @endif
                     
                     </div>
                     <div class="row mt-3">
@@ -53,12 +53,14 @@
 
                     </div>
                     <div class="px-2 mt-4">
-                        <h5 class="fs-5">Bio :</h5>
+                        <h5 class="fs-5">Bio:</h5>
                         <p class="fs-6 fw-light">
                             {{$hunter->bio}}
                         </p>
                         <div class="mt-3">
+                            @if (auth()->user()->hunter)
                             <button x-data x-on:click="$dispatch('open-modal')" class="btn btn-info btn-sm">Comentar</button>
+                            @endif
                         </div>
 
                     </div>

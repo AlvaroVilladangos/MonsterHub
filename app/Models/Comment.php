@@ -11,9 +11,14 @@ class Comment extends Model
 
     public $timestamps = false;
 
-    public function hunter(){
+    public function hunter()
+    {
         return $this->belongsTo(Hunter::class, 'from_id');
     }
+
+
+    public function receiver()
+    {
+        return $this->belongsTo(Hunter::class, 'to_id');
+    }
 }
-
-

@@ -65,7 +65,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/monster/{id}/update', [monsterController::class, 'update'])->name('monsterUpdate');
     Route::delete('/monster/{id}/destroy', [monsterController::class, 'destroy'])->name('monsterDestroy');
     Route::post('/monsterCreate', [monsterController::class, 'store'])->name('monsterStore');
-
+    Route::put('/monster/{id}/block', [monsterController::class, 'blockMonster'])->name('blockMonster');
+    Route::put('/monster/{id}/unblock', [monsterController::class, 'unBlockMonster'])->name('unBlockMonster');
 
     Route::get('/weaponsAdmin', [adminController::class, 'weapons'])->name('weaponsAdmin');
     Route::get('/weapon/{id}/data', [weaponController::class, 'data']);
@@ -78,6 +79,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/armor/{id}/update', [armorController::class, 'update'])->name('armorUpdate');
     Route::delete('/armor/{id}/destroy', [armorController::class, 'destroy'])->name('armorDestroy');
     Route::post('/armorCreate', [armorController::class, 'store'])->name('armorStore');
+
+    Route::get('/hunter/{id}/comments', [adminController::class, 'hunterComments'])->name('hunterComments');
 
 });
 

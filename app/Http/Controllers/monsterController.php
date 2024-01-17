@@ -13,14 +13,14 @@ class monsterController extends Controller
     public function index()
     {
 
-        $monsters = Monster::query();
+        $monsters = Monster::query()->where('blocked', false);
 
         if (request()->has('search')){
             $search = strtolower(request()->get('search', ''));
             $monsters = $monsters->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $monsters = $monsters->paginate(5);
+        $monsters = $monsters->orderBy('name')->paginate(5);
     
         return view('monstersTable', compact('monsters'));
     }
@@ -83,6 +83,24 @@ class monsterController extends Controller
         return redirect()->route('monstersAdmin');
 
     }
+
+    public function blockMonster($id){
+
+        $monster = Monster::find($id);
+        $monster->blocked = true;
+        $monster->save();
+        return redirect()->back();
+    }
+
+
+    public function unBlockMonster($id){
+
+        $monster = Monster::find($id);
+        $monster->blocked = false;
+        $monster->save();
+        return redirect()->back();
+    }
+
 
     public function store(Request $request){
         $monster = new Monster();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Armor;
+use App\Models\Hunter;
 use App\Models\Monster;
 use App\Models\User;
 use App\Models\Weapon;
@@ -26,7 +27,7 @@ class adminController extends Controller
             $users = $users->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $users = $users->paginate(10);
+        $users = $users->orderBy('name')->paginate(10);
 
         return view('admin.adminUsers', compact('users'));
     }
@@ -58,7 +59,7 @@ class adminController extends Controller
             $monsters = $monsters->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $monsters = $monsters->paginate(10);
+        $monsters = $monsters->orderBy('name')->paginate(10);
 
         return view('admin.adminMonsters', compact('monsters'));
     }
@@ -74,7 +75,7 @@ class adminController extends Controller
             $weapons = $weapons->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $weapons = $weapons->paginate(10);
+        $weapons = $weapons->orderBy('name')->paginate(10);
 
         $monsters = Monster::doesntHave('weapon')->get();
 
@@ -91,11 +92,19 @@ class adminController extends Controller
             $armors = $armors->whereRaw('lower(name) like (?)',["%{$search}%"]);
         }
     
-        $armors = $armors->paginate(10);
+        $armors = $armors->orderBy('name')->paginate(10);
 
         $monsters = Monster::doesntHave('armor')->get();
 
         return view('admin.adminArmors', compact('armors', 'monsters'));
     }
+
+
+        public function hunterComments($id){
+
+            $hunter = Hunter::find($id);
+            $comments = $hunter->sentComments()->with('receiver')->paginate(5);        
+            return view('admin.adminUserComments', compact('comments', 'hunter'));
+        }
 
 }

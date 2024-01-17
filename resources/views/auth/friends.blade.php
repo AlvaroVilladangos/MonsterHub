@@ -75,7 +75,6 @@
                             </td>
                             <td class="align-middle text-center">
                                 @isset(auth()->user()->hunter->room)
-                                    <!-- Empty cell -->
                                 @else
                                     @isset($acceptedFriend->room)
                                         <form action="{{ route('hunter.joinRoom') }}" method="post">
@@ -85,7 +84,6 @@
                                             <button class="btn btn-success btn-sm" type="submit">Unirse</button>
                                         </form>
                                     @else
-                                        <!-- Empty cell -->
                                     @endisset
                                 @endisset
                             </td>
@@ -141,7 +139,6 @@
 
 
 @section('scripts')
-
 
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -82,7 +82,11 @@ class Hunter extends Model
             ->wherePivot('status', 'accepted');
     }
 
-
+    public function sentComments()
+    {
+        return $this->hasMany(Comment::class, 'from_id');
+    }
+    
     public function comments()
     {
         return $this->hasMany(Comment::class, 'to_id',);

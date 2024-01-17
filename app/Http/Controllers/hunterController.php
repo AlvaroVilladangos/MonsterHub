@@ -104,7 +104,7 @@ class hunterController extends Controller
     public function destroyComment($id)
     {
         $comment = Comment::where('id', $id)->firstOrFail()->delete();
-        return redirect()->route('edit');
+        return redirect()->back();
     }
 
 

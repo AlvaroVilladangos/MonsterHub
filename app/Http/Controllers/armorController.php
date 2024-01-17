@@ -19,7 +19,7 @@ class armorController extends Controller
             $armors = $armors->whereRaw('lower(name) like (?)', ["%{$search}%"]);
         }
 
-        $armors = $armors->paginate(5);
+        $armors = $armors->orderBy('name')->paginate(5);
 
         return view('armorsTable', compact('armors'));
     }

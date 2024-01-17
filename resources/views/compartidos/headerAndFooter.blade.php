@@ -60,7 +60,7 @@
                 <a class="nav-item nav-link" href="/weapons">Armas</a>
                 <a class="nav-item nav-link" href="/armors">Armaduras</a>
 
-                @if (auth()->check())
+                @if (auth()->check() && auth()->user()->hunter)
                     <a class="nav-item nav-link" href="/guilds">Guilds</a>
                     <a class="nav-item nav-link" href="/hunters">Hunters</a>
                 @endif

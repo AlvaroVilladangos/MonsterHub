@@ -21,7 +21,7 @@ class weaponController extends Controller
             $weapons = $weapons->whereRaw('lower(name) like (?)', ["%{$search}%"]);
         }
 
-        $weapons = $weapons->paginate(5);
+        $weapons = $weapons->orderBy('name')->paginate(5);
 
         return view('weaponsTable', compact('weapons'));
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('weakness');
             $table->text('physiology');
             $table->text('abilities');
+            $table->boolean('blocked')->default(false);
         });
     }
 

@@ -46,6 +46,7 @@
                 <th class="text-center"> Monstruo</th>
                 <th class="text-center"></th>
                 <th class="text-center"></th>
+                <th class="text-center"></th>
             </tr>
 
             @foreach ($monsters as $monster)
@@ -68,6 +69,27 @@
                                 onclick="confirmDeleteMonster()">ELIMINAR</button>
                         </form>
                     </td>
+
+                    @if ($monster->blocked)
+                    <td class="align-middle text-center">
+
+                        <form action="{{ route('unBlockMonster', ['id' => $monster->id]) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <button class="btn btn-sm btn-success" type="submit">Desbloquear</button>
+                        </form>
+
+                    </td>
+                @else
+                    <td class="align-middle text-center">
+
+                        <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <button class="btn btn-sm btn-primary" type="submit">Bloquear</button>
+                        </form>
+                    </td>
+                @endif
                 </tr>
             @endforeach
         </table>
