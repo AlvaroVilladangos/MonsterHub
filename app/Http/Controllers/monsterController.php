@@ -79,7 +79,9 @@ class monsterController extends Controller
     
     public function destroy($id){
 
-        Monster::where('id',$id)->firstOrFail()->delete();
+        Monster::where('id',$id)->delete();
+
+
         return redirect()->route('monstersAdmin');
 
     }

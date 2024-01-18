@@ -12,7 +12,7 @@ class armorController extends Controller
     public function index()
     {
 
-        $armors = Armor::query();
+        $armors = Armor::query()->where('blocked', false);
 
         if (request()->has('search')) {
             $search = strtolower(request()->get('search', ''));
@@ -48,6 +48,26 @@ class armorController extends Controller
 
         armor::where('id', $id)->firstOrFail()->delete();
         return redirect()->route('armorsAdmin');
+    }
+
+
+
+
+    public function blockArmor($id){
+
+        $armor = Armor::find($id);
+        $armor->blocked = true;
+        $armor->save();
+        return redirect()->back();
+    }
+
+
+    public function unBlockArmor($id){
+
+        $armor = Armor::find($id);
+        $armor->blocked = false;
+        $armor->save();
+        return redirect()->back();
     }
 
     public function store(Request $request)

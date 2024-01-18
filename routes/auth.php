@@ -81,6 +81,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/armor/{id}/update', [armorController::class, 'update'])->name('armorUpdate');
     Route::delete('/armor/{id}/destroy', [armorController::class, 'destroy'])->name('armorDestroy');
     Route::post('/armorCreate', [armorController::class, 'store'])->name('armorStore');
+    Route::put('/armor/{id}/block', [armorController::class, 'blockArmor'])->name('blockArmor');
+    Route::put('/armor/{id}/unblock', [armorController::class, 'unBlockArmor'])->name('unBlockArmor');
 
     Route::get('/hunter/{id}/comments', [adminController::class, 'hunterComments'])->name('hunterComments');
 

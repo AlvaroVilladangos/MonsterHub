@@ -14,7 +14,7 @@ class weaponController extends Controller
     public function index()
     {
 
-        $weapons = Weapon::query()->where('blocked', false);;
+        $weapons = Weapon::query()->where('blocked', false);
 
         if (request()->has('search')) {
             $search = strtolower(request()->get('search', ''));

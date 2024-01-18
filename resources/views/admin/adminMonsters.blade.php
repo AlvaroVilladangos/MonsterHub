@@ -62,12 +62,12 @@
                             data-bs-toggle="modal" data-bs-target="#monsterEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
-                        <form id="deleteMonsterForm" action="{{ route('monsterDestroy', ['id' => $monster->id]) }}"
-                            method="post">
+                        <form id="deleteMonsterForm{{ $monster->id }}"
+                            action="{{ route('monsterDestroy', ['id' => $monster->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-primary btn-sm" type="button"
-                                onclick="confirmDeleteMonster()">ELIMINAR</button>
+                                onclick="confirmDeleteMonster({{ $monster->id }})">ELIMINAR</button>
                         </form>
                     </td>
 
@@ -238,7 +238,8 @@
 
 
     <script>
-        function confirmDeleteMonster() {
+        function confirmDeleteMonster(monsterId) {
+            var form = document.getElementById('deleteMonsterForm' + monsterId);
             Swal.fire({
                 title: '¿Estás seguro de que quieres eliminar el monstruo?',
                 text: "¡No podrás revertir esto!",
@@ -250,7 +251,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('deleteMonsterForm').submit();
+                    form.submit();
                 }
             })
         }

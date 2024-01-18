@@ -48,6 +48,7 @@
                 <th class="text-center"> Monstruo</th>
                 <th class="text-center"></th>
                 <th class="text-center"></th>
+                <th class="text-center"></th>
             </tr>
 
             @foreach ($armors as $armor)
@@ -55,26 +56,48 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $armor->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/armor/{{ $armor->id }}  "class="nav-link text-decoration-underline" target="_blank">{{ $armor->name }}</a>
+                            href="/armor/{{ $armor->id }}  "class="nav-link text-decoration-underline"
+                            target="_blank">{{ $armor->name }}</a>
                     </td>
 
                     <td class="align-middle text-center"><a
-                        href="/monster/{{ $armor->monster->id }}  "class="nav-link text-decoration-underline">{{ $armor->monster->name }}</a>
+                            href="/monster/{{ $armor->monster->id }}  "class="nav-link text-decoration-underline">{{ $armor->monster->name }}</a>
                     </td>
-                
+
                     <td class="align-middle text-center">
                         <button type="button" class="btn btn-warning btn-sm" data-id="{{ $armor->id }}"
                             data-bs-toggle="modal" data-bs-target="#armorEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
-                        <form id="deleteArmorForm" action="{{ route('armorDestroy', ['id' => $armor->id]) }}"
-                            method="post">
+                        <form id="deleteArmorForm{{ $armor->id }}"
+                            action="{{ route('armorDestroy', ['id' => $armor->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-primary btn-sm" type="button"
-                                onclick="confirmDeleteArmor()">ELIMINAR</button>
+                                onclick="confirmDeleteArmor({{ $armor->id }})">ELIMINAR</button>
                         </form>
                     </td>
+
+
+                    @if ($armor->blocked)
+                        <td class="align-middle text-center">
+
+                            <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button class="btn btn-sm btn-success" type="submit">Habilitar</button>
+                            </form>
+
+                        </td>
+                    @else
+                        <td class="align-middle text-center">
+                            <form action="{{ route('blockArmor', ['id' => $armor->id]) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button class="btn btn-sm btn-primary" type="submit">Deshabilitar</button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </table>
@@ -96,7 +119,7 @@
                 <div class="modal-body">
 
 
-                    @isset ($armor)
+                    @isset($armor)
                         <form id="armorForm" method="post" action="{{ route('armorUpdate', ['id' => $armor->id]) }}"
                             enctype="multipart/form-data">
                             @csrf
@@ -124,7 +147,6 @@
 
                         </form>
                     @else
-                        
                     @endisset
                 </div>
                 <div class="modal-footer">
@@ -224,7 +246,8 @@
 
 
     <script>
-        function confirmDeleteArmor() {
+        function confirmDeleteArmor(armorId) {
+            var form = document.getElementById('deleteArmorForm' + armorId);
             Swal.fire({
                 title: '¿Estás seguro de que quieres eliminar la armadura?',
                 text: "¡No podrás revertir esto!",
@@ -236,7 +259,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('deleteArmorForm').submit();
+                    form.submit();
                 }
             })
         }

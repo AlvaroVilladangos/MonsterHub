@@ -57,45 +57,47 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/weapon/{{ $weapon->id }}  "class="nav-link text-decoration-underline" target="_blank">{{ $weapon->name }}</a>
+                            href="/weapon/{{ $weapon->id }}  "class="nav-link text-decoration-underline"
+                            target="_blank">{{ $weapon->name }}</a>
                     </td>
                     <td class="align-middle text-center"><a
-                        href="/monster/{{ $weapon->monster->id }}  "class="nav-link text-decoration-underline" target="_blank"> {{ $weapon->monster->name }}</a>
+                            href="/monster/{{ $weapon->monster->id }}  "class="nav-link text-decoration-underline"
+                            target="_blank"> {{ $weapon->monster->name }}</a>
                     </td>
                     <td class="align-middle text-center">
                         <button type="button" class="btn btn-warning btn-sm" data-id="{{ $weapon->id }}"
                             data-bs-toggle="modal" data-bs-target="#weaponEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
-                        <form id="deleteweaponForm" action="{{ route('weaponDestroy', ['id' => $weapon->id]) }}"
-                            method="post">
+                        <form id="deleteWeaponForm{{ $weapon->id }}"
+                            action="{{ route('weaponDestroy', ['id' => $weapon->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-primary btn-sm" type="button"
-                                onclick="confirmDeleteweapon()">ELIMINAR</button>
+                                onclick="confirmDeleteWeapon({{ $weapon->id }})">ELIMINAR</button>
                         </form>
                     </td>
 
                     @if ($weapon->blocked)
-                    <td class="align-middle text-center">
+                        <td class="align-middle text-center">
 
-                        <form action="{{ route('unBlockWeapon', ['id' => $weapon->id]) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <button class="btn btn-sm btn-success" type="submit">Desbloquear</button>
-                        </form>
+                            <form action="{{ route('unBlockWeapon', ['id' => $weapon->id]) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button class="btn btn-sm btn-success" type="submit">Habilitar</button>
+                            </form>
 
-                    </td>
-                @else
-                    <td class="align-middle text-center">
+                        </td>
+                    @else
+                        <td class="align-middle text-center">
 
-                        <form action="{{ route('blockWeapon', ['id' => $weapon->id]) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <button class="btn btn-sm btn-primary" type="submit">Bloquear</button>
-                        </form>
-                    </td>
-                @endif
+                            <form action="{{ route('blockWeapon', ['id' => $weapon->id]) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button class="btn btn-sm btn-primary" type="submit">Deshabilitar</button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </table>
@@ -117,7 +119,7 @@
                 <div class="modal-body">
 
 
-                    @isset ($weapon)
+                    @isset($weapon)
                         <form id="weaponForm" method="post" action="{{ route('weaponUpdate', ['id' => $weapon->id]) }}"
                             enctype="multipart/form-data">
                             @csrf
@@ -151,7 +153,6 @@
 
                         </form>
                     @else
-                        
                     @endisset
                 </div>
                 <div class="modal-footer">
@@ -260,7 +261,8 @@
 
 
     <script>
-        function confirmDeleteweapon() {
+        function confirmDeleteWeapon(weaponId) {
+            var form = document.getElementById('deleteWeaponForm' + weaponId);
             Swal.fire({
                 title: '¿Estás seguro de que quieres eliminar la arma?',
                 text: "¡No podrás revertir esto!",
@@ -272,7 +274,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('deleteweaponForm').submit();
+                    form.submit();
                 }
             })
         }
