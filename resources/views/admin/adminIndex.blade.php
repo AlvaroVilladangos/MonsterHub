@@ -60,5 +60,34 @@
 
             </div>
         </div>
+
+
+        <div class="row">
+            <div class="col px-4 py-3">
+
+                <div class="card">
+                    <div class="card-details">
+                        <div>
+                            <img class="img-fluid rounded" src="{{ URL('storage/guildsBanner.jpeg') }}">
+                        </div>
+                    </div>
+                    <a class="card-button nav-link" href ="/guildsAdmin">Guilds</a>
+                </div>
+
+            </div>
+
+            <div class="col px-4 py-3">
+
+               {{--  <div class="card">
+                    <div class="card-details">
+                        <div>
+                            <img class="img-fluid rounded" src="{{ URL('storage/monsterBanner.webp') }}">
+                        </div>
+                    </div>
+                    <a class="card-button nav-link" href ="/monstersAdmin">Monstruos</a>
+                </div>
+ --}}
+            </div>
+        </div>
     </div>
 @endsection

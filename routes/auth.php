@@ -60,6 +60,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/blockUser/{id}', [adminController::class, 'blockUser'])->name('blockUser');
     Route::put('/unBlockUser/{id}', [adminController::class, 'unBlockUser'])->name('unBlockUser');
 
+    Route::get('/guildsAdmin', [adminController::class, 'guilds'])->name('guildsAdmin');
+    Route::delete('/guild/{id}/destroy', [guildController::class, 'destroy'])->name('guildDestroy');
+
     Route::get('/monstersAdmin', [adminController::class, 'monsters'])->name('monstersAdmin');
     Route::get('/monster/{id}/data', [monsterController::class, 'data']);
     Route::put('/monster/{id}/update', [monsterController::class, 'update'])->name('monsterUpdate');
@@ -119,9 +122,10 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/edit/comment/delete/{id}', [hunterController::class, 'destroyComment'])->name('comment.destroy');
 
-    Route::resource('/guilds', guildController::class)/* ->middleware('checkguild') */->only(['index', 'create', 'store']);
+    Route::resource('/guilds', guildController::class)->only(['index', 'create', 'store']);
 
-    Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update', 'show', 'destroy']);
+    Route::resource('/guild', guildController::class)->middleware('checkLeader:guild') ->only(['edit', 'update', 'show']);
+    Route::delete('/guild/{id}/destroy', [guildController::class, 'destroy'])->name('guildDestroy');
 
     Route::put('/guild/{guild}/join', [hunterController::class, 'joinGuild'])->middleware('checkguild')->name('hunter.joinGuild');
 

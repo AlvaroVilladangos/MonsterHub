@@ -45,7 +45,7 @@ class guildController extends Controller
 
         $hunter->guild_id = $guild->id;
         $hunter->save();
-        return redirect()-> route('guilds.index');
+        return redirect()-> route('guild.show', $guild);
     }
 
     public function show(Guild $guild){
@@ -111,12 +111,16 @@ class guildController extends Controller
     }
 
 
-    public function destroy(Guild $guild){
+    public function destroy($id){
+
+        Guild::where('id',$id)->firstOrFail()->delete();
 
 
-        Guild::where('id',$guild->id)->firstOrFail()->delete();
-
-        return redirect()->route('dashboard');
+        if (auth()->user()->hunter){
+            return redirect()->route('dashboard');
+        }else{
+            return redirect()->back();
+        }
     }
 
 }

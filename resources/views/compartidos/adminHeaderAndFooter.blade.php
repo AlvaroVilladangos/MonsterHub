@@ -8,6 +8,7 @@
     <title>MonsterHub</title>
     @vite('/resources/css/bootstrap.min.css')
     <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="icon" href="{{ URL('storage/favicon.jpg') }}">
 
         <style>
             background-image: url("/storage/fondo.jpeg");

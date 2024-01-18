@@ -104,11 +104,12 @@
 
             <div class="col-2 mb-3">
 
-                <form id="deleteGuildForm" action="{{ route('guild.destroy', $guild) }}" method="post">
+                <form id="deleteGuildForm{{ $guild->id }}"
+                    action="{{ route('guildDestroy', ['id' => $guild->id]) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-lg" type="button" onclick="confirmDeleteGuild()">ELIMINAR
-                        GREMIO</button>
+                    <button class="btn btn-primary btn-lg" type="button"
+                        onclick="confirmDeleteGuild({{ $guild->id }})">ELIMINAR GREMIO</button>
                 </form>
 
             </div>
@@ -158,9 +159,10 @@
             })
         }
 
-        function confirmDeleteGuild() {
+        function confirmDeleteGuild(guildId) {
+            var form = document.getElementById('deleteGuildForm' + guildId);
             Swal.fire({
-                title: '¿Estás seguro que quieres eliminar este gremio?',
+                title: '¿Estás seguro de que quieres eliminar la guild?',
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -170,7 +172,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('deleteGuildForm').submit();
+                    form.submit();
                 }
             })
         }

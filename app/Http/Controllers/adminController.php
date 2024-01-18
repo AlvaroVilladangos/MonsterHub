@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Armor;
+use App\Models\Guild;
 use App\Models\Hunter;
 use App\Models\Monster;
 use App\Models\User;
@@ -64,6 +65,20 @@ class adminController extends Controller
         return view('admin.adminMonsters', compact('monsters'));
     }
 
+
+    public function guilds(){
+
+        $guilds = Guild::query();
+
+        if (request()->has('search')){
+            $search = strtolower(request()->get('search', ''));
+            $guilds = $guilds->whereRaw('lower(name) like (?)',["%{$search}%"]);
+        }
+    
+        $guilds = $guilds->orderBy('name')->paginate(10);
+
+        return view('admin.adminGuilds', compact('guilds'));
+    }
 
 
     public function weapons(){

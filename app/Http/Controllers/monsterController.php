@@ -15,21 +15,22 @@ class monsterController extends Controller
 
         $monsters = Monster::query()->where('blocked', false);
 
-        if (request()->has('search')){
+        if (request()->has('search')) {
             $search = strtolower(request()->get('search', ''));
-            $monsters = $monsters->whereRaw('lower(name) like (?)',["%{$search}%"]);
+            $monsters = $monsters->whereRaw('lower(name) like (?)', ["%{$search}%"]);
         }
-    
+
         $monsters = $monsters->orderBy('name')->paginate(5);
-    
+
         return view('monstersTable', compact('monsters'));
     }
 
 
-    public function show(Monster $monster){
+    public function show(Monster $monster)
+    {
 
-        $weapon = Weapon:: where('monster_id', $monster->id)->first();
-        $armor = Armor:: where('monster_id', $monster->id)->first();
+        $weapon = Weapon::where('monster_id', $monster->id)->first();
+        $armor = Armor::where('monster_id', $monster->id)->first();
         return view('monster', compact('monster', 'armor', 'weapon'));
     }
 
@@ -37,65 +38,80 @@ class monsterController extends Controller
 
     public function data($id)
     {
-    $monster = Monster::find($id);
-    return response()->json($monster);
+        $monster = Monster::find($id);
+        return response()->json($monster);
     }
 
 
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $monster = Monster::find($id);
         $newName = $request->input('monsterName');
-    
+
         $existingMonster = Monster::where('name', $newName)->first();
         if ($existingMonster && $existingMonster->id != $id) {
             return redirect()->route('monstersAdmin')->with('error', 'El nombre ya existe en la base de datos');
         }
-    
+
         if ($request->hasFile('monsterImg')) {
             $validateIMG = $request->validate(['monsterImg' => 'image']);
             $imgPath = $request->file('monsterImg')->store('imgMonsters', 'public');
             $validateIMG = $imgPath;
-    
+
             if ($monster->img != 'imgMonsters/defaultMonster.webp') {
                 Storage::disk('public')->delete($monster->img);
             }
         } else {
             $validateIMG = $monster->img;
         }
-    
+
         $monster->img = $validateIMG;
         $monster->name = $newName;
         $monster->weakness = $request->input('monsterWeakness');
         $monster->element = $request->input('monsterElement');
         $monster->physiology = $request->input('monsterPhysiology');
         $monster->abilities = $request->input('monsterAbilities');
-    
+
         $monster->save();
-    
-        return redirect()->route('monstersAdmin');
-    }
-    
-    
-    public function destroy($id){
-
-        Monster::where('id',$id)->delete();
-
 
         return redirect()->route('monstersAdmin');
-
     }
 
-    public function blockMonster($id){
+
+    public function destroy($id)
+    {
+
+        Monster::where('id', $id)->firstOrFail()->delete();
+
+        return redirect()->route('monstersAdmin');
+    }
+
+    public function blockMonster($id)
+    {
 
         $monster = Monster::find($id);
         $monster->blocked = true;
         $monster->save();
+
+        $weapons = Weapon::where('monster_id', $id)->get();
+        foreach ($weapons as $weapon) {
+            $weapon->blocked = true;
+            $weapon->save();
+        }
+
+        $armors = Armor::where('monster_id', $id)->get();
+        foreach ($armors as $armor) {
+            $armor->blocked = true;
+            $armor->save();
+        }
+
         return redirect()->back();
     }
 
 
-    public function unBlockMonster($id){
+    public function unBlockMonster($id)
+    {
 
         $monster = Monster::find($id);
         $monster->blocked = false;
@@ -104,14 +120,15 @@ class monsterController extends Controller
     }
 
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $monster = new Monster();
-    
+
         $existingMonster = Monster::where('name', $request->monsterName)->first();
         if ($existingMonster) {
             return redirect()->route('monsterAdmin')->with('error', 'El nombre ya existe en la base de datos');
         }
-    
+
         if ($request->hasFile('monsterImg')) {
             $request->validate(['monsterImg' => 'image']);
             $imgPath = $request->file('monsterImg')->store('imgMonsters', 'public');
@@ -119,17 +136,15 @@ class monsterController extends Controller
         } else {
             return redirect()->route('monstersAdmin')->with('error', 'Debes subir una imagen para el monstruo');
         }
-    
+
         $monster->name = $request->monsterName;
         $monster->weakness = $request->monsterWeakness;
         $monster->element = $request->monsterElement;
         $monster->physiology = $request->monsterPhysiology;
         $monster->abilities = $request->monsterAbilities;
-    
+
         $monster->save();
-    
+
         return redirect()->route('monstersAdmin')->with('success', 'Monstruo creado con éxito');
     }
-    
-    
 }

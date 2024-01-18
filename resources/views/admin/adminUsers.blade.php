@@ -4,7 +4,7 @@
 @section('content')
     <div class="container py-4">
 
-        <form action="{{ route('monsters') }}" method="get">
+        <form action="{{ route('usersAdmin') }}" method="get">
             <div class="input-group mb-4 w-25" id="search-box">
                 <input name="search" type="search" class="form-control" placeholder="Search" />
                 <button type="submit" class="btn btn-dark">search</button>

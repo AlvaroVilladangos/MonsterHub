@@ -36,13 +36,15 @@
                                 </p>
                             </div>
                             <div class="col-auto">
-                                @if (!(Auth::user()->hunter->isLeader($guild)) && Auth::user()->hunter->guild_id != null && Auth::user()->hunter->guild_id == $guild->id)
+
+                                
+                                @if (auth()->user()->hunter &&!(Auth::user()->hunter->isLeader($guild)) && Auth::user()->hunter->guild_id != null && Auth::user()->hunter->guild_id == $guild->id)
                                 <form id="leaveGuildForm" action="{{ route('hunter.leaveGuild') }}" method="post">
                                     @csrf
                                     @method('put')
                                     <button type="button" class="btn btn-danger" onclick="confirmLeaveGuild()">Abandonar</button>
                                 </form>                                
-                                @elseif ($guild->memberCount()<20 && Auth::user()->hunter->guild_id === null )
+                                @elseif (auth()->user()->hunter&&$guild->memberCount()<20 && Auth::user()->hunter->guild_id === null )
                                 <form action="{{ route('hunter.joinGuild', $guild) }}" method="post">
                                     @csrf
                                     @method('put')
@@ -50,7 +52,7 @@
                                 </form>
                                 @endif
 
-                                @if (Auth::user()->hunter->isLeader($guild))
+                                @if (auth()->user()->hunter&&Auth::user()->hunter->isLeader($guild))
                                 <a href="{{route('guild.edit', $guild)}}" class="btn btn-primary">Editar</a>
                                 @endif
                             </div>
