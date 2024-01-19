@@ -13,6 +13,10 @@
     display: none; 
 } 
 
+.error {
+  color: red;
+}
+
 .flip-card {
     background-color: transparent;
     width: 245px;

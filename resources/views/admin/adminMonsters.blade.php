@@ -19,6 +19,19 @@
         </div>
     @endif
 
+
+    @if ($errors->any())
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
+
     <div class="container py-4">
 
         <div class="row">
@@ -111,32 +124,61 @@
                 </div>
                 <div class="modal-body">
 
-                    <form id="monsterForm" method="post" action="{{ route('monsterUpdate', ['id' => $monster->id]) }}"
-                        enctype="multipart/form-data">
+                    <form id="monsterEditForm" name="monsterEditForm" method="post"
+                        action="{{ route('monsterUpdate', ['id' => $monster->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
-                        <input type="file" class="form-control mb-3" name="monsterImg">
 
-                        <label for="monsterName" class="form-label">Nombre del Monstruo</label>
-                        <input type="text" class="form-control mb-3" id="monsterName" name="monsterName">
+                        <div class="mb-3">
+                            <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
+                            <input type="file" class="form-control mb-3" name="monsterImg">
+                        </div>
 
-                        <label for="monsterWeakness" class="form-label">Debilidad</label>
-                        <input type="text" class="form-control mb-3" id="monsterWeakness" name="monsterWeakness">
+                        <div class="mb-3">
+                            <label for="monsterName" class="form-label">Nombre del Monstruo</label>
+                            <input type="text" class="form-control mb-3" id="monsterName" name="monsterName"
+                                required>
+                            <span id="errorMonsterName" class="text-primary"></span>
+                        </div>
 
-                        <label for="monsterElement" class="form-label">Elemento</label>
-                        <input type="text" class="form-control mb-3" id="monsterElement" name="monsterElement">
+                        <div class="mb-3">
+                            <label for="monsterElement" class="form-label">Elemento</label>
+                            <select name="monsterElement" id="monsterElement" class="form-select" required>
+                                <option value="Agua">Agua</option>
+                                <option value="Fuego">Fuego</option>
+                                <option value="Eléctrico">Eléctrico</option>
+                                <option value="Hielo">Hielo</option>
+                                <option value="Dragón">Dragón</option>
+                                <option value="Neutro">Neutro</option>
+                            </select>
+                        </div>
 
-                        <label for="monsterPhysiology" class="form-label">Physiology</label>
-                        <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology"> </textarea>
+                        <div class="mb-3">
+                            <label for="monsterWeakness" class="form-label">Debilidad</label>
+                            <select name="monsterWeakness" id="monsterWeakness" class="form-select" required>
+                                <option value="Agua">Agua</option>
+                                <option value="Fuego">Fuego</option>
+                                <option value="Eléctrico">Eléctrico</option>
+                                <option value="Hielo">Hielo</option>
+                                <option value="Dragón">Dragón</option>
+                                <option value="Neutro">Neutro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="monsterPhysiology" class="form-label">Physiology</label>
+                            <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology" required> </textarea>
+                            <span id="errorMonsterPhysiology" class="text-primary"></span>
+                        </div>
 
 
-                        <label for="monsterAbilities" class="form-label">Abilities</label>
-                        <textarea type="text" class="form-control mb-3" id="monsterAbilities" name="monsterAbilities"></textarea>
-
+                        <div class="mb-3">
+                            <label for="monsterAbilities" class="form-label">Abilities</label>
+                            <textarea type="text" class="form-control mb-3" id="monsterAbilities" name="monsterAbilities" required></textarea>
+                            <span id="errorMonsterAbilities" class="text-primary"></span>
+                        </div>
 
                         <button type="submit" class="btn btn-dark"> Actualizar</button>
-
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -157,25 +199,52 @@
                     <form id="monsterCreateForm" method="post" action="{{ route('monsterStore') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
-                        <input type="file" class="form-control mb-3" name="monsterImg" required>
 
-                        <label for="monsterName" class="form-label">Nombre del Monstruo</label>
-                        <input type="text" class="form-control mb-3" id="monsterName" name="monsterName" required>
+                        <div class="mb-3">
+                            <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
+                            <input type="file" class="form-control mb-3" name="monsterImg" required>
+                        </div>
 
-                        <label for="monsterWeakness" class="form-label">Debilidad</label>
-                        <input type="text" class="form-control mb-3" id="monsterWeakness" name="monsterWeakness"
-                            required>
+                        <div class="mb-3">
+                            <label for="monsterName" class="form-label">Nombre del Monstruo</label>
+                            <input type="text" class="form-control mb-3" id="monsterName" name="monsterName"
+                                required>
+                        </div>
 
-                        <label for="monsterElement" class="form-label">Elemento</label>
-                        <input type="text" class="form-control mb-3" id="monsterElement" name="monsterElement"
-                            required>
+                        <div class="mb-3">
+                            <label for="monsterElement" class="form-label">Elemento</label>
+                            <select name="monsterElement" id="monsterElement" class="form-select" required>
+                                <option value="Agua">Agua</option>
+                                <option value="Fuego">Fuego</option>
+                                <option value="Eléctrico">Eléctrico</option>
+                                <option value="Hielo">Hielo</option>
+                                <option value="Dragón">Dragón</option>
+                                <option value="Neutro">Neutro</option>
+                            </select>
+                        </div>
 
-                        <label for="monsterPhysiology" class="form-label">Physiology</label>
-                        <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology" required> </textarea>
+                        <div class="mb-3">
+                            <label for="monsterWeakness" class="form-label">Debilidad</label>
+                            <select name="monsterWeakness" id="monsterWeakness" class="form-select" required>
+                                <option value="Agua">Agua</option>
+                                <option value="Fuego">Fuego</option>
+                                <option value="Eléctrico">Eléctrico</option>
+                                <option value="Hielo">Hielo</option>
+                                <option value="Dragón">Dragón</option>
+                                <option value="Neutro">Neutro</option>
+                            </select>
+                        </div>
 
-                        <label for="monsterAbilities" class="form-label">Abilities</label>
-                        <textarea type="text" class="form-control mb-3" id="monster " name="monsterAbilities" required></textarea>
+
+                        <div class="mb-3">
+                            <label for="monsterPhysiology" class="form-label">Physiology</label>
+                            <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology" required> </textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="monsterAbilities" class="form-label">Abilities</label>
+                            <textarea type="text" class="form-control mb-3" id="monsterAbilities" name="monsterAbilities" required></textarea>
+                        </div>
 
                         <button type="submit" class="btn btn-dark"> Crear</button>
                     </form>
@@ -194,6 +263,8 @@
 
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(document).ready(function() {
@@ -209,33 +280,25 @@
                             imgPath);
                         $('#monsterEditModal .modal-body input[name="monsterName"]').val(data
                             .name);
-                        $('#monsterEditModal .modal-body input[name="monsterElement"]').val(data
+                        $('#monsterEditModal .modal-body select[name="monsterElement"]').val(
+                            data
                             .element);
-                        $('#monsterEditModal .modal-body input[name="monsterWeakness"]').val(
+                        $('#monsterEditModal .modal-body select[name="monsterWeakness"]').val(
                             data.weakness);
                         $('#monsterEditModal .modal-body textarea[name="monsterPhysiology"]')
                             .val(data.physiology);
                         $('#monsterEditModal .modal-body textarea[name="monsterAbilities"]')
                             .val(data.abilities);
 
-                        $('#monsterForm').attr('action', '/monster/' + monsterId + '/update');
+                        $('#monsterEditForm').attr('action', '/monster/' + monsterId +
+                            '/update');
                     }
                 });
-                monster / {
-                    id
-                }
-                /update
-
 
                 $('#monsterEditModal').modal('show');
             });
         });
     </script>
-
-
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
     <script>
         function confirmDeleteMonster(monsterId) {
@@ -255,5 +318,137 @@
                 }
             })
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#monsterCreateForm").validate({
+                rules: {
+                    monsterImg: {
+                        required: true,
+                        extension: "jpg|png|jpeg"
+                    },
+                    monsterName: {
+                        required: true,
+                        minlength: 2
+                    },
+                    monsterElement: {
+                        required: true
+                    },
+                    monsterWeakness: {
+                        required: true
+                    },
+                    monsterPhysiology: {
+                        required: true,
+                        minlength: 10
+                    },
+                    monsterAbilities: {
+                        required: true,
+                        minlength: 10
+                    }
+                },
+                messages: {
+                    monsterImg: {
+                        required: "Por favor, selecciona una imagen",
+                        extension: "Por favor, selecciona una imagen válida (jpg, png, jpeg)"
+                    },
+                    monsterName: {
+                        required: "Por favor, introduce el nombre del monstruo",
+                        minlength: "El nombre del monstruo debe tener al menos 2 caracteres"
+                    },
+                    monsterElement: {
+                        required: "Por favor, selecciona un elemento"
+                    },
+                    monsterWeakness: {
+                        required: "Por favor, selecciona una debilidad"
+                    },
+                    monsterPhysiology: {
+                        required: "Por favor, introduce la fisiología del monstruo",
+                        minlength: "La fisiología del monstruo debe tener al menos 10 caracteres"
+                    },
+                    monsterAbilities: {
+                        required: "Por favor, introduce las habilidades del monstruo",
+                        minlength: "Las habilidades del monstruo deben tener al menos 10 caracteres"
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function validarMonsterName(monsterName) {
+            var regexCaracteres = /^[A-Za-z]+$/;
+            var error = document.getElementById("errorMonsterName");
+
+            if (!regexCaracteres.test(monsterName)) {
+                error.textContent = "El nombre del monstruo debe contener solo letras.";
+                document.getElementById("monsterName").value = '';
+                return false;
+            }
+            if (monsterName.length > 20) {
+                error.textContent = "El nombre del monstruo no puede tener más de 20 caracteres.";
+                document.getElementById("monsterName").value = '';
+                return false;
+            }
+            if (monsterName.length < 4) {
+                error.textContent = "El nombre del monstruo no puede tener menos de 4 letras.";
+                document.getElementById("monsterName").value = '';
+                return false;
+            } else {
+                error.textContent = "";
+                return true;
+            }
+        }
+
+        function validarMonsterPhysiology(monsterPhysiology) {
+            var error = document.getElementById("errorMonsterPhysiology");
+
+            if (monsterPhysiology.length < 10) {
+                error.textContent = 'La fisiología del monstruo debe tener al menos 10 caracteres';
+                document.getElementById("monsterPhysiology").value = '';
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function validarMonsterAbilities(monsterAbilities) {
+            var error = document.getElementById("errorMonsterAbilities");
+
+            if (monsterAbilities.length < 10) {
+                error.textContent = 'Las habilidades del monstruo deben tener al menos 10 caracteres';
+                document.getElementById("monsterAbilities").value = '';
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        document.getElementById('monsterEditForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var isValid = true;
+
+            var monsterName = document.getElementById('monsterName').value;
+            if (!validarMonsterName(monsterName)) {
+                isValid = false;
+            }
+
+            var monsterPhysiology = document.getElementById('monsterPhysiology').value;
+            if (!validarMonsterPhysiology(monsterPhysiology)) {
+                isValid = false;
+            }
+
+            var monsterAbilities = document.getElementById('monsterAbilities').value;
+            if (!validarMonsterAbilities(monsterAbilities)) {
+                isValid = false;
+            }
+
+            if (isValid) {
+                this.submit();
+            }
+        });
     </script>
 @endsection

@@ -7,6 +7,7 @@ use App\Models\Weapon;
 use App\Models\Armor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class monsterController extends Controller
 {
@@ -43,31 +44,34 @@ class monsterController extends Controller
     }
 
 
-
     public function update(Request $request, $id)
     {
-        $monster = Monster::find($id);
-        $newName = $request->input('monsterName');
+        $validator = Validator::make($request->all(), [
+            'monsterName' => 'required|regex:/^[A-Za-z]+$/|unique:monsters,name,' . $id,
+            'monsterImg' => 'image',
+            'monsterWeakness' => 'required',
+            'monsterElement' => 'required',
+            'monsterPhysiology' => 'required|min:10',
+            'monsterAbilities' => 'required|min:10',
+        ]);
 
-        $existingMonster = Monster::where('name', $newName)->first();
-        if ($existingMonster && $existingMonster->id != $id) {
-            return redirect()->route('monstersAdmin')->with('error', 'El nombre ya existe en la base de datos');
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $monster = Monster::find($id);
+
         if ($request->hasFile('monsterImg')) {
-            $validateIMG = $request->validate(['monsterImg' => 'image']);
             $imgPath = $request->file('monsterImg')->store('imgMonsters', 'public');
-            $validateIMG = $imgPath;
 
             if ($monster->img != 'imgMonsters/defaultMonster.webp') {
                 Storage::disk('public')->delete($monster->img);
             }
-        } else {
-            $validateIMG = $monster->img;
+
+            $monster->img = $imgPath;
         }
 
-        $monster->img = $validateIMG;
-        $monster->name = $newName;
+        $monster->name = $request->input('monsterName');
         $monster->weakness = $request->input('monsterWeakness');
         $monster->element = $request->input('monsterElement');
         $monster->physiology = $request->input('monsterPhysiology');
@@ -77,7 +81,6 @@ class monsterController extends Controller
 
         return redirect()->route('monstersAdmin');
     }
-
 
     public function destroy($id)
     {
@@ -122,26 +125,31 @@ class monsterController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'monsterName' => 'required|regex:/^[A-Za-z]+$/|unique:monsters,name',
+            'monsterImg' => 'required|image',
+            'monsterWeakness' => 'required',
+            'monsterElement' => 'required',
+            'monsterPhysiology' => 'required|min:10',
+            'monsterAbilities' => 'required|min:10',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $monster = new Monster();
 
-        $existingMonster = Monster::where('name', $request->monsterName)->first();
-        if ($existingMonster) {
-            return redirect()->route('monsterAdmin')->with('error', 'El nombre ya existe en la base de datos');
-        }
-
         if ($request->hasFile('monsterImg')) {
-            $request->validate(['monsterImg' => 'image']);
             $imgPath = $request->file('monsterImg')->store('imgMonsters', 'public');
             $monster->img = $imgPath;
-        } else {
-            return redirect()->route('monstersAdmin')->with('error', 'Debes subir una imagen para el monstruo');
         }
 
-        $monster->name = $request->monsterName;
-        $monster->weakness = $request->monsterWeakness;
-        $monster->element = $request->monsterElement;
-        $monster->physiology = $request->monsterPhysiology;
-        $monster->abilities = $request->monsterAbilities;
+        $monster->name = $request->input('monsterName');
+        $monster->weakness = $request->input('monsterWeakness');
+        $monster->element = $request->input('monsterElement');
+        $monster->physiology = $request->input('monsterPhysiology');
+        $monster->abilities = $request->input('monsterAbilities');
 
         $monster->save();
 
