@@ -320,71 +320,77 @@
         }
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $("#monsterCreateForm").validate({
-                rules: {
-                    monsterImg: {
-                        required: true,
-                        extension: "jpg|png|jpeg"
-                    },
-                    monsterName: {
-                        required: true,
-                        minlength: 2
-                    },
-                    monsterElement: {
-                        required: true
-                    },
-                    monsterWeakness: {
-                        required: true
-                    },
-                    monsterPhysiology: {
-                        required: true,
-                        minlength: 10
-                    },
-                    monsterAbilities: {
-                        required: true,
-                        minlength: 10
-                    }
+    <script>$(document).ready(function() {
+        $("#monsterCreateForm").validate({
+            rules: {
+                monsterImg: {
+                    required: true,
+                    extension: "jpg|png|jpeg"
                 },
-                messages: {
-                    monsterImg: {
-                        required: "Por favor, selecciona una imagen",
-                        extension: "Por favor, selecciona una imagen válida (jpg, png, jpeg)"
-                    },
-                    monsterName: {
-                        required: "Por favor, introduce el nombre del monstruo",
-                        minlength: "El nombre del monstruo debe tener al menos 2 caracteres"
-                    },
-                    monsterElement: {
-                        required: "Por favor, selecciona un elemento"
-                    },
-                    monsterWeakness: {
-                        required: "Por favor, selecciona una debilidad"
-                    },
-                    monsterPhysiology: {
-                        required: "Por favor, introduce la fisiología del monstruo",
-                        minlength: "La fisiología del monstruo debe tener al menos 10 caracteres"
-                    },
-                    monsterAbilities: {
-                        required: "Por favor, introduce las habilidades del monstruo",
-                        minlength: "Las habilidades del monstruo deben tener al menos 10 caracteres"
-                    }
+                monsterName: {
+                    required: true,
+                    minlength: 2,
+                    regex: /^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/
                 },
-                submitHandler: function(form) {
-                    form.submit();
+                monsterElement: {
+                    required: true
+                },
+                monsterWeakness: {
+                    required: true
+                },
+                monsterPhysiology: {
+                    required: true,
+                    minlength: 10
+                },
+                monsterAbilities: {
+                    required: true,
+                    minlength: 10
                 }
-            });
+            },
+            messages: {
+                monsterImg: {
+                    required: "Por favor, selecciona una imagen",
+                    extension: "Por favor, selecciona una imagen válida (jpg, png, jpeg)"
+                },
+                monsterName: {
+                    required: "Por favor, introduce el nombre del monstruo",
+                    minlength: "El nombre del monstruo debe tener al menos 2 caracteres",
+                    regex: "La primera letra del nombre del monstruo debe ser mayúscula. El nombre puede contener solo letras, incluyendo tildes, la letra 'ñ' y espacios." // Agregamos el mensaje de error del regex aquí
+                },
+                monsterElement: {
+                    required: "Por favor, selecciona un elemento"
+                },
+                monsterWeakness: {
+                    required: "Por favor, selecciona una debilidad"
+                },
+                monsterPhysiology: {
+                    required: "Por favor, introduce la fisiología del monstruo",
+                    minlength: "La fisiología del monstruo debe tener al menos 10 caracteres"
+                },
+                monsterAbilities: {
+                    required: "Por favor, introduce las habilidades del monstruo",
+                    minlength: "Las habilidades del monstruo deben tener al menos 10 caracteres"
+                }
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
         });
+    
+        $.validator.addMethod("regex", function(value, element, regexpr) {
+            return regexpr.test(value);
+        }, "Por favor, introduce un valor válido.");
+    });
+    
     </script>
 
     <script>
         function validarMonsterName(monsterName) {
-            var regexCaracteres = /^[A-Za-z]+$/;
+            var regexCaracteres = /^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/;
             var error = document.getElementById("errorMonsterName");
 
             if (!regexCaracteres.test(monsterName)) {
-                error.textContent = "El nombre del monstruo debe contener solo letras.";
+                error.textContent = "La primera letra del nombre del monstruo debe ser mayúscula. El nombre puede contener solo letras.";
                 document.getElementById("monsterName").value = '';
                 return false;
             }

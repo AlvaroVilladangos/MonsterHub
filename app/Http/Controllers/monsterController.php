@@ -71,7 +71,7 @@ class monsterController extends Controller
             $monster->img = $imgPath;
         }
 
-        $monster->name = $request->input('monsterName');
+        $monster->name = trim($request->input('monsterName'));
         $monster->weakness = $request->input('monsterWeakness');
         $monster->element = $request->input('monsterElement');
         $monster->physiology = $request->input('monsterPhysiology');
@@ -145,7 +145,7 @@ class monsterController extends Controller
             $monster->img = $imgPath;
         }
 
-        $monster->name = $request->input('monsterName');
+        $monster->name = trim($request->input('monsterName'));
         $monster->weakness = $request->input('monsterWeakness');
         $monster->element = $request->input('monsterElement');
         $monster->physiology = $request->input('monsterPhysiology');
