@@ -72,6 +72,15 @@ class armorController extends Controller
 
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'armorName' => 'required|unique:armors,name|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
+            'armorImg' => 'required|image',
+            'armorDef' => 'required|numeric|max:e00',
+            'armorInfo' => 'required|min:10',
+        ]);
+
+
         $armor = new armor();
 
         $existingarmor = armor::where('name', $request->armorName)->first();
@@ -101,6 +110,21 @@ class armorController extends Controller
     public function update(Request $request, $id)
     {
         $armor = armor::find($id);
+
+
+
+        $armor = armor::find($id);
+
+        $validatedData = $request->validate([
+            'armorName' => 'required|unique:armors,name,'.$id.'|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
+            'armorImg' => 'sometimes|image',
+            'armorDef' => 'required|numeric|max:200',
+            'armorInfo' => 'required|min:10',
+        ]);
+
+
+
+
         $newName = $request->input('armorName');
 
         $existingarmor = armor::where('name', $newName)->first();
