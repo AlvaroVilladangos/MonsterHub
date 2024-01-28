@@ -46,8 +46,9 @@ class monsterController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
-            'monsterName' => 'required|regex:/^[A-Za-z]+$/|unique:monsters,name,' . $id,
+            'monsterName' => 'required|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/|unique:monsters,name,' . $id,
             'monsterImg' => 'image',
             'monsterWeakness' => 'required',
             'monsterElement' => 'required',

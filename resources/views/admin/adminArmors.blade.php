@@ -20,6 +20,19 @@
         </div>
     @endif
 
+
+    @if ($errors->any())
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+        
+
     <div class="container py-4">
 
         <div class="row">
@@ -81,7 +94,6 @@
 
                     @if ($armor->blocked)
                         <td class="align-middle text-center">
-
                             <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
                                 @csrf
                                 @method('put')
@@ -117,7 +129,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
 
                     @isset($armor)
                         <form id="armorEditForm" method="post" action="{{ route('armorUpdate', ['id' => $armor->id]) }}"
@@ -203,8 +214,8 @@
 
                         <div class="mb-3">
                             <select name="armorMonster_id" id="armorMonster_id" required>
-                                @foreach ($monsters as $monster)
-                                    <option value="{{ $monster->id }}"> {{ $monster->name }} </option>
+                                @foreach ($monstersNoArmor as $monsterNoArmor)
+                                    <option value="{{ $monsterNoArmor->id }}"> {{ $monsterNoArmor->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -222,13 +233,10 @@
 
 @endsection
 
-
-
-
-
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -253,10 +261,11 @@
                         $('#armorEditModal .modal-body textarea[name="armorInfo"]')
                             .val(data.info);
 
-                        $('#armorForm').attr('action', '/armor/' + armorId + '/update');
+                        $('#armorEditModal .modal-body select[name="armorMonster_id"]').val(data.monster_id);
+
+                        $('#armorEditForm').attr('action', '/armor/' + armorId + '/update');
                     }
                 });
-
                 $('#armorEditModal').modal('show');
             });
         });
@@ -295,7 +304,7 @@
             rules: {
                 armorImg: {
                     required: true,
-                    extension: "jpg|png|jpeg"
+                    extension: "jpg|png|jpeg|webp"
                 },
                 armorName: {
                     required: true,
@@ -304,7 +313,8 @@
                 },
                 armorDef: {
                     required: true,
-                    number: true
+                    number: true,
+                    max: 300
                 },
                 armorInfo: {
                     required: true,
@@ -323,7 +333,8 @@
                 },
                 armorDef: {
                     required: "Por favor, introduce la defensa de la armadura",
-                    number: "Por favor, introduce un número válido para la defensa"
+                    number: "Por favor, introduce un número válido para la defensa",
+                    max: "Por favor, introduce un número menor o igual a 200"
                 },
                 armorInfo: {
                     required: "Por favor, introduce la información de la armadura",

@@ -128,7 +128,7 @@
                         action="{{ route('monsterUpdate', ['id' => $monster->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-
+                        
                         <div class="mb-3">
                             <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
                             <input type="file" class="form-control mb-3" name="monsterImg">
@@ -264,6 +264,7 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -320,12 +321,14 @@
         }
     </script>
 
-    <script>$(document).ready(function() {
+    <script>
+    
+    $(document).ready(function() {
         $("#monsterCreateForm").validate({
             rules: {
                 monsterImg: {
                     required: true,
-                    extension: "jpg|png|jpeg"
+                    extension: "jpg|png|jpeg|webp"
                 },
                 monsterName: {
                     required: true,

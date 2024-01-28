@@ -6,6 +6,7 @@ use App\Models\Armor;
 use App\Models\Monster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class armorController extends Controller
 {
@@ -76,7 +77,7 @@ class armorController extends Controller
         $validatedData = $request->validate([
             'armorName' => 'required|unique:armors,name|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
             'armorImg' => 'required|image',
-            'armorDef' => 'required|numeric|max:e00',
+            'armorDef' => 'required|numeric|max:300',
             'armorInfo' => 'required|min:10',
         ]);
 
@@ -106,52 +107,40 @@ class armorController extends Controller
         return redirect()->route('armorsAdmin')->with('success', 'Arma creada con éxito');
     }
 
-
     public function update(Request $request, $id)
     {
-        $armor = armor::find($id);
 
-
-
-        $armor = armor::find($id);
-
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'armorName' => 'required|unique:armors,name,'.$id.'|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
             'armorImg' => 'sometimes|image',
             'armorDef' => 'required|numeric|max:200',
             'armorInfo' => 'required|min:10',
         ]);
-
-
-
-
-        $newName = $request->input('armorName');
-
-        $existingarmor = armor::where('name', $newName)->first();
-        if ($existingarmor && $existingarmor->id != $id) {
-            return redirect()->route('armorsAdmin')->with('error', 'El nombre ya existe en la base de datos');
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        $armor = armor::find($id);
+    
         if ($request->hasFile('armorImg')) {
-            $validateIMG = $request->validate(['armorImg' => 'image']);
             $imgPath = $request->file('armorImg')->store('imgarmors', 'public');
-            $validateIMG = $imgPath;
-
+    
             if ($armor->img != 'imgarmors/defaultarmor.webp') {
                 Storage::disk('public')->delete($armor->img);
             }
-        } else {
-            $validateIMG = $armor->img;
+    
+            $armor->img = $imgPath;
         }
-
-        $armor->img = $validateIMG;
-        $armor->name = $newName;
+    
+        $armor->name = $request->input('armorName');
         $armor->def = $request->input('armorDef');
         $armor->info = $request->input('armorInfo');
         $armor->monster_id = $request->input('armorMonster_id');
-
+    
         $armor->save();
-
+    
         return redirect()->route('armorsAdmin');
     }
+    
 }

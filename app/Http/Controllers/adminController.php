@@ -92,9 +92,11 @@ class adminController extends Controller
     
         $weapons = $weapons->orderBy('name')->paginate(10);
 
-        $monsters = Monster::doesntHave('weapon')->get();
+        $monsters = Monster::query()->get();
 
-        return view('admin.adminWeapons', compact('weapons', 'monsters'));
+        $monstersNoWeapon = Monster::doesntHave('weapon')->get();
+
+        return view('admin.adminWeapons', compact('weapons', 'monsters', 'monstersNoWeapon'));
     }
 
 
@@ -109,9 +111,10 @@ class adminController extends Controller
     
         $armors = $armors->orderBy('name')->paginate(10);
 
-        $monsters = Monster::doesntHave('armor')->get();
+        $monsters = Monster::query()->get();
+        $monstersNoArmor = Monster::doesntHave('armor')->get();
 
-        return view('admin.adminArmors', compact('armors', 'monsters'));
+        return view('admin.adminArmors', compact('armors', 'monsters', 'monstersNoArmor'));
     }
 
 

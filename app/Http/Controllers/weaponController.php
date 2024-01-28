@@ -6,6 +6,7 @@ use App\Models\Weapon;
 use App\Models\Monster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
 class weaponController extends Controller
@@ -74,6 +75,18 @@ class weaponController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'weaponName' => 'required|unique:weapons,name|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
+            'weaponImg' => 'required|image',
+            'weaponAtk' => 'required|numeric|min:100|max:1000',
+            'weaponCrit' => 'required|numeric|max:100',
+            'weaponInfo' => 'required|min:10',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $weapon = new weapon();
 
         $existingweapon = weapon::where('name', $request->weaponName)->first();
@@ -102,38 +115,44 @@ class weaponController extends Controller
     }
 
 
+
+    
     public function update(Request $request, $id)
     {
-        $weapon = Weapon::find($id);
-        $newName = $request->input('weaponName');
-
-        $existingWeapon = Weapon::where('name', $newName)->first();
-        if ($existingWeapon && $existingWeapon->id != $id) {
-            return redirect()->route('weaponsAdmin')->with('error', 'El nombre ya existe en la base de datos');
+        $validator = Validator::make($request->all(), [
+            'weaponName' => 'required|unique:weapons,name,'.$id.'|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
+            'weaponImg' => 'sometimes|image',
+            'weaponAtk' => 'required|numeric|min:100|max:1000',
+            'weaponCrit' => 'required|numeric|max:100',
+            'weaponInfo' => 'required|min:10',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
+        $weapon = Weapon::find($id);
+    
         if ($request->hasFile('weaponImg')) {
-            $validateIMG = $request->validate(['weaponImg' => 'image']);
             $imgPath = $request->file('weaponImg')->store('imgWeapons', 'public');
-            $validateIMG = $imgPath;
-
+    
             if ($weapon->img != 'imgWeapons/defaultWeapon.webp') {
                 Storage::disk('public')->delete($weapon->img);
             }
-        } else {
-            $validateIMG = $weapon->img;
+    
+            $weapon->img = $imgPath;
         }
-
-        $weapon->img = $validateIMG;
-        $weapon->name = $newName;
+    
+        $weapon->name = $request->input('weaponName');
         $weapon->atk = $request->input('weaponAtk');
         $weapon->element = $request->input('weaponElement');
         $weapon->crit = $request->input('weaponCrit') . '%';
         $weapon->info = $request->input('weaponInfo');
         $weapon->monster_id = $request->input('weaponMonster_id');
-
+    
         $weapon->save();
-
+    
         return redirect()->route('weaponsAdmin');
     }
+    
 }
