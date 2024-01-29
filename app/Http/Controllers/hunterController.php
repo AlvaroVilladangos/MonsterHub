@@ -61,46 +61,46 @@ class hunterController extends Controller
         return view('auth.hunterEdit', compact('weapon', 'armor', 'weapons', 'armors', 'comments'));
     }
 
-
-    public function update()
+    public function update(Request $request)
     {
-
         $hunter = auth()->user()->hunter;
-
-
-        $existingHunter = Hunter::where('name', request()->get('hunterName'))->first();
-
-        if ($existingHunter !== null && $existingHunter->id !== $hunter->id) {
-            // El nombre ya existe y no pertenece al cazador actual
-            return redirect()->back()->with('error', 'El nombre del cazador ya existe');
-        }
-        if (request()->has('img')) {
-            $validateIMG = request()->validate(['img' => 'image']);
-            $imgPath = request()->file('img')->store('imgProfile', 'public');
-            $validateIMG = $imgPath;
-
+    
+        $request->validate([
+            'hunterName' => 'required|min:2|unique:hunters,name,' . $hunter->id,
+            'img' => 'nullable|image',
+            'weapon' => 'required',
+            'armor' => 'required',
+            'bio' => 'required|min:10',
+        ]);
+    
+        if ($request->has('img')) {
+            $imgPath = $request->file('img')->store('imgProfile', 'public');
+    
             if ($hunter->img != 'imgProfile/defaultProfile.webp') {
                 Storage::disk('public')->delete($hunter->img);
             }
-        } else {
-            $validateIMG = $hunter->img;
+    
+            $hunter->img = $imgPath;
         }
-
-        $hunter->name = request()->get('hunterName', '');
-
-        $bio = request()->get('bio');
-        $hunter->bio = $bio !== null ? $bio : ' ';
-        $hunter->img = $validateIMG;
-        $hunter->weapon_id = request()->get('weapon', '');
-        $hunter->armor_id = request()->get('armor', '');
-
+    
+        $hunter->name = $request->get('hunterName');
+        $hunter->bio = $request->get('bio');
+        $hunter->weapon_id = $request->get('weapon');
+        $hunter->armor_id = $request->get('armor');
+    
+        if ($hunter->isDirty('name')) {
+            $duplicate = Hunter::where('name', $request->get('hunterName'))->first();
+            if ($duplicate) {
+                return redirect()->back()->withErrors(['hunterName' => 'El nombre ya existe.'])->withInput();
+            }
+        }
+    
         $hunter->save();
-
-
+    
         return redirect()->route('dashboard');
     }
-
-
+    
+    
     public function destroyComment($id)
     {
         $comment = Comment::where('id', $id)->firstOrFail()->delete();

@@ -12,6 +12,16 @@
             </div>
         @endif
 
+        @error('hunterName')
+            <div class="position-absolute top-50 start-50 translate-middle" style="z-index: 1;">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ $message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        @enderror
+
+
         <div class="row">
             <div class="col-2 mb-3">
 
@@ -19,7 +29,7 @@
             <div class="col-8 mb-3">
 
                 <div class="card">
-                    <form enctype="multipart/form-data" method="post" action="{{ route('edit') }}">
+                    <form id="formEditHunter" enctype="multipart/form-data" method="post" action="{{ route('edit') }}">
                         @csrf
                         @method('PUT')
                         <div class="px-3 pt-4 pb-2">
@@ -116,6 +126,9 @@
 
 @section('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
 
 
     <script>
@@ -135,5 +148,58 @@
                 }
             })
         }
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#formEditHunter").validate({
+                rules: {
+                    hunterName: {
+                        required: true,
+                        minlength: 3,
+                        regex: /^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/
+                    },
+                    img: {
+                        extension: "jpeg|jpg|png|webp"
+                    },
+                    weapon: {
+                        required: true
+                    },
+                    armor: {
+                        required: true
+                    },
+                    bio: {
+                        required: true,
+                        maxlength: 50
+                    }
+                },
+                messages: {
+                    hunterName: {
+                        required: "Por favor, introduce tu nombre.",
+                        minlength: "Tu nombre debe tener al menos 3 caracteres."
+                    },
+                    img: {
+                        extension: "Por favor, selecciona una imagen válida (jpeg, jpg, png, gif)."
+                    },
+                    weapon: {
+                        required: "Por favor, selecciona un arma."
+                    },
+                    armor: {
+                        required: "Por favor, selecciona una armadura."
+                    },
+                    bio: {
+                        required: "Por favor, introduce tu biografía.",
+                        maxlength: "Tu biografía debe tener al menos 10 caracteres."
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+            $.validator.addMethod("regex", function(value, element, regexpr) {
+            return regexpr.test(value);
+        }, "Por favor, introduce un valor válido, que empiece por mayúscula");
+        });
     </script>
 @endsection

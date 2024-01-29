@@ -382,7 +382,7 @@
     
         $.validator.addMethod("regex", function(value, element, regexpr) {
             return regexpr.test(value);
-        }, "Por favor, introduce un valor válido.");
+        }, "Por favor, introduce un valor válido, que empiece por mayúscula");
     });
     
     </script>

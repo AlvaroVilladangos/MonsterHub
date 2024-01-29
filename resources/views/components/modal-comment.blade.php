@@ -23,7 +23,7 @@ x-data = "{
                 commentMsg: {
                     required: 'Por favor, escribe un comentario',
                     minlength: 'Tu comentario debe tener al menos 5 caracteres',
-                    maxlength: 'Tu comentario debe tener como maximo 50 caracteres'
+                    maxlength: 'Tu comentario debe tener como máximo 50 caracteres'
                 }
             },
             submitHandler: function(form) {
