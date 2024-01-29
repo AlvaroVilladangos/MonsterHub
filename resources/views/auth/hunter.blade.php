@@ -105,3 +105,33 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+{{-- <script>
+    $(document).ready(function() {
+    $('commentForm').validate({ 
+        rules: {
+            commentMsg: {
+                required: true,
+                minlength: 5,
+                maxlength: 50
+            }
+        },
+        messages: {
+            commentMsg: {
+                required: "Por favor, escribe un comentario",
+                minlength: "Tu comentario debe tener al menos 5 caracteres",
+                maxlength: "Tu comentario debe tener como maximo 50 caracteres"
+            }
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
+
+</script> --}}
+@endsection
