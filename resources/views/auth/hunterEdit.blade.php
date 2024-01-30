@@ -158,6 +158,7 @@
                     hunterName: {
                         required: true,
                         minlength: 3,
+                        maxlength: 15,
                         regex: /^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/
                     },
                     img: {
@@ -177,6 +178,7 @@
                 messages: {
                     hunterName: {
                         required: "Por favor, introduce tu nombre.",
+                        maxlength: "Tu nombre debe tener como máximo 15 caracteres.",
                         minlength: "Tu nombre debe tener al menos 3 caracteres."
                     },
                     img: {
@@ -198,8 +200,8 @@
                 }
             });
             $.validator.addMethod("regex", function(value, element, regexpr) {
-            return regexpr.test(value);
-        }, "Por favor, introduce un valor válido, que empiece por mayúscula");
+                return regexpr.test(value);
+            }, "Por favor, introduce un valor válido, que empiece por mayúscula");
         });
     </script>
 @endsection

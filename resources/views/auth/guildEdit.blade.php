@@ -6,7 +6,8 @@
             </div>
 
             <div class="col-8">
-                <form enctype="multipart/form-data"  action="{{ route('guild.update', $guild) }}" method="post">
+                <form id="formEditGuild" enctype="multipart/form-data" action="{{ route('guild.update', $guild) }}"
+                    method="post">
                     @csrf
                     @method('PUT')
 
@@ -15,12 +16,10 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <img style="width: 100px" class="me-3 avatar-sm rounded"
-                                    src="{{URL('storage/' . $guild->img)}}" />
+                                        src="{{ URL('storage/' . $guild->img) }}" />
                                     <div>
-                                        <h1 class="card-title mb-0 fw-bold">
-                                            <input class="form-control" name="guildName" type="text"
-                                                value="{{ $guild->name }}">
-                                        </h1>
+                                        <input class="form-control" name="guildName" type="text"
+                                            value="{{ $guild->name }}">
                                     </div>
                                 </div>
                             </div>
@@ -41,8 +40,7 @@
                             <div class="row">
                                 <div class="col-9">
                                     <h3 class="">Información :</h3>
-                                    <textarea class="form-control" style="resize: none" name="guildInfo" id="" cols="30" rows="3">{{ $guild->info }}
-                                </textarea>
+                                    <textarea class="form-control" style="resize: none" name="guildInfo" id="" cols="30" rows="3">{{ $guild->info }}</textarea>
                                 </div>
                                 <div class="col">
                                     <button class="btn btn-dark" type="submit">Editar</button>
@@ -56,8 +54,7 @@
 
                     <div class="card my-3 text-center">
                         <h2 class="border-bottom border-primary fw-bold">ANUNCIO</h2>
-                        <textarea class="form-control" style="resize: none" name="announcement" id="" cols="30" rows="3"> {{ $guild->announcement }}
-                    </textarea>
+                        <textarea class="form-control" style="resize: none" name="announcement" id="" cols="30" rows="3">{{ $guild->announcement }}</textarea>
                     </div>
                 </form>
                 <table class="table table-hover table-borderless">
@@ -104,8 +101,8 @@
 
             <div class="col-2 mb-3">
 
-                <form id="deleteGuildForm{{ $guild->id }}"
-                    action="{{ route('guildDestroy', ['id' => $guild->id]) }}" method="post">
+                <form id="deleteGuildForm{{ $guild->id }}" action="{{ route('guildDestroy', ['id' => $guild->id]) }}"
+                    method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-primary btn-lg" type="button"
@@ -121,7 +118,57 @@
 
 @section('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $("#formEditGuild").validate({
+                rules: {
+                    guildName: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 25,
+                        regex: /^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/
+                    },
+                    img: {
+                        extension: "jpeg|jpg|png|webp"
+                    },
+                    guildInfo: {
+                        required: true,
+                        minlength: 10
+                    },
+                    announcement: {
+                        maxlength: 50
+                    }
+                },
+                messages: {
+                    guildName: {
+                        required: "Por favor, introduce el nombre del gremio",
+                        minlength: "El nombre del gremio debe tener al menos 4 caracteres"
+                    },
+                    img: {
+                        required: "Por favor, selecciona una imagen",
+                        extension: "Por favor, selecciona una imagen válida (jpeg, jpg, png, gif)"
+                    },
+                    guildInfo: {
+                        required: "Por favor, introduce la información del gremio",
+                        minlength: "La información del gremio debe tener al menos 10 caracteres"
+                    },
+                    announcement: {
+                        maxlength: "El anuncio debe tener como máximo 50 caracteres."
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+            $.validator.addMethod("regex", function(value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Por favor, introduce un valor válido, que empiece por mayúscula");
+        });
+    </script>
 
     <script>
         function confirmExpulsion(memberId) {

@@ -65,15 +65,15 @@
                         </div>
                         <div class="modal-body">
 
-                            <form method="post" action="{{ route('guilds.store') }}">
+                            <form id="formCreateGuild" method="post" action="{{ route('guilds.store') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nombre del Guild</label>
-                                    <input name="name" type="text" class="form-control" id="name">
+                                    <label for="guildName" class="form-label">Nombre del Guild</label>
+                                    <input name="guildName" type="text" class="form-control" id="name" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="info" class="form-label">Información</label>
-                                    <input name="info" type="text" class="form-control" id="info">
+                                    <input name="guildInfo" type="text" class="form-control" id="info" required>
                                 </div>
                                 <div>
                                     <input name="leader_id" type="text" value="{{ Auth::user()->hunter->id }}" hidden>
@@ -89,4 +89,52 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
+
+<script>
+ $(document).ready(function() {
+            $("#formCreateGuild").validate({
+                rules: {
+                    guildName: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 25,
+                        regex: /^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/
+                    },
+                    guildInfo: {
+                        required: true,
+                        minlength: 10
+                    },
+                },
+                messages: {
+                    guildName: {
+                        required: "Por favor, introduce el nombre del gremio",
+                        minlength: "El nombre del gremio debe tener al menos 4 caracteres"
+                    },
+                    guildInfo: {
+                        required: "Por favor, introduce la información del gremio",
+                        minlength: "La información del gremio debe tener al menos 10 caracteres"
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+            $.validator.addMethod("regex", function(value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Por favor, introduce un valor válido, que empiece por mayúscula");
+        });
+
+</script>
+
+
+
+
 @endsection
