@@ -9,6 +9,7 @@
             <div class="col-8 mb-3">
 
                 <form action="{{ route('rooms') }}" method="get">
+                    @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
                         <button type="submit" class="btn btn-dark">search</button>

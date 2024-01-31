@@ -2,6 +2,16 @@
 
 
 @section('content')
+
+@error('guildName')
+    <div class="position-absolute top-50 start-50 translate-middle" style="z-index: 1;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@enderror
+
     <div class="container py-4">
         <div class="row">
             <div class="col-2 mb-3">
