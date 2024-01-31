@@ -124,7 +124,7 @@ class armorController extends Controller
         $armor = armor::find($id);
     
         if ($request->hasFile('armorImg')) {
-            $imgPath = $request->file('armorImg')->store('imgarmors', 'public');
+            $imgPath = $request->file('armorImg')->store('imgArmors', 'public');
     
             if ($armor->img != 'imgarmors/defaultarmor.webp') {
                 Storage::disk('public')->delete($armor->img);

@@ -242,7 +242,7 @@
 
 
     <script>
-        $(document).ready(function() {
+  /*       $(document).ready(function() {
             $('.btn-warning').click(function() {
                 var armorId = $(this).data('id');
 
@@ -269,7 +269,7 @@
                 });
                 $('#armorEditModal').modal('show');
             });
-        });
+        }); */
     </script>
 
 
@@ -295,7 +295,7 @@
         }
     </script>
 
-
+{{-- 
     <script>
         $.validator.addMethod("regex", function(value, element, regexpr) {
             return regexpr.test(value);
@@ -404,5 +404,8 @@
                 this.submit();
             }
         });
-    </script>
+    </script> --}}
+
+    @vite('resources/js/adminArmors.js')
+
 @endsection

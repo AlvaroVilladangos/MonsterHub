@@ -261,14 +261,13 @@
 
 
 
-
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+{{--     <script>
         $(document).ready(function() {
             $('.btn-warning').click(function() {
                 var monsterId = $(this).data('id');
@@ -300,7 +299,7 @@
                 $('#monsterEditModal').modal('show');
             });
         });
-    </script>
+    </script> --}}
 
     <script>
         function confirmDeleteMonster(monsterId) {
@@ -321,7 +320,7 @@
             })
         }
     </script>
-
+{{-- 
     <script>
     
     $(document).ready(function() {
@@ -460,5 +459,8 @@
                 this.submit();
             }
         });
-    </script>
+    </script> --}}
+
+    @vite('resources/js/adminMonsters.js')
+
 @endsection
