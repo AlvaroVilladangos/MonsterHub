@@ -29,7 +29,7 @@ class monsterController extends Controller
 
     public function show(Monster $monster)
     {
-
+        
         $weapon = Weapon::where('monster_id', $monster->id)->first();
         $armor = Armor::where('monster_id', $monster->id)->first();
         return view('monster', compact('monster', 'armor', 'weapon'));

@@ -258,7 +258,6 @@
         }
     </script>
 
-
     @vite('resources/js/adminArmors.js')
 
 @endsection

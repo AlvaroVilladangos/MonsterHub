@@ -19,15 +19,16 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg colorNavBar">
+        <span><img class="avatar mx-3 my-2" src="{{ URL('storage/monsterHub.svg') }}" /></span>
         @if (auth()->check())
             @if (auth()->user()->admin)
-                <a class="navbar-brand" href="/indexAdmin">MonsterHub</a>
+                <a class="navbar-brand navbarTitle" href="/indexAdmin">MonsterHub</a>
             @else
-                <a class="navbar-brand" href="/dashboard">MonsterHub</a>
+                <a class="navbar-brand navbarTitle" href="/dashboard">MonsterHub</a>
             @endif
         @else
-            <a class="navbar-brand" href="/">MonsterHub</a>
+            <a class="navbar-brand navbarTitle" href="/">MonsterHub</a>
         @endif
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,13 +36,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="/monsters">Monstruos</a>
-                    <a class="nav-item nav-link" href="/weapons">Armas</a>
-                    <a class="nav-item nav-link" href="/armors">Armaduras</a>
+                    <a class="nav-item nav-link opcionNavBar" href="/monsters">Monstruos</a>
+                    <a class="nav-item nav-link opcionNavBar" href="/weapons">Armas</a>
+                    <a class="nav-item nav-link opcionNavBar" href="/armors">Armaduras</a>
 
                     @if (auth()->check() && auth()->user()->hunter)
-                        <a class="nav-item nav-link" href="/guilds">Guilds</a>
-                        <a class="nav-item nav-link" href="/hunters">Hunters</a>
+                        <a class="nav-item nav-link opcionNavBar" href="/guilds">Guilds</a>
+                        <a class="nav-item nav-link opcionNavBar" href="/hunters">Hunters</a>
                     @endif
                 </div>
 
@@ -49,9 +50,9 @@
                     @if (auth()->check())
                         @if (!auth()->user()->admin)
                             <div class="navbar-nav">
-                                <img style="width:50px" class="me-3 avatar-sm rounded-circle"
+                                <img  class="avatar"
                                     src="{{ URL('storage/' . auth()->user()->hunter->img) }}" />
-                                <a class="nav-item nav-link" href="/dashboard">{{ auth()->user()->hunter->name }}</a>
+                                <a class="nav-item nav-link navbarName" href="/dashboard">{{ auth()->user()->hunter->name }}</a>
                             </div>
                         @else
                             <div class="navbar-nav">
@@ -60,7 +61,7 @@
                         @endif
                         <form method="post" action="{{ route('logout') }}">
                             @csrf
-                            <button class="btn btn-primary mx-3" type="submit">Logout</button>
+                            <button class="btn btn-cerrar mx-2" type="submit">Logout</button>
                         </form>
                     @else
                         <a class="btn btn-light mx-3" href="/login">Login</a>

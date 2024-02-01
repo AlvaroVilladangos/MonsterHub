@@ -20,3 +20,101 @@
 [x-cloak] { display: none; }
 
 
+.container {
+  max-width: 90%; 
+  padding-left: 5%; 
+  padding-right: 5%;
+}
+
+body {
+
+  background-color: #dfe5eb;
+}
+
+
+.avatar {
+  border-radius: 50%;
+  height: 64px;
+  object-fit: cover;
+  object-position: center;
+  width: 64px;
+}
+
+.card, .card span {
+  color: white;
+  background-color: #3f7981;
+  border: none;
+}
+
+.avatarRoom {
+  border-radius: 50%;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  width: 40px;
+}
+
+.icon {
+  border-radius: 50%;
+  height: 25px;
+  object-fit: cover;
+  object-position: center;
+  width: 25px;
+}
+
+.colorNavBar {
+  background-color: #122626;
+}
+.opcionNavBar{
+  color: white;
+}
+.opcionNavBar:hover{
+  color: #397489;
+}
+.navbarName:hover{
+  color: #397489;
+}
+
+.navbarName{
+  font-weight: bold; 
+  color: white;
+  font-size: 1.25rem;
+  text-decoration: none; 
+}
+
+.nombrePerfil{
+  font-weight: bold; 
+  color: white;
+  text-decoration: none; 
+  
+}
+
+.btn-cerrar{
+  background-color: #e43944;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-cerrar:hover{
+  background-color: #d62b36;
+  color: white;
+  font-weight: bold;
+}
+
+.link:hover{
+  color: #122626;
+}
+
+.navbarTitle {
+  font-weight: bold; 
+  color: white;
+  font-size: 1.50rem;
+  text-decoration: none; 
+}
+.navbarTitle:hover{
+  color: #397489;
+}
+
+body {
+  font-family: 'Helvetica'
+}
