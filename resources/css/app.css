@@ -16,6 +16,7 @@
 .error {
   color: #e43944 ;
   font-weight: bold;
+  text-shadow: 0.5px 0.5px 0  #122626;
 }
 
 [x-cloak] { display: none; }
@@ -39,6 +40,15 @@ body {
   object-fit: cover;
   object-position: center;
   width: 64px;
+}
+
+
+.avatarGuild {
+  border-radius: 15%;
+  height: 70px;
+  object-fit: cover;
+  object-position: center;
+  width: 70px;
 }
 
 .card, .card span {
@@ -147,4 +157,14 @@ body {
   color: #58a4ae;
   font-weight: bold;
   text-shadow: 1px 1px 0  #122626;
+}
+
+.anuncio {
+  background-color: white;
+  color: black;
+}
+
+
+.bg-warning{
+  background-color: orange !important;
 }

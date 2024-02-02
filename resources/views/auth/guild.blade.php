@@ -8,52 +8,51 @@
             <div class="col-8">
                 <div class="card">
                     <div class="px-3 pt-4 pb-2">
-                        <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center justify-content-between border-bottom">
                             <div class="d-flex align-items-center">
-                                <img style="width: 100px" class="me-3 avatar-sm rounded"
+                                <img class="avatarGuild"
                                      src="{{URL('storage/' . $guild->img)}}" />
-                                <div>
+                                <div class="ms-3">
                                     <h1 class="card-title mb-0 fw-bold">
                                         <p> {{ $guild->name }} </p>
                                     </h1>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3 justify-content-between">
-                            <div class="col-auto">
-                                <h3 for="armadura" class="">Lider</h3>
+                        <div class="row mt-3 justify-content-between border-bottom">
+                            <div class="col-auto ">
+                                <h3 for="armadura" class="fw-bold">Líder</h3>
                                 <a class="nav-link fs-5" href=""> {{ $guild->leader->name}}</a>
                             </div>
-                            <div class="col-auto">
-                                <p class="fs-1">{{ $guild->memberCount() }}/20</p>
+                            <div class="col-auto my-2">
+                                <span class="fs-5">Número de cazadores: </span><p class="fs-1">{{ $guild->memberCount() }}/20</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row my-3">
                             <div class="col-9">
-                                <h3 class="">Información :</h3>
+                                <h3 class="fw-bold">Información:</h3>
                                 <p class="fs-5 fw-light">
                                     {{ $guild->info }}
                                 </p>
                             </div>
                             <div class="col-auto">
 
-                                
                                 @if (auth()->user()->hunter &&!(Auth::user()->hunter->isLeader($guild)) && Auth::user()->hunter->guild_id != null && Auth::user()->hunter->guild_id == $guild->id)
                                 <form id="leaveGuildForm" action="{{ route('hunter.leaveGuild') }}" method="post">
                                     @csrf
                                     @method('put')
-                                    <button type="button" class="btn btn-danger" onclick="confirmLeaveGuild()">Abandonar</button>
+                                    <button type="button" class="btn btn-cerrar" onclick="confirmLeaveGuild()">Abandonar</button>
                                 </form>                                
                                 @elseif (auth()->user()->hunter&&$guild->memberCount()<20 && Auth::user()->hunter->guild_id === null )
                                 <form action="{{ route('hunter.joinGuild', $guild) }}" method="post">
                                     @csrf
                                     @method('put')
-                                    <button type="submit" class="btn btn-success">Unirse</button>
+                                    <button type="submit" class="btn btn-aceptar">Unirse</button>
                                 </form>
                                 @endif
 
                                 @if (auth()->user()->hunter&&Auth::user()->hunter->isLeader($guild))
-                                <a href="{{route('guild.edit', $guild)}}" class="btn btn-primary">Editar</a>
+                                <a href="{{route('guild.edit', $guild)}}" class="btn btn-aceptar">Editar</a>
                                 @endif
                             </div>
                         </div>
@@ -61,8 +60,10 @@
                 </div>
 
                 <div class="card my-3 text-center">
-                    <h2 class="border-bottom border-primary fw-bold">ANUNCIO</h2>
-                    <p class="fs-5">{{$guild->announcement}}</P>
+                    <h2 class="border-bottom border-bottom fw-bold">ANUNCIO</h2>
+                    <div class="anuncio">
+                        <p class="fs-5">{{$guild->announcement}}</P>
+                    </div>
                 </div>
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark ">
@@ -74,12 +75,12 @@
                             @if ($member->id != $guild->leader->id)
                                 <td class="text-center">Miembro</td>
                                 <td class="align-middle text-center">
-                                    <a href="/hunter/{{$member->id}}"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <a href="/hunter/{{$member->id}}"class="linkTabla">{{ $member->name }}</a>
                                     </td>
                             @else
-                                <td class="text-center">Lider</td>
+                                <td class="text-center">Líder</td>
                                 <td class="align-middle text-center">
-                                    <a href="/hunter/{{$member->id}}"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <a href="/hunter/{{$member->id}}"class="linkTabla">{{ $member->name }}</a>
                                 </td>
                             @endif
 
@@ -103,8 +104,8 @@
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#26555b',
+            cancelButtonColor: '#d62b36',
             confirmButtonText: 'Sí',
             cancelButtonText: 'Cancelar'
         }).then((result) => {

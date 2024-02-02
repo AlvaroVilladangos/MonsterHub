@@ -47,7 +47,7 @@
                             <td class="align-middle text-center"><a
                                     href="/hunter/{{ $guild->leader->id }}"class="linkTabla">
                                     {{ $guild->leader->name }}</a></td>
-                            <td class="align-middle text-center"> {{ $guild->memberCount() }}</td>
+                            <td class="linksTable"> {{ $guild->memberCount() }}</td>
                             @if ($guild->memberCount() >= 1)
                                 <td></td>
                             @else
@@ -73,7 +73,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title" id="guildModalLabel">Crear Guild</h1>
+                            <h1 class="tituloTabla" id="guildModalLabel">Crear Guild</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -91,11 +91,11 @@
                                 <div>
                                     <input name="leader_id" type="text" value="{{ Auth::user()->hunter->id }}" hidden>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-aceptar">Guardar</button>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>

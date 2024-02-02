@@ -12,9 +12,11 @@
                     @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-dark">search</button>
+                        <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
+
+                <h2 class = "tituloTabla"> Lista de salas disponibles</h2>
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark">
                         <th class="text-center"></th>
@@ -30,8 +32,8 @@
                         @if ($room->roomCount() == 4 || (isset(Auth::user()->hunter->room) && $room->id == Auth::user()->hunter->room->id))
                             @continue
                         @endif
-                        <tr>
-                            <td class="d-flex justify-content-center"></td>
+                        <tr class="border-bottom">
+                            <td class="d-flex justify-content-center"> <img src="{{URL('storage/' . $room->monster->img)}}" style="width:150px; height:auto;" alt=""></td>
                             <td class="align-middle text-center">{{ $room->monster->name }}</td>
                             <td class="align-middle text-center">{{ $room->roomCount() }}</td>
                             <td class="align-middle text-center">
@@ -41,7 +43,7 @@
                                         @method('put')
                                         <input type="" name="room_id" id="" value="{{ $room->id }}"
                                             hidden>
-                                        <button class="btn btn-success btn-sm" type="submit">Unirse</button>
+                                        <button class="btn btn-aceptar btn-sm" type="submit">Unirse</button>
                                     </form>
                                 @endif
                             </td>
@@ -54,7 +56,7 @@
                 @isset(Auth::user()->hunter->room)
                 <x-hunter-room :hunter="Auth::user()->hunter"/>
                 @else
-                    <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#guildRoom">
+                    <button type="button" class="btn btn-aceptar btn-lg" data-bs-toggle="modal" data-bs-target="#guildRoom">
                         Crear sala
                     </button>
                 @endisset
@@ -64,7 +66,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title" id="guildRoomLabel">Crear Sala</h1>
+                            <h1 class="tituloTabla" id="guildRoomLabel">Crear Sala</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -82,11 +84,11 @@
                                 <div>
                                     <input name="hunter_1" type="text" value="{{ Auth::user()->hunter->id }}" hidden>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Crear sala</button>
+                                <button type="submit" class="btn btn-aceptar">Crear sala</button>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>

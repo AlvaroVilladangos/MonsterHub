@@ -10,7 +10,7 @@
                     @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-dark">search</button>
+                        <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
 
@@ -82,7 +82,7 @@
                                             @csrf
                                             @method('put')
                                             <input type="hidden" name="room_id" value="{{ $acceptedFriend->room->id }}">
-                                            <button class="btn btn-success btn-sm" type="submit">Unirse</button>
+                                            <button class="btn btn-aceptar btn-sm" type="submit">Unirse</button>
                                         </form>
                                     @else
                                     @endisset
@@ -99,7 +99,7 @@
 
             <div class="col-md-4">
                 <ul class="list-group">
-                    <h3>Solicitudes de amistad</h3>
+                    <h3 class="tituloTabla">Solicitudes de amistad</h3>
                     @foreach ($receivedRequestsData as $pendingFriend)
                         <li class="list-group-item">
                             <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -107,14 +107,14 @@
                                     <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
                                         src="{{ URL('storage/' . $pendingFriend->img) }}" />
                                     <a href="/hunter/{{ $pendingFriend->id }}"
-                                        class="nav-link text-decoration-underline">{{ $pendingFriend->name }}</a>
+                                        class="linkTabla">{{ $pendingFriend->name }}</a>
                                 </div>
                                 <form action="{{ route('acceptfriend') }}" method="post">
                                     @csrf
                                     @method('put')
                                     <input type="text" name="requestId" value="{{ $pendingFriend->id }}" hidden>
                                     </input>
-                                    <button type="submit" class="btn btn-success btn-sm">Aceptar</button>
+                                    <button type="submit" class="btn btn-aceptar btn-sm">Aceptar</button>
                                 </form>
 
                                 <form action="{{ route('deleteFriend') }}" method="post">
@@ -122,7 +122,7 @@
                                     @method('delete')
                                     <input type="text" name="requestId" value="{{ $pendingFriend->id }}" hidden>
                                     </input>
-                                    <button type="submit" class="btn btn-primary btn-sm">Rechazar</button>
+                                    <button type="submit" class="btn btn-cerrar btn-sm">Rechazar</button>
                                 </form>
                             </div>
 
@@ -151,8 +151,8 @@
             text: "¡No podrás revertir esto!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#26555b',
+            cancelButtonColor: '#e43944',
             confirmButtonText: 'Sí',
             cancelButtonText: 'Cancelar'
         }).then((result) => {

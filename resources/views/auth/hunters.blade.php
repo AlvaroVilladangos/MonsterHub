@@ -25,16 +25,20 @@
                 @endif
                 <tr class="border-bottom">
                     <td class="align-middle text-center">
-                        <div style="display: flex; align-items: center; justify-content: center;">
-                            <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img class="avatarRoom"
                                 src="{{ URL('storage/' . $hunter->img) }}" />
-                            <a href="/hunter/{{ $hunter->id }}"
-                                class="linkTabla">{{ $hunter->name }}</a>
+                            <a href="/hunter/{{ $hunter->id }}" class="linkTabla">{{ $hunter->name }}</a>
                         </div>
                     </td>
                     @isset($hunter->guild)
-                        <td class="align-middle text-center"><a
-                                href="/guild/{{ $hunter->guild->id }}">{{ $hunter->guild->name }}</a></td>
+                        <td class="align-middle text-center">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="avatarRoom"
+                                src="{{ URL('storage/' . $hunter->guild->img) }}" />
+                                <a class="linkTabla ms-3" href="/guild/{{ $hunter->guild->id }}">{{ $hunter->guild->name }}</a>
+                            </div>
+                        </td>
                     @else
                         <td class="align-middle text-center">N/A</td>
                     @endisset

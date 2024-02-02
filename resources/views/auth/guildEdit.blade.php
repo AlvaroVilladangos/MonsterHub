@@ -13,37 +13,37 @@
 
                     <div class="card">
                         <div class="px-3 pt-4 pb-2">
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between border-bottom">
                                 <div class="d-flex align-items-center">
-                                    <img style="width: 100px" class="me-3 avatar-sm rounded"
+                                    <img class="avatarGuild"
                                         src="{{ URL('storage/' . $guild->img) }}" />
                                     <div>
-                                        <input class="form-control" name="guildName" type="text"
+                                        <input class="form-control mx-3" name="guildName" type="text"
                                             value="{{ $guild->name }}">
                                     </div>
                                 </div>
                             </div>
 
-                            <div>
+                            <div class="mt-3">
                                 <label for=""> Imagen de gremio</label>
                                 <input type="file" name="img" class="form-control">
                             </div>
-                            <div class="row mt-3 justify-content-between">
-                                <div class="col-auto">
-                                    <h3 for="armadura" class="">Lider</h3>
+                            <div class="row mt-3 justify-content-between border-bottom">
+                                <div class="col-auto ">
+                                    <h3 for="armadura" class="fw-bold">Líder</h3>
                                     <a class="nav-link fs-5" href="">{{ $guild->leader->name }}</a>
                                 </div>
-                                <div class="col-auto">
-                                    <p class="fs-1">{{ $guild->memberCount() }}/20</p>
+                                <div class="col-auto my-2">
+                                    <span class="fs-5">Número de cazadores: </span> <p class="fs-1"><p class="fs-1">{{ $guild->memberCount() }}/20</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row my-2">
                                 <div class="col-9">
-                                    <h3 class="">Información :</h3>
+                                    <h3 class="fw-bold">Información :</h3>
                                     <textarea class="form-control" style="resize: none" name="guildInfo" id="" cols="30" rows="3">{{ $guild->info }}</textarea>
                                 </div>
                                 <div class="col">
-                                    <button class="btn btn-dark" type="submit">Editar</button>
+                                    <button class="btn btn-aceptar" type="submit">Editar</button>
                                 </div>
                                 <div class="col">
                                 </div>
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="card my-3 text-center">
-                        <h2 class="border-bottom border-primary fw-bold">ANUNCIO</h2>
+                        <h2 class="border-bottom border-bottom fw-bold">ANUNCIO</h2>
                         <textarea class="form-control" style="resize: none" name="announcement" id="" cols="30" rows="3">{{ $guild->announcement }}</textarea>
                     </div>
                 </form>
@@ -69,14 +69,14 @@
                             @if ($member->id != $guild->leader->id)
                                 <td class="text-center">Miembro</td>
                                 <td class="align-middle text-center">
-                                    <ahref="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <a href="/monster/"class="linkTabla">{{ $member->name }}</a>
                                 </td>
                                 <form id="expulsionForm-{{ $member->id }}"
                                     action="{{ route('guild.expulsar', ['guild' => $guild, 'member' => $member]) }}"
                                     method="post">
                                     @csrf
                                     @method('put')
-                                    <td class="align-middle text-center"><button type="button" class="btn btn-danger"
+                                    <td class="align-middle text-center"><button type="button" class="btn btn-cerrar"
                                             onclick="confirmExpulsion({{ $member->id }})">Expulsar</button></td>
                                 </form>
 
@@ -85,14 +85,16 @@
                                     method="post">
                                     @csrf
                                     @method('put')
-                                    <td class="align-middle text-center"><button type="button" class="btn btn-success"
+                                    <td class="align-middle text-center"><button type="button" class="btn btn-aceptar"
                                             onclick="confirmAscension({{ $member->id }})">Ascender</button></td>
                                 </form>
                             @else
-                                <td class="text-center">Lider</td>
+                                <td class="text-center">Líder</td>
                                 <td class="align-middle text-center">
-                                    <ahref="/monster/"class="nav-link text-decoration-underline">{{ $member->name }}</a>
+                                    <a href="/monster/"class="linkTabla">{{ $member->name }}</a>
                                 </td>
+                                <td></td>
+                                <td></td>
                             @endif
                         </tr>
                     @endforeach
@@ -105,7 +107,7 @@
                     method="post">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-primary btn-lg" type="button"
+                    <button class="btn btn-cerrar btn-lg" type="button"
                         onclick="confirmDeleteGuild({{ $guild->id }})">ELIMINAR GREMIO</button>
                 </form>
 
@@ -177,8 +179,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#26555b',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
@@ -195,8 +197,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#26555b',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
@@ -213,8 +215,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#26555b',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
