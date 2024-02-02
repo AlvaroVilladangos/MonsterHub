@@ -42,7 +42,7 @@
 
                     @if (auth()->check() && auth()->user()->hunter)
                         <a class="nav-item nav-link opcionNavBar" href="/guilds">Guilds</a>
-                        <a class="nav-item nav-link opcionNavBar" href="/hunters">Hunters</a>
+                        <a class="nav-item nav-link opcionNavBar" href="/hunters">Cazadores</a>
                     @endif
                 </div>
 

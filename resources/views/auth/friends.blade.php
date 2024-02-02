@@ -14,7 +14,7 @@
                     </div>
                 </form>
 
-                <h2 class="mb-4">Lista de amigos</h2>
+                <h2 class="tituloTabla">Lista de amigos</h2>
 
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark ">
@@ -37,7 +37,7 @@
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="requestId" value="{{ $acceptedFriend->id }}">
-                                    <button type="button" onclick="confirmDeleteFriend()" class="btn btn-primary btn-sm">Borrar</button>
+                                    <button type="button" onclick="confirmDeleteFriend()" class="btn btn-cerrar btn-sm">Borrar</button>
                                 </form>
                             </td>
                             <td class="align-middle text-center">
@@ -45,7 +45,7 @@
                                     <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
                                         src="{{ URL('storage/' . $acceptedFriend->img) }}" />
                                     <a href="/hunter/{{ $acceptedFriend->id }}"
-                                        class="nav-link text-decoration-underline">{{ $acceptedFriend->name }}</a>
+                                        class="linkTabla">{{ $acceptedFriend->name }}</a>
                                 </div>
                             </td>
                             <td class="align-middle text-center">
@@ -64,7 +64,7 @@
                                     <ul class="list-unstyled">
                                         @foreach ($acceptedFriend->room->hunters as $hunterInRoom)
                                             @if ($hunterInRoom->id != Auth::user()->hunter->id)
-                                                <li><a href="/hunter/{{ $hunterInRoom->id }}" class="nav-link text-decoration-underline">
+                                                <li><a href="/hunter/{{ $hunterInRoom->id }}" class="linkTabla">
                                                     {{ $hunterInRoom->name }}</a></li>
                                             @endif
                                         @endforeach

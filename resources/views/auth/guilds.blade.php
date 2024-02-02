@@ -25,6 +25,8 @@
                         <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
+
+                <h2 class="tituloTabla"> Lista de guilds</h2>
                 <table class="table table-hover table-borderless">
                     <tr class="table-dark">
                         <th class="text-center">Guild</th>
@@ -49,7 +51,7 @@
                             @if ($guild->memberCount() >= 1)
                                 <td></td>
                             @else
-                                <td><button class="btn btn-success">Unirse</button></td>
+                                <td><button class="btn btn-aceptar">Unirse</button></td>
                             @endif
                         </tr>
                     @endforeach
@@ -61,7 +63,7 @@
             @isset( Auth::user()->hunter->guild)
             @else
             <div class="col-2">
-                <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#guildModal">
+                <button type="button" class="btn btn-aceptar btn-lg" data-bs-toggle="modal" data-bs-target="#guildModal">
                     CREA TU GUILD AQUÍ
                 </button>
             </div>

@@ -11,10 +11,10 @@
             </div>
         </form>
 
-
+        <h2 class="tituloTabla"> Lista de cazadores</h2>
         <table class="table table-hover table-borderless">
             <tr class="table-dark ">
-                <th class="text-center">Hunter</th>
+                <th class="text-center">Cazador</th>
                 <th class="text-center">Guild</th>
                 <th class="text-center"></th>
             </tr>

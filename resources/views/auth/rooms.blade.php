@@ -52,30 +52,7 @@
             </div>
             <div class="col-2">
                 @isset(Auth::user()->hunter->room)
-                    <div class="col-2 mb-3">
-                        <div class="card" style="width: 18rem;">
-                            <img style="" class="card-img-top"
-                                src="{{ URL('storage/' . Auth::user()->hunter->room->monster->img) }}" />
-                            <div class="card-body">
-                                <h5 class="card-title">Codigo: {{ Auth::user()->hunter->room->room_number }}</h5>
-                                <h2>Cazadores</h2>
-                                <ul>
-                                    @foreach (Auth::user()->hunter->room->hunters as $hunterInRoom)
-                                        @if ($hunterInRoom->id != Auth::user()->hunter->id)
-                                            <li><a
-                                                    href="/hunter/{{ $hunterInRoom->id }}"class="nav-link text-decoration-underline">
-                                                    {{ $hunterInRoom->name }}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                <form action="{{ route('hunter.leaveRoom') }}" method="post">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-primary">Salir</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <x-hunter-room :hunter="Auth::user()->hunter"/>
                 @else
                     <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#guildRoom">
                         Crear sala
