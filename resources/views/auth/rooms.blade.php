@@ -16,7 +16,7 @@
                     </div>
                 </form>
                 <table class="table table-hover table-borderless">
-                    <tr class="table-dark ">
+                    <tr class="table-dark">
                         <th class="text-center"></th>
                         <th class="text-center"> Monstruo</th>
                         <th class="text-center">Numero jugadores</th>

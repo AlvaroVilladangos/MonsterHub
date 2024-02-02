@@ -26,32 +26,30 @@
             <div class="col-2 mb-3">
 
             </div>
-            <div class="col-8 mb-3">
-
-                <div class="card">
+            <div class="col-12 col-md-8 mb-3">
+                <div class="card shadow">
                     <form id="formEditHunter" enctype="multipart/form-data" method="post" action="{{ route('edit') }}">
                         @csrf
                         @method('PUT')
                         <div class="px-3 pt-4 pb-2">
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between border-bottom">
                                 <div class="d-flex align-items-center">
-                                    <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                        src="{{ URL('storage/' . Auth::user()->hunter->img) }}" />
-
-                                    <div>
+                                    <img class="avatar mb-1" src="{{ URL('storage/' . Auth::user()->hunter->img) }}" />
+                                    <div class="ms-3">
+                                        <h3 class="card-title mb-2 nombrePerfil">
+                                        </h3>
                                         <input type="text" name="hunterName" class ="form-control" id="hunterName"
                                             value="{{ Auth::user()->hunter->name }}"> </input>
                                     </div>
-
                                 </div>
                             </div>
-
                             <div>
-                                <label for=""> Imagen de perfil</label>
+                                <label class="my-2" for=""> Imagen de perfil</label>
                                 <input type="file" name="img" class="form-control">
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
+                                    <span><img class="avatar" src="{{ URL('storage/weaponIcon.svg') }}" /></span>
                                     <label for="weapon" class="fw-bold">ARMA</label>
                                     <select size="1" name="weapon" id="weapon" class="select-control">
                                         @foreach ($weapons as $weapon)
@@ -61,65 +59,65 @@
                                 </div>
 
                                 <div class="col">
+                                    <span><img class="avatar" src="{{ URL('storage/armorIcon.svg') }}" /></span>
                                     <label for="armor" class="fw-bold">ARMADURA</label>
                                     <select size="1" name="armor" id="armor" class="select-control">
                                         @foreach ($armors as $armor)
                                             <option value="{{ $armor->id }}"> {{ $armor->name }} </option>
                                         @endforeach
                                     </select>
-
                                 </div>
                             </div>
-                            <div class="px-2 mt-4">
-                                <h5 class="fs-5">Bio :</h5>
-
-                                <textarea style="resize: none" name="bio" id="" cols="30" rows="3">{{ Auth::user()->hunter->bio }}
-                        </textarea>
-
-
+                            <div class="px-2 mt-4 border-top">
+                                <h5 class="fs-5 mt-2 fw-bold">Bio :</h5>
+                                <textarea style="resize: none" name="bio" id="" cols="30" rows="3">{{ Auth::user()->hunter->bio }}</textarea>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-dark btn-sm">EDITAR</button>
+                                    <button type="submit" class="btn btn-aceptar">EDITAR</button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <hr />
 
                 @foreach ($comments as $comment)
-                    <div class="mt-3">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="d-flex align-items-start">
-                                    <img style="width: 50px" class="me-2 avatar-sm rounded-circle"
-                                        src="{{ URL('storage/' . $comment->hunter->img) }}" />
-                                    <div class="w-100">
-                                        <div class="d-flex justify-content-between">
-                                            <h4 class="">{{ $comment->hunter->name }}</h4>
-                                            <form id="deleteForm-{{ $comment->id }}"
-                                                action="{{ route('comment.destroy', $comment->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-sm btn-primary"
-                                                    onclick="confirmDelete({{ $comment->id }})">Borrar</button>
-                                            </form>
-                                        </div>
-                                        <p class="fs-6 mt-3 fw-light">
-                                            {{ $comment->msg }}
-                                        </p>
-                                    </div>
-                                </div>
+                <div class="mt-3">
+                    <div class="card mb-3 shadow">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center border-bottom">
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                    <h3 class="card-title mb-2">
+                                        <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
+                                        <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
+                                            {{ $comment->hunter->name }}
+                                        </a>
+                                    </h3>
+                                    <form id="deleteForm-{{ $comment->id }}"
+                                        action="{{ route('comment.destroy', $comment->id) }}" method="post" class="ml-auto">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" class="btn btn-cerrar"
+                                            onclick="confirmDelete({{ $comment->id }})">Borrar</button>
+                                    </form>
+                                </div>                                    
+                            </div>
+                            <div>
+                                <p class="fs-6 mt-3 fw-light">
+                                    {{ $comment->msg }}
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
+                
                 @endforeach
-
-
             </div>
-            <div class="col-2 mb-3">
 
-            </div>
+
         </div>
+        <div class="col-2 mb-3">
+
+        </div>
+    </div>
     </div>
 @endsection
 

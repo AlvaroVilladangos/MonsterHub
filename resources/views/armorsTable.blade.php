@@ -8,11 +8,11 @@
     @csrf
     <div class="input-group mb-4 w-25" id="search-box">
       <input name="search" type="search" class="form-control" placeholder="Search" />
-      <button type="submit" class="btn btn-dark">search</button>
+      <button type="submit" class="btn btn-aceptar">search</button>
     </div>
   </form>
 
-
+    <h2 class="tituloTabla">Lista de armaduras</h2>
     <table class="table table-hover table-borderless">
         <tr class="table-dark">
           <th class="text-center">Imagen</th>
@@ -21,10 +21,10 @@
         </tr>
     
         @foreach ($armors as $armor )        
-        <tr>
+        <tr class="border-bottom">
           <td class="d-flex justify-content-center"> <img src="{{URL('storage/' . $armor->img)}}" style="width:150px; height:auto;" alt=""></td>
-          <td class="align-middle text-center"><a href="/armor/{{$armor->id}}  "class="nav-link text-decoration-underline">{{$armor->name}}</a></td>
-          <td class="align-middle text-center">{{$armor->def}}</td>
+          <td class="align-middle text-center"><a href="/armor/{{$armor->id}}  "class="linkTabla">{{$armor->name}}</a></td>
+          <td class="align-middle text-center">{{$armor->def}}  <img class="icon" src="{{ URL('storage/blackShieldIcon.svg') }}" /></td>
         </tr>
         @endforeach
     </table>

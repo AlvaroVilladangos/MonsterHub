@@ -1938,7 +1938,7 @@ progress {
 }
 .table-dark {
   --bs-table-color: #fff;
-  --bs-table-bg: #373a3c;
+  --bs-table-bg: #58a4ae;
   --bs-table-border-color: #5f6163;
   --bs-table-striped-bg: #414446;
   --bs-table-striped-color: #fff;
@@ -2039,9 +2039,9 @@ progress {
 .form-control:focus {
   color: var(--bs-body-color);
   background-color: var(--bs-body-bg);
-  border-color: #ec9187;
+  border-color: #122626;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(217, 35, 15, 0.25);
+ 
 }
 .form-control::-webkit-date-and-time-value {
   min-width: 85px;

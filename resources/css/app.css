@@ -14,7 +14,8 @@
 } 
 
 .error {
-  color: red;
+  color: #e43944 ;
+  font-weight: bold;
 }
 
 [x-cloak] { display: none; }
@@ -42,7 +43,7 @@ body {
 
 .card, .card span {
   color: white;
-  background-color: #3f7981;
+  background-color: #58a4ae;
   border: none;
 }
 
@@ -56,15 +57,16 @@ body {
 
 .icon {
   border-radius: 50%;
-  height: 25px;
+  height: 28px;
   object-fit: cover;
   object-position: center;
-  width: 25px;
+  width: 28px;
 }
 
 .colorNavBar {
   background-color: #122626;
 }
+
 .opcionNavBar{
   color: white;
 }
@@ -101,8 +103,29 @@ body {
   font-weight: bold;
 }
 
+.btn-aceptar{
+  background-color: #26555b;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-aceptar:hover{
+  background-color: #183e43;
+  color: white;
+  font-weight: bold;
+}
+
 .link:hover{
   color: #122626;
+}
+
+.linkTabla{
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+.linkTabla:hover{
+  color:  #58a4ae;
 }
 
 .navbarTitle {
@@ -117,4 +140,11 @@ body {
 
 body {
   font-family: 'Helvetica'
+}
+
+
+.tituloTabla{
+  color: #58a4ae;
+  font-weight: bold;
+  text-shadow: 1px 1px 0  white;
 }

@@ -23,7 +23,10 @@
                             </li>
                             <li class="nav-item border-top">
                                 @if ($hunter->guild_id == null)
-                                    <a class="link" href="/guilds"> <span>Guild</span></a>
+                                    <a class="nav-link text-dark" href="/guilds">
+                                        <span><img class="icon" src="{{ URL('storage/guildIcon.svg') }}" /></span>
+                                        <span class="link">Guild</span>
+                                    </a>
                                 @else
                                     <a class="nav-link text-dark" href="/guild/{{ $hunter->guild_id }}">
                                         <span><img class="icon" src="{{ URL('storage/guildIcon.svg') }}" /></span>
@@ -91,37 +94,33 @@
                             <p class="fs-6 fw-light">
                                 {{ $hunter->bio }}
                             </p>
-                            <div class="mt-3">
-
-                            </div>
                         </div>
                     </div>
                 </div>
 
 
                 @foreach ($comments as $comment)
-                <div class="mt-3">
-                    <div class="card mb-3 shadow">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center border-bottom">
-                                <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
-                                <div class="ms-3">
-                                    <h3 class="card-title mb-2">
-                                        <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
-                                            {{ $comment->hunter->name }}
-                                        </a>
-                                    </h3>
+                    <div class="mt-3">
+                        <div class="card mb-3 shadow">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center border-bottom">
+                                    <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
+                                    <div class="ms-3">
+                                        <h3 class="card-title mb-2">
+                                            <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
+                                                {{ $comment->hunter->name }}
+                                            </a>
+                                        </h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <p class="fs-6 mt-3 fw-light">
-                                    {{ $comment->msg }}
-                                </p>
+                                <div>
+                                    <p class="fs-6 mt-3 fw-light">
+                                        {{ $comment->msg }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
                 @endforeach
 
             </div>
@@ -143,7 +142,7 @@
 
                         <div style="background-color: white; border-radius: 5px;" class="mx-2 my-2">
                             <img style="" class="card-img-top avatarMonsterRoom mx-1 my-2"
-                            src="{{ URL('storage/' . $hunter->room->monster->img) }}" />
+                                src="{{ URL('storage/' . $hunter->room->monster->img) }}" />
                         </div>
                         <div class="card-body">
                             <div class="list-unstyled d-flex align-items-center">
@@ -157,8 +156,7 @@
                                         <li class="list-unstyled">
                                             <div class=" d-flex align-items-center mx-2 my-2">
                                                 <img class="avatarRoom" src="{{ URL('storage/' . $hunterInRoom->img) }}" />
-                                                <a href="/hunter/{{ $hunterInRoom->id }}"
-                                                    class="nav-link ms-3 link">
+                                                <a href="/hunter/{{ $hunterInRoom->id }}" class="nav-link ms-3 link">
                                                     {{ $hunterInRoom->name }}</a>
                                             </div>
                                         </li>

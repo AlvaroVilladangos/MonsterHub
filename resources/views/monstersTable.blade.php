@@ -8,11 +8,11 @@
     @csrf
     <div class="input-group mb-4 w-25" id="search-box">
       <input name="search" type="search" class="form-control" placeholder="Search" />
-      <button type="submit" class="btn btn-dark">search</button>
+      <button type="submit" class="btn btn-aceptar">search</button>
     </div>
   </form>
 
-
+  <h2 class="tituloTabla">Lista de monstruos</h2>
     <table class="table table-hover table-borderless">
         <tr class="table-dark ">
           <th class="text-center">Imagen</th>
@@ -22,9 +22,9 @@
         </tr>
     
         @foreach ($monsters as $monster )        
-        <tr>
+        <tr class="border-bottom">
           <td class="d-flex justify-content-center"> <img src="{{URL('storage/' . $monster->img)}}" style="width:150px; height:auto;" alt=""></td>
-          <td class="align-middle text-center"><a href="/monster/{{$monster->id}}  "class="nav-link text-decoration-underline">{{$monster->name}}</a></td>
+          <td class="align-middle text-center"><a href="/monster/{{$monster->id}} " class="linkTabla">{{$monster->name}}</a></td>
           <td class="align-middle text-center">{{$monster->element}}</td>
           <td class="align-middle text-center">{{$monster->weakness}}</td>
         </tr>

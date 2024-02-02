@@ -77,7 +77,7 @@
     @yield('content')
 
 
-    <footer class="mt-auto bg-dark">
+    <footer class="mt-auto colorNavBar">
         <div class="container text-light">
             <div class="col-md-4 d-flex ">
                 <span class="mb-3 mb-md-0 text-light">© 2023 MonsterHub</span>

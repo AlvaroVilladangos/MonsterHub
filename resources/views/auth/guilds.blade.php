@@ -22,7 +22,7 @@
                     @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-dark">search</button>
+                        <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
                 <table class="table table-hover table-borderless">
@@ -34,16 +34,16 @@
                     </tr>
 
                     @foreach ($guilds as $guild)
-                        <tr>
+                        <tr class="border-bottom">
                             <td class="d-flex justify-content-center">
                                 <div  class="d-flex align-items-center">
                                     <img style="width: 50px" class="me-3 avatar-sm rounded"
                                     src="{{URL('storage/' . $guild->img)}}" />
-                                    <a href="/guild/{{ $guild->id }}"class="nav-link text-decoration-underline">{{ $guild->name }}</a>
+                                    <a href="/guild/{{ $guild->id }}"class="linkTabla">{{ $guild->name }}</a>
                                 </div>
                             </td>
                             <td class="align-middle text-center"><a
-                                    href="/hunter/{{ $guild->leader->id }}"class="nav-link text-decoration-underline">
+                                    href="/hunter/{{ $guild->leader->id }}"class="linkTabla">
                                     {{ $guild->leader->name }}</a></td>
                             <td class="align-middle text-center"> {{ $guild->memberCount() }}</td>
                             @if ($guild->memberCount() >= 1)
