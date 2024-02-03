@@ -15,16 +15,16 @@
     <h2 class="tituloTabla">Lista de armaduras</h2>
     <table class="table table-hover table-borderless">
         <tr class="table-dark">
-          <th class="text-center">Imagen</th>
+          <th class="text-center">Img</th>
           <th class="text-center">Armadura</th>
           <th class="text-center">Defensa</th>
         </tr>
     
         @foreach ($armors as $armor )        
-        <tr class="border-bottom">
-          <td class="d-flex justify-content-center"> <img src="{{URL('storage/' . $armor->img)}}" style="width:150px; height:auto;" alt=""></td>
-          <td class="align-middle text-center"><a href="/armor/{{$armor->id}}  "class="linkTabla">{{$armor->name}}</a></td>
-          <td class="align-middle text-center">{{$armor->def}}  <img class="icon" src="{{ URL('storage/blackShieldIcon.svg') }}" /></td>
+        <tr class="">
+          <td class="d-flex justify-content-center border-bottom"> <img src="{{URL('storage/' . $armor->img)}}" style="width:150px; height:auto;" alt=""></td>
+          <td class="align-middle text-center border-bottom"><a href="/armor/{{$armor->id}}  "class="linkTabla">{{$armor->name}}</a></td>
+          <td class="align-middle text-center border-bottom">{{$armor->def}}  <img class="icon" src="{{ URL('storage/blackShieldIcon.svg') }}" /></td>
         </tr>
         @endforeach
     </table>

@@ -11,69 +11,71 @@
         <div class="col-2 mb-3">
 
         </div>
-        <div class="col-8 mb-3">
-            <div class="card">
+        <div class="col-12 col-md-8 mb-3">
+            <div class="card shadow">
                 <div class="px-3 pt-4 pb-2">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center justify-content-between border-bottom">
                         <div class="d-flex align-items-center">
-                            <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                src="{{URL('storage/' . $hunter->img)}}" />
-                            <div>
-                                <h3 class="card-title mb-0"><p> {{$hunter->name}} </p></h3>
+                            <img class="avatar mb-1" src="{{ URL('storage/' . $hunter->img) }}" />
+                            <div class="ms-3">
+                                <h3 class="card-title mb-2 nombrePerfil">
+                                    <p> {{ $hunter->name }} </p>
+                                </h3>
                             </div>
                         </div>
-
                         @if (auth()->user()->hunter && !auth()->user()->hunter->isInRelation($hunter->id))
                         <div class="mt-3">
                             <form action="{{ route('addfriend', ['requesterId' => auth()->user()->hunter->id, 'receiverId' => $hunter->id]) }}" method="post">
                                 @csrf
-                                <button class="btn btn-success btn-sm" type="submit">Agregar</button>
+                                <button class="btn btn-aceptar btn-sm" type="submit">Agregar</button>
                             </form>
                         </div>
                         @endif
-                    
                     </div>
                     <div class="row mt-3">
                         <div class="col">
+                            <span><img class="avatar" src="{{ URL('storage/weaponIcon.svg') }}" /></span>
                             <label for="armadura" class="fw-bold">ARMA</label>
-                            <p>{{$hunter->weapon->name}}</p>
+                            <p>{{ $hunter->weapon->name }}</p>
                         </div>
-
+        
                         <div class="col">
+                            <span><img class="avatar" src="{{ URL('storage/armorIcon.svg') }}" /></span>
                             <label for="armadura" class="fw-bold">ARMADURA</label>
-                            <p>{{$hunter->armor->name}}</p>
+                            <p>{{ $hunter->armor->name }}</p>
                         </div>
-
-                        
+        
                         <div class="col">
+                            <span><img class="avatar" src="{{ URL('storage/guildIcon.svg') }}" /></span>
                             <label for="" class="fw-bold">GUILD</label>
-                            <p>{{ $hunter->guild ? $hunter->guild->name : '' }}</p>
+                            @isset($hunter->guild)
+                                <p> <a class="nav-item nav-link"
+                                        href="/guild/{{ $hunter->guild->id }}">{{ $hunter->guild ? $hunter->guild->name : '' }}
+                                    </a> </p>
+                            @else
+                            @endisset
                         </div>
-
-
                     </div>
-                    <div class="px-2 mt-4">
-                        <h5 class="fs-5">Bio:</h5>
+                    <div class="px-2 mt-4 border-top">
+                        <h5 class="fs-5 mt-2 fw-bold">Bio :</h5>
                         <p class="fs-6 fw-light">
-                            {{$hunter->bio}}
+                            {{ $hunter->bio }}
                         </p>
                         <div class="mt-3">
                             @if (auth()->user()->hunter)
-                            <button x-data x-on:click="$dispatch('open-modal')" class="btn btn-info btn-sm">Comentar</button>
+                            <button x-data x-on:click="$dispatch('open-modal')" class="btn btn-aceptar btn-sm">Comentar</button>
                             @endif
                         </div>
-
                     </div>
                 </div>
             </div>
-
-  
-    <div data-hunter-id="{{ $hunter->id }}">
-        <x-modal-comment>
-        </x-modal-comment>
-    </div>
-    
+            <div data-hunter-id="{{ $hunter->id }}">
+                <x-modal-comment>
+                </x-modal-comment>
+            </div>
             
+        </div>
+                
             @foreach ($comments as $comment )
                 
             <div class="mt-3">

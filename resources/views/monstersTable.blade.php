@@ -13,24 +13,27 @@
   </form>
 
   <h2 class="tituloTabla">Lista de monstruos</h2>
+  <div class="table-responsive table-responsive-stack">
     <table class="table table-hover table-borderless">
-        <tr class="table-dark ">
-          <th class="text-center">Imagen</th>
-          <th class="text-center"> Monstruo</th>
-          <th class="text-center">Elemento</th>
-          <th class="text-center">Debilidad</th>
-        </tr>
-    
-        @foreach ($monsters as $monster )        
-        <tr class="border-bottom">
-          <td class="d-flex justify-content-center"> <img src="{{URL('storage/' . $monster->img)}}" style="width:150px; height:auto;" alt=""></td>
-          <td class="align-middle text-center"><a href="/monster/{{$monster->id}} " class="linkTabla">{{$monster->name}}</a></td>
-          <td class="align-middle text-center">{{$monster->element}}</td>
-          <td class="align-middle text-center">{{$monster->weakness}}</td>
-        </tr>
-        @endforeach
+      <tr class="table-dark ">
+        <th class="text-center">Img</th>
+        <th class="text-center">Monstruo</th>
+        <th class="text-center">Elemento</th>
+        <th class="text-center">Debilidad</th>
+      </tr>
+  
+      @foreach ($monsters as $monster )        
+      <tr class="">
+        <td data-label="Imagen" class="d-flex justify-content-center border-bottom"> <img src="{{URL('storage/' . $monster->img)}}" class="monsterTable" alt=""></td>
+        <td data-label="Monstruo" class="align-middle text-center border-bottom"><a href="/monster/{{$monster->id}} " class="linkTabla">{{$monster->name}}</a></td>
+        <td data-label="Elemento" class="align-middle text-center border-bottom">{{$monster->element}}</td>
+        <td data-label="Debilidad" class="align-middle text-center border-bottom">{{$monster->weakness}}</td>
+      </tr>
+      @endforeach
     </table>
-
+  </div>
+  
+      
     {{$monsters->links()}}
 </div>
 

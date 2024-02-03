@@ -36,21 +36,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link opcionNavBar" href="/monsters">Monstruos</a>
-                    <a class="nav-item nav-link opcionNavBar" href="/weapons">Armas</a>
-                    <a class="nav-item nav-link opcionNavBar" href="/armors">Armaduras</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/monsters">Monstruos</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/weapons">Armas</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/armors">Armaduras</a>
 
                     @if (auth()->check() && auth()->user()->hunter)
-                        <a class="nav-item nav-link opcionNavBar" href="/guilds">Guilds</a>
-                        <a class="nav-item nav-link opcionNavBar" href="/hunters">Cazadores</a>
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/guilds">Guilds</a>
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/hunters">Cazadores</a>
                     @endif
                 </div>
 
                 <div class="ms-auto d-flex align-items-center">
                     @if (auth()->check())
                         @if (!auth()->user()->admin)
-                            <div class="navbar-nav">
-                                <img  class="avatar"
+                            <div class="navbar-nav mx-2">
+                                <img  class="avatar mx-2"
                                     src="{{ URL('storage/' . auth()->user()->hunter->img) }}" />
                                 <a class="nav-item nav-link navbarName" href="/dashboard">{{ auth()->user()->hunter->name }}</a>
                             </div>
@@ -59,10 +59,12 @@
                                 <a class="nav-item nav-link" href="/indexAdmin">{{ auth()->user()->name }}</a>
                             </div>
                         @endif
-                        <form method="post" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="btn btn-cerrar mx-2" type="submit">Logout</button>
-                        </form>
+                        <div class="navbar-nav">
+                            <form method="post" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="btn btn-cerrar mx-2" type="submit">Logout</button>
+                            </form>
+                        </div>
                     @else
                         <a class="btn btn-light mx-3" href="/login">Login</a>
                         <a class="btn btn-light mx-3" href="/registrar">Registrar</a>

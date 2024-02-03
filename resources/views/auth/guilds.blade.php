@@ -47,7 +47,7 @@
                             <td class="align-middle text-center"><a
                                     href="/hunter/{{ $guild->leader->id }}"class="linkTabla">
                                     {{ $guild->leader->name }}</a></td>
-                            <td class="linksTable"> {{ $guild->memberCount() }}</td>
+                            <td class="align-middle text-center"> {{ $guild->memberCount() }}</td>
                             @if ($guild->memberCount() >= 1)
                                 <td></td>
                             @else

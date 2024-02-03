@@ -41,7 +41,9 @@ x-cloak
 
     <div class="card mt-3" style="width: 30rem; position: relative;">
 
-        <button x-on:click="close" class="btn-close"></button>
+        <div class="my-2">
+            <button x-on:click="close" class="btn-close position-absolute top-0 end-0 m-2"></button>
+        </div>
 
         <form id="commentForm" action="{{route('hunter.comment')}}" method="post">
             @csrf
@@ -49,7 +51,7 @@ x-cloak
             <div class="card-body">
                 <textarea class="form-control" style="resize: none" name="commentMsg" id="" rows="3" placeholder="Escriba su comentario aquí"></textarea>
             </div>
-            <button class="btn btn-sm btn-primary mx-2 my-2" type="submit">Comentar</button>
+            <button class="btn btn-sm btn-aceptar mx-2 my-2" type="submit">Comentar</button>
         </form>
     </div>
 

@@ -51,6 +51,15 @@ body {
   width: 70px;
 }
 
+
+.monsterTable {
+  border-radius: 15%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  width: 140px;
+}
+
 .card, .card span {
   color: white;
   background-color: #58a4ae;
@@ -80,10 +89,11 @@ body {
 .opcionNavBar{
   color: white;
 }
-.opcionNavBar:hover{
+.opcionNavBar:hover, .opcionNavBar:focus{
   color: #397489;
 }
-.navbarName:hover{
+
+.navbarName:hover, .navbarName:focus{
   color: #397489;
 }
 
@@ -107,7 +117,7 @@ body {
   font-weight: bold;
 }
 
-.btn-cerrar:hover{
+.btn-cerrar:hover, .btn-cerrar:focus{
   background-color: #d62b36;
   color: white;
   font-weight: bold;
@@ -119,7 +129,7 @@ body {
   font-weight: bold;
 }
 
-.btn-aceptar:hover{
+.btn-aceptar:hover, .btn-aceptar:focus{
   background-color: #183e43;
   color: white;
   font-weight: bold;
@@ -167,4 +177,17 @@ body {
 
 .bg-warning{
   background-color: orange !important;
+}
+
+
+@media (max-width: 375px) {
+  .table-responsive-stack tr {
+    display: block;
+  }
+
+  .table-responsive-stack td {
+    display: block;
+    text-align: right;
+  }
+
 }
