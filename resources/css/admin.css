@@ -1,16 +1,16 @@
-.card {
+.cardAdmin {
     width: 500px;
     height: 300px;
     border-radius: 20px;
-    background: #f5f5f5;
+    background: #58a4ae;
     position: relative;
     padding: 1.8rem;
-    border: 2px solid #c3c6ce;
+    border: 2px solid #397489;
     transition: 0.5s ease-out;
     overflow: visible;
    }
    
-   .card-details {
+   .cardAdmin-details {
     color: black;
     height: 100%;
     gap: .5em;
@@ -18,13 +18,14 @@
     place-content: center;
    }
    
-   .card-button {
+   .cardAdmin-button {
     transform: translate(-50%, 125%);
     width: 60%;
     border-radius: 1rem;
-    border: none;
-    background-color: #000000;
-    color: #fff;
+    border: solid;
+    border-color:#397489 ;
+    background-color: #58a4ae;
+    color: white;
     font-size: 1rem;
     padding: .5rem 1rem;
     position: absolute;
@@ -32,6 +33,11 @@
     bottom: 0;
     opacity: 0;
     transition: 0.3s ease-out;
+    font-weight: bold;
+   }
+
+   .cardAdmin-button:hover {
+    background-color: #397489;
    }
    
    .text-body {
@@ -45,16 +51,44 @@
    }
    
    /*Hover*/
-   .card:hover {
-    border-color: #000000;
+   .cardAdmin:hover {
+    border-color: #397489;
     box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
    }
    
-   .card:hover .card-button {
+   .cardAdmin:hover .cardAdmin-button {
     transform: translate(-50%, 50%);
     opacity: 1;
    }
 
-   a.card-button.nav-link:hover {
+   a.cardAdmin-button.nav-link:hover {
     color: #ffffff; /* Cambia esto al color que desees */
+}
+
+
+.modalCardAdmin{
+    color: white;
+    background-color: #58a4ae;
+    border: none;
+}
+
+.imagen{
+    background-color: white;
+    border-radius: 7px;
+}
+
+.imgBorder{
+    max-height: 400px;
+    max-width: 400px;
+    border: 3px solid #397489;
+    border-radius: 7px;
+}
+
+
+
+.imgBorderMonster{
+    max-height: 250px;
+    max-width: 450px;
+    border: 3px solid #397489;
+    border-radius: 7px;
 }

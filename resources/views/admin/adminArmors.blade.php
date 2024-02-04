@@ -1,4 +1,4 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 @section('content')
 
@@ -39,13 +39,13 @@
                     @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-dark">search</button>
+                        <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
             </div>
 
             <div class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#armorCreateModal">
+                <button type="button" class="btn btn-aceptar" data-bs-toggle="modal" data-bs-target="#armorCreateModal">
                     Crear Armadura
                 </button>
             </div>
@@ -68,16 +68,16 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $armor->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/armor/{{ $armor->id }}  "class="nav-link text-decoration-underline"
+                            href="/armor/{{ $armor->id }}  "class="linkTabla"
                             target="_blank">{{ $armor->name }}</a>
                     </td>
 
                     <td class="align-middle text-center"><a
-                            href="/monster/{{ $armor->monster->id }}  "class="nav-link text-decoration-underline">{{ $armor->monster->name }}</a>
+                            href="/monster/{{ $armor->monster->id }}  "class="linkTabla">{{ $armor->monster->name }}</a>
                     </td>
 
                     <td class="align-middle text-center">
-                        <button type="button" class="btn btn-warning btn-sm" data-id="{{ $armor->id }}"
+                        <button type="button" class="btn btn-editar btn-sm" data-id="{{ $armor->id }}"
                             data-bs-toggle="modal" data-bs-target="#armorEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
@@ -85,7 +85,7 @@
                             action="{{ route('armorDestroy', ['id' => $armor->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-primary btn-sm" type="button"
+                            <button class="btn btn-cerrar btn-sm" type="button"
                                 onclick="confirmDeleteArmor({{ $armor->id }})">ELIMINAR</button>
                         </form>
                     </td>
@@ -96,7 +96,7 @@
                             <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-success" type="submit">Habilitar</button>
+                                <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
                             </form>
 
                         </td>
@@ -105,7 +105,7 @@
                             <form action="{{ route('blockArmor', ['id' => $armor->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-primary" type="submit">Deshabilitar</button>
+                                <button class="btn btn-sm btn-cerrar" type="submit">Deshabilitar</button>
                             </form>
                         </td>
                     @endif
@@ -122,43 +122,43 @@
 
     <div class="modal fade" id="armorEditModal" tabindex="-1"aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalCard">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="guildModalLabel">Modificar armadura</h1>
+                    <h1 class="tituloCard" id="guildModalLabel">Modificar armadura</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     @isset($armor)
                         <form id="armorEditForm" method="post" action="{{ route('armorUpdate', ['id' => $armor->id]) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
-                            <div class="mb-3">
+                            <div class="mb-3 imagen">
                                 <img class="img-fluid mb-3" src="" alt="" name="armorImg">
                                 <input type="file" class="form-control mb-3" name="armorImg">
                             </div>
 
                             <div class="mb-3">
-                                <label for="armorName" class="form-label">Nombre de la armadura</label>
+                                <label for="armorName" class="form-label fs-5 fw-bold">Nombre de la armadura</label>
                                 <input type="text" class="form-control mb-3" id="armorName" name="armorName">
-                                <span id="errorArmorName" class="text-primary"></span>
+                                <span id="errorArmorName" class="error"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label for="armorDef" class="form-label">Defensa</label>
+                                <label for="armorDef" class="form-label fs-5 fw-bold">Defensa</label>
                                 <input type="text" class="form-control mb-3" id="armorDef" name="armorDef">
-                                <span id="errorArmorDef" class="text-primary"></span>
+                                <span id="errorArmorDef" class="error"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label for="armorInfo" class="form-label">Información</label>
+                                <label for="armorInfo" class="form-label fs-5 fw-bold">Información</label>
                                 <textarea type="text" class="form-control mb-3" id="armorInfo" name="armorInfo"> </textarea>
                             </div>
 
 
                             <div class="mb-3">
+                                <label for="armorMonster_id" class="form-label fs-5 fw-bold">Monstruo</label> <br>
                                 <select name="armorMonster_id" id="armorMonster_id" required>
                                     @foreach ($monsters as $monster)
                                         <option value="{{ $monster->id }}"> {{ $monster->name }} </option>
@@ -166,14 +166,14 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-dark"> Actualizar</button>
+                            <button type="submit" class="btn btn-aceptar"> Actualizar</button>
 
                         </form>
                     @else
                     @endisset
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -181,9 +181,9 @@
 
     <div class="modal fade" id="armorCreateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalCard">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="armorModalLabel">Crear armadura</h1>
+                    <h1 class="tituloCard" id="armorModalLabel">Crear armadura</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -197,21 +197,22 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="armorName" class="form-label">Nombre del armadura</label>
+                            <label for="armorName" class="form-label fs-5 fw-bold">Nombre del armadura</label>
                             <input type="text" class="form-control mb-3" id="armorName" name="armorName" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="armorDef" class="form-label">Defensa</label>
+                            <label for="armorDef" class="form-label fs-5 fw-bold">Defensa</label>
                             <input type="text" class="form-control mb-3" id="armorDef" name="armorDef" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="armorInfo" class="form-label">Información</label>
+                            <label for="armorInfo" class="form-label fs-5 fw-bold">Información</label>
                             <textarea type="text" class="form-control mb-3" id="armorInfo" name="armorInfo"> </textarea>
                         </div>
 
                         <div class="mb-3">
+                            <label for="armorMonster_id" class="form-label fs-5 fw-bold">Monstruo</label> <br>
                             <select name="armorMonster_id" id="armorMonster_id" required>
                                 @foreach ($monstersNoArmor as $monsterNoArmor)
                                     <option value="{{ $monsterNoArmor->id }}"> {{ $monsterNoArmor->name }} </option>
@@ -220,11 +221,11 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-dark"> Crear</button>
+                        <button type="submit" class="btn btn-aceptar"> Crear</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -246,8 +247,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#183e43',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {

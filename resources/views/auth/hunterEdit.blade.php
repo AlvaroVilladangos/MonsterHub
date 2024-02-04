@@ -170,7 +170,7 @@
                     },
                     bio: {
                         required: true,
-                        maxlength: 50
+                        minlength: 10
                     }
                 },
                 messages: {
@@ -190,7 +190,7 @@
                     },
                     bio: {
                         required: "Por favor, introduce tu biografía.",
-                        maxlength: "Tu biografía debe tener al menos 10 caracteres."
+                        minlength: "Tu biografía debe tener al menos 10 caracteres."
                     }
                 },
                 submitHandler: function(form) {

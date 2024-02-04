@@ -2,7 +2,7 @@
 /* Funcion Ajax para rellenar formulario de edicion */
 
 $(document).ready(function() {
-    $('.btn-warning').click(function() {
+    $('.btn-editar').click(function() {
         var armorId = $(this).data('id');
 
         $.ajax({
@@ -59,7 +59,7 @@ function validarArmorName(armorName) {
 function validarArmorDef(armorDef) {
     var error = document.getElementById("errorArmorDef");
 
-    if (isNaN(armorDef) || armorDef < 0 || armorDef > 200) {
+    if (isNaN(armorDef) || armorDef < 0 || armorDef > 200 || armorDef == "") {
         error.textContent = 'La defensa de la armadura debe ser un número entre 0 y 200';
         document.getElementById("armorDef").value = '';
         return false;

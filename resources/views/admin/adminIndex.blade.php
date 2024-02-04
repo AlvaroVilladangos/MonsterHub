@@ -1,32 +1,34 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 
 @section('content')
     <div class="container">
+        <div class="mx-4">
 
+        
         <div class="row">
-            <div class="col px-4 py-3">
+            <div class="col px-4 py-3 d-flex justify-content-center align-items-center">
 
-                <div class="card">
-                    <div class="card-details">
+                <div class="cardAdmin">
+                    <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded" src="{{ URL('storage/usersBanner.jpg') }}">
+                            <img class="img-fluid rounde imgBorder" src="{{ URL('storage/usersBanner.jpg') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/usersAdmin">Usuarios</a>
+                    <a class="cardAdmin-button nav-link" href ="/usersAdmin">Usuarios</a>
                 </div>
 
             </div>
 
-            <div class="col px-4 py-3">
+            <div class="col px-4 py-3 d-flex justify-content-center align-items-center">
 
-                <div class="card">
-                    <div class="card-details">
+                <div class="cardAdmin">
+                    <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded" src="{{ URL('storage/armorsBanner.jpg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/armorBanner.png') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/armorsAdmin">Armaduras</a>
+                    <a class="cardAdmin-button nav-link" href ="/armorsAdmin">Armaduras</a>
                 </div>
 
             </div>
@@ -34,28 +36,28 @@
 
 
         <div class="row">
-            <div class="col px-4 py-3">
+            <div class="col px-4 py-3 d-flex justify-content-center align-items-center">
 
-                <div class="card">
-                    <div class="card-details">
+                <div class="cardAdmin">
+                    <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded" src="{{ URL('storage/weaponsBanner.jpg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/weaponsBanner.png') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/weaponsAdmin">Armas</a>
+                    <a class="cardAdmin-button nav-link" href ="/weaponsAdmin">Armas</a>
                 </div>
 
             </div>
 
-            <div class="col px-4 py-3">
+            <div class="col px-4 py-3 d-flex justify-content-center align-items-center">
 
-                <div class="card">
-                    <div class="card-details">
+                <div class="cardAdmin">
+                    <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded" src="{{ URL('storage/monsterBanner.webp') }}">
+                            <img class="img-fluid rounded imgBorderMonster" src="{{ URL('storage/monstersBanner.jpg') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/monstersAdmin">Monstruos</a>
+                    <a class="cardAdmin-button nav-link" href ="/monstersAdmin">Monstruos</a>
                 </div>
 
             </div>
@@ -63,31 +65,18 @@
 
 
         <div class="row">
-            <div class="col px-4 py-3">
-
-                <div class="card">
-                    <div class="card-details">
+            <div class="col-6 px-4 py-3 d-flex justify-content-center align-items-center">
+                <div class="cardAdmin">
+                    <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded" src="{{ URL('storage/guildsBanner.jpeg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/guildsBanner.jpeg') }}">
                         </div>
                     </div>
-                    <a class="card-button nav-link" href ="/guildsAdmin">Guilds</a>
+                    <a class="cardAdmin-button nav-link" href ="/guildsAdmin">Guilds</a>
                 </div>
-
-            </div>
-
-            <div class="col px-4 py-3">
-
-               {{--  <div class="card">
-                    <div class="card-details">
-                        <div>
-                            <img class="img-fluid rounded" src="{{ URL('storage/monsterBanner.webp') }}">
-                        </div>
-                    </div>
-                    <a class="card-button nav-link" href ="/monstersAdmin">Monstruos</a>
-                </div>
- --}}
             </div>
         </div>
+
+    </div>
     </div>
 @endsection

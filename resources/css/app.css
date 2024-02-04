@@ -14,9 +14,9 @@
 } 
 
 .error {
-  color: #e43944 ;
+  color: #e7434e ;
   font-weight: bold;
-  text-shadow: 0.5px 0.5px 0  white;
+  text-shadow: 0.5px 0.5px 0  rgb(221, 218, 218);
 }
 
 [x-cloak] { display: none; }
@@ -228,5 +228,20 @@ body {
 .btn-nav:hover, .btn-nav:focus{
   background-color: #397489;
   color: #122626;
+  font-weight: bold;
+}
+
+
+.btn-editar{
+  background-color: #ffa600;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+.btn-editar:hover, .btn-editar:focus{
+  background-color: #cc8603;
+  color: white;
   font-weight: bold;
 }

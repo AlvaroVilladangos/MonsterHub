@@ -12,6 +12,8 @@
 
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
+    @vite('resources/css/admin.css')
+
 
     <style>
         body {
@@ -44,9 +46,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link opcionNavBar mx-2" href="/monsters">Monstruos</a>
-                <a class="nav-item nav-link opcionNavBar mx-2" href="/weapons">Armas</a>
-                <a class="nav-item nav-link opcionNavBar mx-2" href="/armors">Armaduras</a>
+
+                @if (auth()->check())
+                    @if (auth()->user()->admin)
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/monstersAdmin">Monstruos</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/weaponsAdmin">Armas</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/armorsAdmin">Armaduras</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/usersAdmin">Usuarios</a>
+    
+                    @else
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/monsters">Monstruos</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/weapons">Armas</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/armors">Armaduras</a>
+    
+                    @endif
+                @endif
 
                 @if (auth()->check() && auth()->user()->hunter)
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/guilds">Guilds</a>
@@ -64,7 +78,7 @@
                         </div>
                     @else
                         <div class="navbar-nav">
-                            <a class="nav-item nav-link" href="/indexAdmin">{{ auth()->user()->name }}</a>
+                            <a class="nav-item nav-link navbarName" href="/indexAdmin">{{ auth()->user()->name }}</a>
                         </div>
                     @endif
                     <div class="navbar-nav">

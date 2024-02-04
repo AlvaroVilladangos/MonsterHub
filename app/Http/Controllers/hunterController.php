@@ -93,6 +93,7 @@ class hunterController extends Controller
             if ($duplicate) {
                 return redirect()->back()->withErrors(['hunterName' => 'El nombre ya existe.'])->withInput();
             }
+
         }
     
         $hunter->save();
