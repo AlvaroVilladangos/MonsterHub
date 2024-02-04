@@ -28,9 +28,9 @@ use App\Http\Controllers\weaponController;
     return view('compartidos.headerAndFooter');
 }); */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return  view('index');
-});
+}); */
 
 /* Route::get('/dashboard', function () {
     return view('auth.hunter');

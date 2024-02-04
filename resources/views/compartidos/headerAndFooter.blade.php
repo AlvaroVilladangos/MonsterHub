@@ -16,8 +16,8 @@
     <style>
         body {
             font-family: 'Helvetica';
-            background-image: url('/storage/fondoPrueba.png');
-            background-repeat: no-repeat;
+            background-image: url('/storage/fondo.png'), url('/storage/fondoPrueba.png');
+            background-repeat: no-repeat, no-repeat;
             background-size: cover;
         }
     </style>
@@ -74,8 +74,8 @@
                         </form>
                     </div>
                 @else
-                    <a class="btn btn-light mx-3" href="/login">Login</a>
-                    <a class="btn btn-light mx-3" href="/registrar">Registrar</a>
+                    <a class="btn btn-nav mx-3" href="/login">Login</a>
+                    <a class="btn btn-nav mx-3" href="/registrar">Registrar</a>
                 @endif
             </div>
 

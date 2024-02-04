@@ -19,6 +19,10 @@ use App\Http\Controllers\roomController;
 use App\Http\Controllers\weaponController;
 
 Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

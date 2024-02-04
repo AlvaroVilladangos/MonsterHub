@@ -204,8 +204,29 @@
 
 }
 
+.avatarLogin {
+  border-radius: 50%;
+  height: 40%;
+  object-fit: cover;
+  object-position: center;
+  width: 40%;
+}
 
 body {
   font-family: 'Helvetica';
+  background-image: url('/storage/fondoPrueba.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+.btn-nav{
+  background-color: white;
+  color: #122626;
+  font-weight: bold;
+}
+
+.btn-nav:hover, .btn-nav:focus{
+  background-color: #397489;
+  color: #122626;
+  font-weight: bold;
 }

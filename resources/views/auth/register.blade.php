@@ -4,34 +4,40 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
-                <form class="form mt-5" action="{{ route('registrar.store') }}" method="post">
-                    @csrf
-                    <h3 class="text-center text-dark">Register</h3>
-                    <div class="form-group">
-                        <label for="name" class="text-dark">Nombre:</label><br>
-                        <input type="text" name="name" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="email" class="text-dark">Email:</label><br>
-                        <input type="email" name="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="password" class="text-dark">Password:</label><br>
-                        <input type="password" name="password" id="password" class="form-control" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="password_confirmation" class="text-dark">Confirm Password:</label><br>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="remember-me" class="text-dark"></label><br>
-                        <input type="submit" name="submit" class="btn btn-dark btn-md" value="submit" required>
-                    </div>
-                    <div class="text-right mt-2">
-                        <a href="/login" class="text-dark">Login here</a>
-                    </div>
-                </form>
+                <div class="card mx-3 my-3 shadow">
+                    <form class="form mx-3 my-3" action="{{ route('registrar.store') }}" method="post">
+                        @csrf
+
+                        <div class="text-center">
+                            <img class="avatarLogin" src="{{ URL('storage/monsterHub.svg') }}" />
+                        </div>
+                        <h3 class="text-center tituloCard">Register</h3>
+                        <div class="form-group">
+                            <label for="name" class="fw-bold fs-5">Nombre:</label><br>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="email" class="fw-bold fs-5">Email:</label><br>
+                            <input type="email" name="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="password" class="fw-bold fs-5">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="password_confirmation" class="fw-bold fs-5">Confirm Password:</label><br>
+                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="remember-me" class="text-dark"></label><br>
+                            <input type="submit" name="submit" class="btn btn-aceptar btn-md" value="Registrar" required>
+                        </div>
+                        <div class="text-right mt-2">
+                            <a href="/login" class="text-light">Login here</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
