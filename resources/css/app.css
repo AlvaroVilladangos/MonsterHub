@@ -16,7 +16,7 @@
 .error {
   color: #e43944 ;
   font-weight: bold;
-  text-shadow: 0.5px 0.5px 0  #122626;
+  text-shadow: 0.5px 0.5px 0  white;
 }
 
 [x-cloak] { display: none; }

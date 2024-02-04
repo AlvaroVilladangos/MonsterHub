@@ -10,13 +10,16 @@ class roomController extends Controller
 {
     public function index()
     {
-
+        
         $rooms = Room::query();
         $monsters = Monster::all();
+
         if (request()->has('search')) {
-            $search = strtolower(request()->get('search', ''));
-            $rooms = $rooms->whereRaw('lower(name) like (?)', ["%{$search}%"]);
-        }
+        $search = strtolower(request()->get('search', ''));
+        $rooms = $rooms->join('monsters', 'rooms.monster_id', '=', 'monsters.id')
+                       ->whereRaw('lower(monsters.name) like (?)', ["%{$search}%"])
+                       ->select('rooms.*'); 
+    }
 
         $rooms = $rooms->paginate(5);
 
