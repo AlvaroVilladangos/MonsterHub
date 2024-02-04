@@ -18,8 +18,8 @@
     <style>
         body {
             font-family: 'Helvetica';
-            background-image: url('/storage/fondo.png'), url('/storage/fondoPrueba.png');
-            background-repeat: no-repeat, no-repeat;
+            background-image: url('/storage/fondoPrueba.png');
+            background-repeat: no-repeat;
             background-size: cover;
         }
     </style>

@@ -1,4 +1,4 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 
 @section('content')
@@ -8,12 +8,12 @@
             @csrf
             <div class="input-group mb-4 w-25" id="search-box">
                 <input name="search" type="search" class="form-control" placeholder="Search" />
-                <button type="submit" class="btn btn-dark">search</button>
+                <button type="submit" class="btn btn-aceptar">search</button>
             </div>
         </form>
 
 
-        <table class="table table-hover table-borderless">
+        <table class="table table-hover ">
             <tr class="table-dark ">
                 <th class="text-center">Nombre</th>
                 <th class="text-center">Cazador</th>
@@ -28,10 +28,10 @@
                 @endif
                 <tr>
                     <td class="align-middle text-center">{{ $user->name }}</td>
-                    <td class="align-middle text-center"><a class="nav-link text-decoration-underline"
+                    <td class="align-middle text-center"><a class="linkTabla"
                             href="/hunter/{{ $user->hunter->id }}">{{ $user->hunter->name }}</a></td>
                     <td class="align-middle text-center">{{ $user->email }}</a></td>
-                    <td class="align-middle text-center"><a class="nav-link text-decoration-underline"
+                    <td class="align-middle text-center"><a class="linkTabla"
                             href="/hunter/{{ $user->hunter->id }}/comments">Ver</a></td>
                     @if ($user->blocked)
                         <td class="align-middle text-center">
@@ -39,7 +39,7 @@
                             <form action="{{ route('unBlockUser', ['id' => $user->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-success" type="submit">Desbloquear</button>
+                                <button class="btn btn-sm btn-aceptar" type="submit">Desbloquear</button>
                             </form>
 
                         </td>
@@ -49,7 +49,7 @@
                             <form action="{{ route('blockUser', ['id' => $user->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-primary" type="submit">Bloquear</button>
+                                <button class="btn btn-sm btn-cerrar" type="submit">Bloquear</button>
                             </form>
                         </td>
                     @endif

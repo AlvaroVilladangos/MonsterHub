@@ -1,4 +1,4 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 
 @section('content')
@@ -6,30 +6,30 @@
 
         <h4 class="mb-3">Lista de comentarios de {{ $hunter->name }}</h4>
 
-        <table class="table table-hover table-borderless">
+        <table class="table table-hover">
             <tr class="table-dark ">
                 <th class="text-center">Comentario</th>
                 <th class="text-center">Dirigido a</th>
                 <th class="text-center">Accion</th>
             </tr>
-
+        
             @foreach ($comments as $comment)
-                <td class="align-middle text-center">{{ $comment->msg }}</td>
-                <td class="align-middle text-center">{{ $comment->receiver->name }}</td>
-                <td class="align-middle text-center">
-                    <form id="deleteForm-{{ $comment->id }}" action="{{ route('comment.destroy', $comment->id) }}"
-                        method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="button" class="btn btn-sm btn-primary"
-                            onclick="confirmDelete({{ $comment->id }})">Borrar</button>
-                    </form>
-                </td>
+                <tr>
+                    <td class="align-middle text-center">{{ $comment->msg }}</td>
+                    <td class="align-middle text-center">{{ $comment->receiver->name }}</td>
+                    <td class="align-middle text-center">
+                        <form id="deleteForm-{{ $comment->id }}" action="{{ route('comment.destroy', $comment->id) }}"
+                            method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="button" class="btn btn-sm btn-cerrar"
+                                onclick="confirmDelete({{ $comment->id }})">Borrar</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
-
-
-
         </table>
+        
 
     </div>
 @endsection
@@ -47,8 +47,8 @@
                 text: "No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#183e43',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {

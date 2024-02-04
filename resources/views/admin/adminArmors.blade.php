@@ -53,7 +53,7 @@
 
 
 
-        <table class="table table-hover table-borderless">
+        <table class="table table-hover">
             <tr class="table-dark ">
                 <th class="text-center">Imagen</th>
                 <th class="text-center"> Armadura</th>
