@@ -74,8 +74,7 @@
                 </x-modal-comment>
             </div>
             
-        </div>
-                
+                 
             @foreach ($comments as $comment )
                 
             <div class="mt-3">
@@ -97,6 +96,8 @@
                 </div>
             </div>
             @endforeach
+        </div>
+           
 
             {{ $comments->links() }}
 

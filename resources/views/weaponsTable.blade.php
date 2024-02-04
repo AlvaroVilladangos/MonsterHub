@@ -27,7 +27,35 @@
         <tr class="">
           <td class="d-flex justify-content-center border-bottom"> <img src="{{URL('storage/' . $weapon->img)}}" style="width:150px; height:auto;" alt=""></td>
           <td class="align-middle text-center border-bottom "><a href="/weapon/{{$weapon->id}}  "class="linkTabla">{{$weapon->name}}</a></td>
-          <td class="align-middle text-center border-bottom">{{$weapon->element}}</td>
+          <td class="align-middle text-center border-bottom">
+            {{$weapon->element}}
+            @switch($weapon->element)
+            @case('Fuego')
+                <img class="icon" src="{{ URL('storage/fireIcon.png') }}" />
+                @break
+    
+            @case('Agua')
+            <img class="icon" src="{{ URL('storage/waterIcon.png') }}" />
+            @break
+    
+            @case('Hielo')
+            <img class="icon" src="{{ URL('storage/iceIcon.png') }}" />
+            @break
+    
+            @case('Eléctrico')
+            <img class="icon" src="{{ URL('storage/thunderIcon.png') }}" />
+            @break
+    
+            @case('Dragón')
+            <img class="icon" src="{{ URL('storage/dragonIcon.png') }}" />
+            @break
+    
+            @case('Neutro')
+              -
+            @break
+    
+            @endswitch
+          </td>
           <td class="align-middle text-center border-bottom">{{$weapon->atk}}  <img class="icon" src="{{ URL('storage/blackSwordIcon.svg') }}" /></td>
           <td class="align-middle text-center border-bottom">{{$weapon->crit}}</td>
         </tr>

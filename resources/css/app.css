@@ -28,11 +28,6 @@
   padding-right: 5%;
 }
 
-body {
-
-  background-color: #dfe5eb;
-}
-
 
 .avatar {
   border-radius: 50%;
@@ -64,6 +59,19 @@ body {
   color: white;
   background-color: #58a4ae;
   border: none;
+}
+
+.bg-card, .bg-card span {
+  color: white;
+  background-color: #58a4ae;
+  border: none;
+  border-radius: 7px;
+  min-height: 25%;
+}
+
+.lista{
+  color: white;
+  background-color: #58a4ae;
 }
 
 .avatarRoom {
@@ -154,12 +162,8 @@ body {
   font-size: 1.50rem;
   text-decoration: none; 
 }
-.navbarTitle:hover{
+.navbarTitle:hover, .navbarTitle:focus{
   color: #397489;
-}
-
-body {
-  font-family: 'Helvetica'
 }
 
 
@@ -168,6 +172,14 @@ body {
   font-weight: bold;
   text-shadow: 1px 1px 0  #122626;
 }
+
+
+.tituloCard{
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 0  #122626;
+}
+
 
 .anuncio {
   background-color: white;
@@ -189,5 +201,11 @@ body {
     display: block;
     text-align: right;
   }
+
+}
+
+
+body {
+  font-family: 'Helvetica';
 
 }
