@@ -25,7 +25,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/armorBanner.png') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/armorsBanner.jpg') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/armorsAdmin">Armaduras</a>
@@ -41,7 +41,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/weaponsBanner.png') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/weaponsBanner.webp') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/weaponsAdmin">Armas</a>
@@ -54,7 +54,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorderMonster" src="{{ URL('storage/monstersBanner.jpg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/monstersBanner.jpg') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/monstersAdmin">Monstruos</a>

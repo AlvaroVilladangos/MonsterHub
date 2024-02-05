@@ -24,7 +24,7 @@
     border-radius: 1rem;
     border: solid;
     border-color:#397489 ;
-    background-color: #58a4ae;
+    background-color: #397489;
     color: white;
     font-size: 1rem;
     padding: .5rem 1rem;
@@ -37,7 +37,7 @@
    }
 
    .cardAdmin-button:hover {
-    background-color: #397489;
+    background-color: #122626;
    }
    
    .text-body {
@@ -78,10 +78,10 @@
 }
 
 .imgBorder{
-    max-height: 400px;
-    max-width: 400px;
-    border: 3px solid #397489;
-    border-radius: 7px;
+    width: 100%;
+    max-height: 250px; 
+    object-fit: cover; 
+    border: solid 1px black !important;
 }
 
 

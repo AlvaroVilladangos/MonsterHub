@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">
                 <div class="card mx-3 my-3 shadow">
-                    <form class="form mx-3 my-3" action="{{ route('registrar.store') }}" method="post">
+                    <form class="form mx-5 my-3" action="{{ route('registrar.store') }}" method="post">
                         @csrf
 
                         <div class="text-center">

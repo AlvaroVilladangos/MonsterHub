@@ -187,7 +187,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="armorCreateForm" method="post" action="{{ route('armorStore') }}"
+                    <form class="mx-3" id="armorCreateForm" method="post" action="{{ route('armorStore') }}"
                         enctype="multipart/form-data">
                         @csrf
 

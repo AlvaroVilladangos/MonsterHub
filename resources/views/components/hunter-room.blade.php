@@ -1,5 +1,5 @@
 <div class="col-12 col-md-2 mb-3">
-    <div class="card shadow" style="width: 18rem;">
+    <div class="card cardOpciones shadow" style="width: 18rem;">
         <div class="mx-2 my-2 d-flex justify-content-between">
             <div class="d-flex justify-content-center flex-grow-1">
                 <h3 class="card-title fw-bold">Codigo: {{ $hunter->room->room_number }}</h3>

@@ -50,20 +50,23 @@
 
                 @if (auth()->check())
                     @if (auth()->user()->admin)
-                    <a class="nav-item nav-link opcionNavBar mx-2" href="/monstersAdmin">Monstruos</a>
-                    <a class="nav-item nav-link opcionNavBar mx-2" href="/weaponsAdmin">Armas</a>
-                    <a class="nav-item nav-link opcionNavBar mx-2" href="/armorsAdmin">Armaduras</a>
-                    <a class="nav-item nav-link opcionNavBar mx-2" href="/usersAdmin">Usuarios</a>
-                    <a class="nav-item nav-link opcionNavBar mx-2" href="/guildsAdmin">Guilds</a>
-                    @else
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/monstersAdmin">Monstruos</a>
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/weaponsAdmin">Armas</a>
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/armorsAdmin">Armaduras</a>
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/usersAdmin">Usuarios</a>
+                        <a class="nav-item nav-link opcionNavBar mx-2" href="/guildsAdmin">Guilds</a>
+                    @endif
+                @else
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/monsters">Monstruos</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/weapons">Armas</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/armors">Armaduras</a>
-    
-                    @endif
                 @endif
 
+
                 @if (auth()->check() && auth()->user()->hunter)
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/monsters">Monstruos</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/weapons">Armas</a>
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/armors">Armaduras</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/guilds">Guilds</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/hunters">Cazadores</a>
                 @endif

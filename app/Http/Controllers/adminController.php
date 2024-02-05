@@ -23,6 +23,8 @@ class adminController extends Controller
 
         $users = User::query();
 
+        $users = $users->where('admin', false);
+
         if (request()->has('search')){
             $search = strtolower(request()->get('search', ''));
             $users = $users->whereRaw('lower(name) like (?)',["%{$search}%"]);

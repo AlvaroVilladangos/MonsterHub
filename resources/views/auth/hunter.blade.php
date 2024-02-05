@@ -78,7 +78,7 @@
             @foreach ($comments as $comment )
                 
             <div class="mt-3">
-                <div class="card mb-3 shadow">
+                <div class="card cardOpciones mb-3 shadow">
                     <div class="card-body">
                         <div class="d-flex align-items-center border-bottom justify-content-between">
                             <div class="d-flex align-items-center">

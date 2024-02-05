@@ -13,8 +13,8 @@
 
         <div class="row">
             <div class="col-12 col-md-2 mb-3">
-                <div class="card overflow-hidden shadow">
-                    <div class="card-body pt-3">
+                <div class="card cardOpciones overflow-hidden shadow ">
+                    <div class="cardOpciones-body pt-3">
                         <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start nav-item">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="/rooms">
@@ -101,7 +101,7 @@
 
                 @foreach ($comments as $comment)
                     <div class="mt-3">
-                        <div class="card mb-3 shadow">
+                        <div class="card cardOpciones mb-3 shadow">
                             <div class="card-body">
                                 <div class="d-flex align-items-center border-bottom">
                                     <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />

@@ -61,9 +61,16 @@
   border: none;
 }
 
-.bg-card, .bg-card span {
+.cardOpciones, .cardOpciones span {
+  border-radius: 7px;
   color: white;
-  background-color: #58a4ae;
+  background-color: #327882;
+  border: none;
+}
+
+.bg-cardOpciones, .bg-cardOpciones span {
+  color: white;
+  background-color: #327882;
   border: none;
   border-radius: 7px;
   min-height: 25%;
@@ -206,10 +213,10 @@
 
 .avatarLogin {
   border-radius: 50%;
-  height: 40%;
+  height: 50%;
   object-fit: cover;
   object-position: center;
-  width: 40%;
+  width: 50%;
 }
 
 body {
@@ -227,7 +234,7 @@ body {
 
 .btn-nav:hover, .btn-nav:focus{
   background-color: #397489;
-  color: #122626;
+  color: #122626ab;
   font-weight: bold;
 }
 
