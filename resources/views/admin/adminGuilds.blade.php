@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container py-4">
-
+        <h2 class="tituloTabla">Lista de guilds</h2>
         <form action="{{ route('guildsAdmin') }}" method="get">
             @csrf
             <div class="input-group mb-4 w-100 w-md-25" id="search-box">

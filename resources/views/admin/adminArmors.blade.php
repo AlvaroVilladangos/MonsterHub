@@ -33,6 +33,7 @@
     @endif
 
     <div class="container py-4">
+        <h2 class="tituloTabla">Lista de armaduras</h2>
         <div class="row">
             <div class="col">
                 <form action="{{ route('armorsAdmin') }}" method="get">

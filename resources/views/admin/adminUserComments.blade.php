@@ -4,8 +4,8 @@
 @section('content')
     <div class="container py-4">
 
-        <h4 class="mb-3">Lista de comentarios de {{ $hunter->name }}</h4>
-
+        <h2 class="tituloTabla mb-3">Lista de comentarios de {{ $hunter->name }}</h2>
+        
         <table class="table table-hover">
             <tr class="table-dark ">
                 <th class="text-center">Comentario</th>

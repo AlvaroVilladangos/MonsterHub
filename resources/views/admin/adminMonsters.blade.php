@@ -33,7 +33,7 @@
 
 
     <div class="container py-4">
-
+        <h2 class="tituloTabla">Lista de monstruos</h2>
         <div class="row">
             <div class="col">
                 <form action="{{ route('monstersAdmin') }}" method="get">
