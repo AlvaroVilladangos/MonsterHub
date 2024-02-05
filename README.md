@@ -6,6 +6,8 @@
 <p align="center">
   &copy; Curso 2023/24 «MonsterHubn» | Álvaro Villadangos Romo
 </p>
+
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is in-depth and complete, making it a breeze to get started learning the framework.

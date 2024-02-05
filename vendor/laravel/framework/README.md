@@ -1,4 +1,4 @@
-<p align="center"><img src="/public/monsterHubLogo.png" alt="MonsterHub Logo"></p>
+<p align="center"><img src="/public/guildsBanner.jpeg" alt="MonsterHub Logo"></p>
 
 
 <h1 align="center"> MonsterHub
