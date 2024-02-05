@@ -1,5 +1,5 @@
 <p align="center">
-<img src="/storage/app/public/guildsBanner.jpeg" alt="MonsterHub Logo">
+<img src="/public/img/monsterHubLogo.png" alt="MonsterHub Logo">
 </p>
 
 
