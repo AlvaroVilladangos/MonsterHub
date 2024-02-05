@@ -6,9 +6,9 @@
 
         <form action="{{ route('usersAdmin') }}" method="get">
             @csrf
-            <div class="input-group mb-4 w-25" id="search-box">
+            <div class="input-group mb-4 w-100 w-md-25" id="search-box">
                 <input name="search" type="search" class="form-control" placeholder="Search" />
-                <button type="submit" class="btn btn-aceptar">search</button>
+                <button type="submit" class="btn btn-aceptar">Buscar</button>
             </div>
         </form>
 
@@ -19,7 +19,8 @@
                 <th class="text-center">Cazador</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Comentarios</th>
-                <th class="text-center">Accion</th>
+                <th class="text-center"></th>
+                <th  class="text-center"></th>
             </tr>
 
             @foreach ($users as $user)
@@ -49,14 +50,49 @@
                             <form action="{{ route('blockUser', ['id' => $user->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-cerrar" type="submit">Bloquear</button>
+                                <button class="btn btn-sm btn-deshabilitar" type="submit">Bloquear</button>
                             </form>
                         </td>
                     @endif
+                    <td>
+                        <form id="deleteUserForm-{{ Auth::user()->id }}" action="{{ route('user.destroy', Auth::user()->id) }}"
+                            method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="button" class="btn btn-cerrar btn-sm"
+                                onclick="confirmDeleteUser({{ Auth::user()->id }})">Eliminar Usuario</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </table>
 
         {{ $users->links() }}
     </div>
+@endsection
+
+
+@section('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+            function confirmDeleteUser(userId) {
+            console.log(userId)
+            Swal.fire({
+                title: '¿Estás seguro que quieres borrar el usuario?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#26555b',
+                cancelButtonColor: '#d62b36',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteUserForm-' + userId).submit();
+                }
+            })
+        }
+</script>
+
 @endsection

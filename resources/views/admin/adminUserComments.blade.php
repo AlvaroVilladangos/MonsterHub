@@ -10,7 +10,7 @@
             <tr class="table-dark ">
                 <th class="text-center">Comentario</th>
                 <th class="text-center">Dirigido a</th>
-                <th class="text-center">Accion</th>
+                <th class="text-center"></th>
             </tr>
         
             @foreach ($comments as $comment)
@@ -26,6 +26,8 @@
                                 onclick="confirmDelete({{ $comment->id }})">Borrar</button>
                         </form>
                     </td>
+
+
                 </tr>
             @endforeach
         </table>

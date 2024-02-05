@@ -31,15 +31,15 @@
             </div>
         </div>
     @endif
-        
+
     <div class="container py-4">
         <div class="row">
             <div class="col">
                 <form action="{{ route('armorsAdmin') }}" method="get">
                     @csrf
-                    <div class="input-group mb-4 w-25" id="search-box">
+                    <div class="input-group mb-4 w-100 w-md-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-aceptar">search</button>
+                        <button type="submit" class="btn btn-aceptar">Buscar</button>
                     </div>
                 </form>
             </div>
@@ -52,67 +52,66 @@
         </div>
 
 
-
-        <table class="table table-hover">
-            <tr class="table-dark ">
-                <th class="text-center">Imagen</th>
-                <th class="text-center"> Armadura</th>
-                <th class="text-center"> Monstruo</th>
-                <th class="text-center"></th>
-                <th class="text-center"></th>
-                <th class="text-center"></th>
-            </tr>
-
-            @foreach ($armors as $armor)
-                <tr>
-                    <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $armor->img) }}"
-                            style="width:150px; height:auto;" alt=""></td>
-                    <td class="align-middle text-center"><a
-                            href="/armor/{{ $armor->id }}  "class="linkTabla"
-                            target="_blank">{{ $armor->name }}</a>
-                    </td>
-
-                    <td class="align-middle text-center"><a
-                            href="/monster/{{ $armor->monster->id }}  "class="linkTabla">{{ $armor->monster->name }}</a>
-                    </td>
-
-                    <td class="align-middle text-center">
-                        <button type="button" class="btn btn-editar btn-sm" data-id="{{ $armor->id }}"
-                            data-bs-toggle="modal" data-bs-target="#armorEditModal">EDITAR</button>
-                    </td>
-                    <td class="align-middle text-center">
-                        <form id="deleteArmorForm{{ $armor->id }}"
-                            action="{{ route('armorDestroy', ['id' => $armor->id]) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-cerrar btn-sm" type="button"
-                                onclick="confirmDeleteArmor({{ $armor->id }})">ELIMINAR</button>
-                        </form>
-                    </td>
-
-
-                    @if ($armor->blocked)
-                        <td class="align-middle text-center">
-                            <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
-                            </form>
-
-                        </td>
-                    @else
-                        <td class="align-middle text-center">
-                            <form action="{{ route('blockArmor', ['id' => $armor->id]) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button class="btn btn-sm btn-cerrar" type="submit">Deshabilitar</button>
-                            </form>
-                        </td>
-                    @endif
+        <div class="table-responsive table-responsive-stack">
+            <table class="table table-hover">
+                <tr class="table-dark ">
+                    <th class="text-center">Imagen</th>
+                    <th class="text-center"> Armadura</th>
+                    <th class="text-center"> Monstruo</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
                 </tr>
-            @endforeach
-        </table>
 
+                @foreach ($armors as $armor)
+                    <tr>
+                        <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $armor->img) }}"
+                                style="width:150px; height:auto;" alt=""></td>
+                        <td class="align-middle text-center"><a href="/armor/{{ $armor->id }}  "class="linkTabla"
+                                target="_blank">{{ $armor->name }}</a>
+                        </td>
+
+                        <td class="align-middle text-center"><a
+                                href="/monster/{{ $armor->monster->id }}  "class="linkTabla">{{ $armor->monster->name }}</a>
+                        </td>
+
+                        <td class="align-middle text-center">
+                            <button type="button" class="btn btn-editar btn-sm" data-id="{{ $armor->id }}"
+                                data-bs-toggle="modal" data-bs-target="#armorEditModal">EDITAR</button>
+                        </td>
+                        <td class="align-middle text-center">
+                            <form id="deleteArmorForm{{ $armor->id }}"
+                                action="{{ route('armorDestroy', ['id' => $armor->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-cerrar btn-sm" type="button"
+                                    onclick="confirmDeleteArmor({{ $armor->id }})">ELIMINAR</button>
+                            </form>
+                        </td>
+
+
+                        @if ($armor->blocked)
+                            <td class="align-middle text-center">
+                                <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
+                                </form>
+
+                            </td>
+                        @else
+                            <td class="align-middle text-center">
+                                <form action="{{ route('blockArmor', ['id' => $armor->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
+                                </form>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </table>
+        </div>
         {{ $armors->links() }}
 
 
@@ -260,5 +259,4 @@
     </script>
 
     @vite('resources/js/adminArmors.js')
-
 @endsection

@@ -4,25 +4,15 @@
     <div class="px-4 py-4">
 
         <div class="row">
-            <div class="col-8 d-flex">
-                <div class="card flex-grow-1" style=" background-color: transparent;">
-                    <div class="bg-card shadow my-3 mx-3">
-                        <h2 class="border-bottom my-3 mx-3 tituloCard">Info</h2>
-                        <p class="fs-5 my-3 mx-3 flex-grow-1"> {{ $weapon->info }} </p>
-                    </div>
-                </div>
-            </div>
 
-
-
-            <div class="col-4 mb-3">
+            <div class="col-12 col-md-4 mb-3">
                 <div class="bg-dark list-group">
                     <h5 class="text-center text-light my-2 fw-bold">{{ $weapon->name }}</h5>
                 </div>
 
                 <div style="background-color: #fcfcfc ;"">
-                    <img style="max-height: 650px;" class="card-img-top py-3 px-3"
-                        src="{{ URL('storage/' . $weapon->img) }}" alt="Card image cap">
+                    <img style="max-height: 650px;" class="card-img-top py-3 px-3" src="{{ URL('storage/' . $weapon->img) }}"
+                        alt="Card image cap">
                 </div>
 
                 <ul class="bg-dark list-group mb-3 shadow">
@@ -72,6 +62,16 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="col-12 col-md-8">
+                <div class="card flex-grow-1" style=" background-color: transparent;">
+                    <div class="bg-card shadow my-3 mx-3">
+                        <h2 class="border-bottom my-3 mx-3 tituloCard">Info</h2>
+                        <p class="fs-5 my-3 mx-3 flex-grow-1"> {{ $weapon->info }} </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

@@ -39,9 +39,9 @@
             <div class="col">
                 <form action="{{ route('weaponsAdmin') }}" method="get">
                     @csrf
-                    <div class="input-group mb-4 w-25" id="search-box">
+                    <div class="input-group mb-4 w-100 w-md-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-aceptar">search</button>
+                        <button type="submit" class="btn btn-aceptar">Buscar</button>
                     </div>
                 </form>
             </div>
@@ -54,6 +54,7 @@
         </div>
 
 
+        <div class="table-responsive table-responsive-stack">
 
         <table class="table table-hover">
             <tr class="table-dark ">
@@ -98,7 +99,7 @@
                             <form action="{{ route('unBlockWeapon', ['id' => $weapon->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-success" type="submit">Habilitar</button>
+                                <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
                             </form>
 
                         </td>
@@ -108,14 +109,14 @@
                             <form action="{{ route('blockWeapon', ['id' => $weapon->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-cerrar" type="submit">Deshabilitar</button>
+                                <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
                             </form>
                         </td>
                     @endif
                 </tr>
             @endforeach
         </table>
-
+    </div> 
         {{ $weapons->links() }}
 
 

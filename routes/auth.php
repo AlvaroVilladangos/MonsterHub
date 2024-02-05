@@ -55,7 +55,11 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/indexAdmin', [adminController::class, 'index']);
+
+    Route::get('/', function () {
+        return redirect()->route('indexAdmin');
+    });
+    Route::get('/indexAdmin', [adminController::class, 'index'])->name('indexAdmin');;
 
     Route::get('/usersAdmin', [adminController::class, 'users'])->name('usersAdmin');
 
@@ -100,6 +104,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/', function () {
+        return redirect()->route('dashboard');
+    });
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

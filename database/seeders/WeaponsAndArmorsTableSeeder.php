@@ -48,7 +48,7 @@ class WeaponsAndArmorsTableSeeder extends Seeder
                 [
                     'name' => 'Armadura de novato',
                     'def' => '100',
-                    'img' => 'imgArmors/begginer.png',
+                    'img' => 'imgArmors/begginerArmor.png',
                     'info' => 'Armadura inicial que te entrega tu compañero feline para las primeras cazas ',
                     'monster_id' => Monster::getIdByName('Felyne'),
                 ],

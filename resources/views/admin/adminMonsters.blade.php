@@ -38,10 +38,12 @@
             <div class="col">
                 <form action="{{ route('monstersAdmin') }}" method="get">
                     @csrf
-                    <div class="input-group mb-4 w-25" id="search-box">
+                    <div class="input-group mb-4 w-100 w-md-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-aceptar">search</button>
+                        <button type="submit" class="btn btn-aceptar">Buscar</button>
                     </div>
+                    
+                    
                 </form>
             </div>
 
@@ -53,65 +55,62 @@
         </div>
 
 
-
-        <table class="table table-hover">
-            <tr class="table-dark ">
-                <th class="text-center">Imagen</th>
-                <th class="text-center"> Monstruo</th>
-                <th class="text-center"></th>
-                <th class="text-center"></th>
-                <th class="text-center"></th>
-            </tr>
-
-            @foreach ($monsters as $monster)
-                <tr>
-                    <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
-                          class="monsterTable" alt=""></td>
-                    <td class="align-middle text-center"><a
-                            href="/monster/{{ $monster->id }}  "class="linkTabla"
-                            target="_blank">{{ $monster->name }}</a>
-                    </td>
-                    <td class="align-middle text-center">
-                        <button type="button" class="btn btn-editar btn-sm" data-id="{{ $monster->id }}"
-                            data-bs-toggle="modal" data-bs-target="#monsterEditModal">EDITAR</button>
-                    </td>
-                    <td class="align-middle text-center">
-                        <form id="deleteMonsterForm{{ $monster->id }}"
-                            action="{{ route('monsterDestroy', ['id' => $monster->id]) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-cerrar btn-sm" type="button"
-                                onclick="confirmDeleteMonster({{ $monster->id }})">ELIMINAR</button>
-                        </form>
-                    </td>
-
-                    @if ($monster->blocked)
-                        <td class="align-middle text-center">
-
-                            <form action="{{ route('unBlockMonster', ['id' => $monster->id]) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button class="btn btn-sm btn-success" type="submit">Habilitar</button>
-                            </form>
-
-                        </td>
-                    @else
-                        <td class="align-middle text-center">
-
-                            <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button class="btn btn-sm btn-cerrar" type="submit">Deshabilitar</button>
-                            </form>
-                        </td>
-                    @endif
+        <div class="table-responsive table-responsive-stack">
+            <table class="table table-hover">
+                <tr class="table-dark ">
+                    <th class="text-center">Imagen</th>
+                    <th class="text-center"> Monstruo</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
                 </tr>
-            @endforeach
-        </table>
 
+                @foreach ($monsters as $monster)
+                    <tr>
+                        <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
+                                class="monsterTable" alt=""></td>
+                        <td class="align-middle text-center"><a href="/monster/{{ $monster->id }}  "class="linkTabla"
+                                target="_blank">{{ $monster->name }}</a>
+                        </td>
+                        <td class="align-middle text-center">
+                            <button type="button" class="btn btn-editar btn-sm" data-id="{{ $monster->id }}"
+                                data-bs-toggle="modal" data-bs-target="#monsterEditModal">EDITAR</button>
+                        </td>
+                        <td class="align-middle text-center">
+                            <form id="deleteMonsterForm{{ $monster->id }}"
+                                action="{{ route('monsterDestroy', ['id' => $monster->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-cerrar btn-sm" type="button"
+                                    onclick="confirmDeleteMonster({{ $monster->id }})">ELIMINAR</button>
+                            </form>
+                        </td>
+
+                        @if ($monster->blocked)
+                            <td class="align-middle text-center">
+
+                                <form action="{{ route('unBlockMonster', ['id' => $monster->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
+                                </form>
+
+                            </td>
+                        @else
+                            <td class="align-middle text-center">
+
+                                <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
+                                </form>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </table>
+        </div>
         {{ $monsters->links() }}
-
-
 
     </div>
 
@@ -129,7 +128,7 @@
                         action="{{ route('monsterUpdate', ['id' => $monster->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        
+
                         <div class="mb-3 imagen">
                             <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
                             <input type="file" class="form-control mb-3" name="monsterImg">
@@ -288,5 +287,4 @@
     </script>
 
     @vite('resources/js/adminMonsters.js')
-
 @endsection

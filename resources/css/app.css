@@ -61,6 +61,14 @@
   border: none;
 }
 
+.bg-card, .bg-card span {
+  color: white;
+  background-color: #327882;
+  border: none;
+  border-radius: 7px;
+  min-height: 25%;
+}
+
 .cardOpciones, .cardOpciones span {
   border-radius: 7px;
   color: white;
@@ -194,10 +202,6 @@
 }
 
 
-.bg-warning{
-  background-color: orange !important;
-}
-
 
 @media (max-width: 375px) {
   .table-responsive-stack tr {
@@ -239,7 +243,7 @@ body {
 }
 
 
-.btn-editar{
+.btn-deshabilitar{
   background-color: #ffa600;
   color: white;
   font-weight: bold;
@@ -247,8 +251,24 @@ body {
 
 
 
-.btn-editar:hover, .btn-editar:focus{
+.btn-deshabilitar:hover, .btn-deshabilitar:focus{
   background-color: #cc8603;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+.btn-editar{
+  background-color: #3e819a;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+.btn-editar:hover, .btn-editar:focus{
+  background-color: #265e73;
   color: white;
   font-weight: bold;
 }
