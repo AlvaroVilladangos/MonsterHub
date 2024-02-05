@@ -64,9 +64,9 @@
 
             <div class="modal fade" id="guildRoom" tabindex="-1" aria-labelledby="guildRoomLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content modalCardAdmin">
                         <div class="modal-header">
-                            <h1 class="tituloTabla" id="guildRoomLabel">Crear Sala</h1>
+                            <h1 class="tituloCard" id="guildRoomLabel">Crear Sala</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -74,7 +74,7 @@
                             <form method="post" action="{{ route('rooms.store') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Monstruo al que cazar</label>
+                                    <label for="name" class="form-label fs-5 fw-bold">Monstruo al que cazar</label> <br>
                                     <select size="1" name="monster" id="monster" class="select-control">
                                         @foreach ($monsters as $monster)
                                             <option value="{{ $monster->id }}"> {{ $monster->name }} </option>

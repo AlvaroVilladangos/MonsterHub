@@ -71,9 +71,9 @@
             
             <div class="modal fade" id="guildModal" tabindex="-1" aria-labelledby="guildModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content modalCardAdmin">
                         <div class="modal-header">
-                            <h1 class="tituloTabla" id="guildModalLabel">Crear Guild</h1>
+                            <h1 class="tituloCard" id="guildModalLabel">Crear Guild</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -81,11 +81,11 @@
                             <form id="formCreateGuild" method="post" action="{{ route('guilds.store') }}">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="guildName" class="form-label">Nombre del Guild</label>
+                                    <label for="guildName" class="form-label fs-5 fw-bold">Nombre del Guild</label>
                                     <input name="guildName" type="text" class="form-control" id="name" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="info" class="form-label">Información</label>
+                                    <label for="info" class="form-label fs-5 fw-bold">Información</label>
                                     <input name="guildInfo" type="text" class="form-control" id="info" required>
                                 </div>
                                 <div>
