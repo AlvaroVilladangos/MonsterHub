@@ -1,10 +1,12 @@
-<p align="center"><img src="/public/guildsBanner.jpeg" alt="MonsterHub Logo"></p>
+<p align="center">
+<img src="/storage/app/public/guildsBanner.jpeg" alt="MonsterHub Logo">
+</p>
 
 
 <h1 align="center"> MonsterHub
 
 <p align="center">
-  &copy; Curso 2023/24 «MonsterHubn» | Álvaro Villadangos Romo
+  &copy; Curso 2023/24 «MonsterHub» | Álvaro Villadangos Romo
 </p>
 ## Learning Laravel
 
