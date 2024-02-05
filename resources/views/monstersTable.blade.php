@@ -12,7 +12,7 @@
 
         <h2 class="tituloTabla">Lista de monstruos</h2>
         <div class="table-responsive table-responsive-stack">
-            <table class="table table-hover table-borderless">
+            <table class="table table-hover">
                 <tr class="table-dark ">
                     <th class="text-center">Img</th>
                     <th class="text-center">Monstruo</th>
@@ -22,11 +22,11 @@
 
                 @foreach ($monsters as $monster)
                     <tr class="">
-                        <td data-label="Imagen" class="d-flex justify-content-center border-bottom"> <img
+                        <td data-label="IMG" class="d-flex justify-content-center border-bottom"> <img
                                 src="{{ URL('storage/' . $monster->img) }}" class="monsterTable" alt=""></td>
-                        <td data-label="Monstruo" class="align-middle text-center border-bottom"><a
+                        <td data-label="MONSTRUO" class="align-middle text-center border-bottom"><a
                                 href="/monster/{{ $monster->id }} " class="linkTabla">{{ $monster->name }}</a></td>
-                        <td data-label="Elemento" class="align-middle text-center border-bottom">
+                        <td data-label="ELEMENTO" class="align-middle text-center border-bottom">
                             {{ $monster->element }}
 
                             @switch($monster->element)
@@ -55,7 +55,7 @@
                                 @break
                             @endswitch
                         </td>
-                        <td data-label="Debilidad" class="align-middle text-center border-bottom">
+                        <td data-label="DEBILIDAD" class="align-middle text-center border-bottom">
                             {{ $monster->weakness }}
                             @switch($monster->weakness)
                                 @case('Fuego')
@@ -83,6 +83,7 @@
                                 @break
                             @endswitch
                         </td>
+                        <td></td>
                     </tr>
                 @endforeach
             </table>

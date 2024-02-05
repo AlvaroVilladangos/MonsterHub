@@ -31,7 +31,7 @@
             <div class="col-12 col-sm-8 col-md-6">
                 <div class="card mx-3 my-3 shadow">
                     <div class="row">
-                        <
+                        
                         <div class="col-12 my-3 col-md-5 text-center">
                             <img class="avatarLogin" src="{{ URL('storage/monsterHub.svg') }}" />
                             <h3 class="tituloCard">¡Cazar acompañado siempre es mejor!</h3>
@@ -39,7 +39,7 @@
 
                       
                         <div class="col-12 col-md-6">
-                            <form class="form my-3" action="{{ route('login') }}" method="post">
+                            <form class="form my-3 mx-3" action="{{ route('login') }}" method="post">
                                 @csrf
                                 <h3 class="tituloCard">Login</h3>
                                 <div class="form-group">

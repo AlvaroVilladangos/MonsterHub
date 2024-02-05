@@ -12,8 +12,8 @@
             </div>
         </form>
 
-
-        <table class="table table-hover ">
+        <div class="table-responsive table-responsive-stack">
+        <table class="table table-hover mt2 ">
             <tr class="table-dark ">
                 <th class="text-center">Nombre</th>
                 <th class="text-center">Cazador</th>
@@ -28,11 +28,11 @@
                     @continue
                 @endif
                 <tr>
-                    <td class="align-middle text-center">{{ $user->name }}</td>
-                    <td class="align-middle text-center"><a class="linkTabla"
+                    <td data-label="NOMBRE" class="align-middle text-center">{{ $user->name }}</td>
+                    <td data-label="CAZADOR" class="align-middle text-center"><a class="linkTabla"
                             href="/hunter/{{ $user->hunter->id }}">{{ $user->hunter->name }}</a></td>
-                    <td class="align-middle text-center">{{ $user->email }}</a></td>
-                    <td class="align-middle text-center"><a class="linkTabla"
+                    <td data-label="EMAIL" class="align-middle text-center">{{ $user->email }}</a></td>
+                    <td data-label="COMENTARIOS" class="align-middle text-center"><a class="linkTabla"
                             href="/hunter/{{ $user->hunter->id }}/comments">Ver</a></td>
                     @if ($user->blocked)
                         <td class="align-middle text-center">
@@ -54,7 +54,7 @@
                             </form>
                         </td>
                     @endif
-                    <td>
+                    <td class="align-middle text-center">
                         <form id="deleteUserForm-{{ Auth::user()->id }}" action="{{ route('user.destroy', Auth::user()->id) }}"
                             method="post">
                             @csrf
@@ -63,6 +63,7 @@
                                 onclick="confirmDeleteUser({{ Auth::user()->id }})">Eliminar Usuario</button>
                         </form>
                     </td>
+                    <td></td>
                 </tr>
             @endforeach
         </table>

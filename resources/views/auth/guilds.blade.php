@@ -17,7 +17,7 @@
             <div class="col-2 mb-3">
 
             </div>
-            <div class="col-8 mb-3">
+            <div class="col-12 col-md-8">
                 <form action="{{ route('guilds.index') }}" method="get">
                     @csrf
                     <div class="input-group mb-4 w-100 w-md-25" id="search-box">
@@ -27,7 +27,7 @@
                 </form>
 
                 <h2 class="tituloTabla"> Lista de guilds</h2>
-                <table class="table table-hover table-borderless">
+                <table class="table table-hover ">
                     <tr class="table-dark">
                         <th class="text-center">Guild</th>
                         <th class="text-center">Lider</th>

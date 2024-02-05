@@ -13,7 +13,7 @@
 
         <h2 class="tituloTabla">Lista de armas</h2>
         <div class="table-responsive table-responsive-stack">
-            <table class="table table-hover table-borderless">
+            <table class="table table-hover">
                 <tr class="table-dark">
                     <th class="text-center">Img</th>
                     <th class="text-center">Arma</th>
@@ -24,12 +24,12 @@
 
                 @foreach ($weapons as $weapon)
                     <tr class="">
-                        <td class="d-flex justify-content-center border-bottom"> <img
+                        <td data-label="IMG" class="d-flex justify-content-center border-bottom"> <img
                                 src="{{ URL('storage/' . $weapon->img) }}" style="width:150px; height:auto;" alt="">
                         </td>
-                        <td class="align-middle text-center border-bottom "><a
+                        <td  data-label="NOMBRE"class="align-middle text-center border-bottom "><a
                                 href="/weapon/{{ $weapon->id }}  "class="linkTabla">{{ $weapon->name }}</a></td>
-                        <td class="align-middle text-center border-bottom">
+                        <td data-label="ELEMENTO" class="align-middle text-center border-bottom">
                             {{ $weapon->element }}
                             @switch($weapon->element)
                                 @case('Fuego')
@@ -57,10 +57,11 @@
                                 @break
                             @endswitch
                         </td>
-                        <td class="align-middle text-center border-bottom">{{ $weapon->atk }} <img class="icon"
+                        <td data-label="ATK" class="align-middle text-center border-bottom">{{ $weapon->atk }} <img class="icon"
                                 src="{{ URL('storage/blackSwordIcon.svg') }}" /></td>
-                        <td class="align-middle text-center border-bottom">{{ $weapon->crit }}</td>
+                        <td  data-label="CRIT"class="align-middle text-center border-bottom">{{ $weapon->crit }}</td>
                     </tr>
+                    <td></td>
                 @endforeach
             </table>
         </div>

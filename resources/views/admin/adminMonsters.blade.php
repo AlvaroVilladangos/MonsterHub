@@ -42,8 +42,6 @@
                         <input name="search" type="search" class="form-control" placeholder="Search" />
                         <button type="submit" class="btn btn-aceptar">Buscar</button>
                     </div>
-                    
-                    
                 </form>
             </div>
 
@@ -56,7 +54,7 @@
 
 
         <div class="table-responsive table-responsive-stack">
-            <table class="table table-hover">
+            <table class="table table-hover mt-2">
                 <tr class="table-dark ">
                     <th class="text-center">Imagen</th>
                     <th class="text-center"> Monstruo</th>
@@ -67,9 +65,9 @@
 
                 @foreach ($monsters as $monster)
                     <tr>
-                        <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
+                        <td data-label="IMG" class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
                                 class="monsterTable" alt=""></td>
-                        <td class="align-middle text-center"><a href="/monster/{{ $monster->id }}  "class="linkTabla"
+                        <td data-label="NOMBRE" class="align-middle text-center"><a href="/monster/{{ $monster->id }}  "class="linkTabla"
                                 target="_blank">{{ $monster->name }}</a>
                         </td>
                         <td class="align-middle text-center">
@@ -97,7 +95,7 @@
 
                             </td>
                         @else
-                            <td class="align-middle text-center">
+                            <td class="align-middle text-center border-bottom">
 
                                 <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
                                     @csrf
@@ -106,6 +104,7 @@
                                 </form>
                             </td>
                         @endif
+                        <td></td>
                     </tr>
                 @endforeach
             </table>

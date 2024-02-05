@@ -65,7 +65,7 @@
 
 
         <div class="row">
-            <div class="col-6 px-4 py-3 d-flex justify-content-center align-items-center">
+            <div class="col px-4 py-3 d-flex justify-content-center align-items-center">
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>

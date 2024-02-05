@@ -204,8 +204,8 @@
 
 
 @media (max-width: 375px) {
-  .table-responsive-stack tr {
-    display: block;
+  .table-responsive-stack th {
+    display: none;
   }
 
   .table-responsive-stack td {
@@ -213,6 +213,13 @@
     text-align: right;
   }
 
+  .table-responsive-stack td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    color: #58a4ae; 
+    
+  }
 }
 
 .avatarLogin {

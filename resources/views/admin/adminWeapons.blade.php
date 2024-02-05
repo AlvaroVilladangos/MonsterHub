@@ -56,7 +56,7 @@
 
         <div class="table-responsive table-responsive-stack">
 
-        <table class="table table-hover">
+        <table class="table table-hover mt-2">
             <tr class="table-dark ">
                 <th class="text-center">Imagen</th>
                 <th class="text-center"> Arma</th>
@@ -69,13 +69,13 @@
 
             @foreach ($weapons as $weapon)
                 <tr>
-                    <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
+                    <td data-label="IMG" class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
-                    <td class="align-middle text-center"><a
+                    <td data-label="NOMBRE" class="align-middle text-center"><a
                             href="/weapon/{{ $weapon->id }}  "class="linkTabla"
                             target="_blank">{{ $weapon->name }}</a>
                     </td>
-                    <td class="align-middle text-center"><a
+                    <td data-label="MONSTRUO" class="align-middle text-center"><a
                             href="/monster/{{ $weapon->monster->id }}  "class="linkTabla"
                             target="_blank"> {{ $weapon->monster->name }}</a>
                     </td>
@@ -113,6 +113,7 @@
                             </form>
                         </td>
                     @endif
+                    <td></td>
                 </tr>
             @endforeach
         </table>
