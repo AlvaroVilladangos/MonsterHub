@@ -18,6 +18,7 @@
     <style>
         body {
             font-family: 'Helvetica';
+            background: #d5d5d5;
             background-image: url('/storage/fondoPrueba.png');
             background-repeat: no-repeat;
             background-size: cover;
