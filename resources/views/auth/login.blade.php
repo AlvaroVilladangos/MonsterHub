@@ -16,7 +16,14 @@
     </div>
 @endif
 
-
+@if (session('success'))
+<div class="position-fixed top-50 start-50 translate-middle-x" style="z-index: 9999;">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+@endif
 
 
     <div class="container">

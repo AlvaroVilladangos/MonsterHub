@@ -78,23 +78,41 @@
             @foreach ($comments as $comment )
                 
             <div class="mt-3">
-                <div  class="card mb-3">
+                <div class="card mb-3 shadow">
                     <div class="card-body">
-                        <div class="d-flex align-items-start">
-                            <img style="width: 50px" class="me-2 avatar-sm rounded-circle"
-                                src="{{URL('storage/' . $comment->hunter->img)}}" />
-                            <div class="w-100">
-                                <div class="d-flex justify-content-between">
-                                    <h4><a class="nav-item nav-link" href="/hunter/{{ $comment->hunter->id }} " > {{$comment->hunter->name}}</a></h4>
+                        <div class="d-flex align-items-center border-bottom justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
+                                <div class="ms-3">
+                                    <h3 class="card-title mb-2">
+                                        <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
+                                            {{ $comment->hunter->name }}
+                                        </a>
+                                    </h3>
                                 </div>
-                                <p class="fs-6 mt-3 fw-light">
-                                    {{$comment->msg}}
-                                </p>
                             </div>
+                            
+                            @if($comment->from_id == Auth::user()->hunter->id)
+                            <div>
+                                <form id="deleteForm-{{ $comment->id }}"
+                                    action="{{ route('comment.destroy', $comment->id) }}" method="post" class="ml-auto">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-cerrar"
+                                        onclick="confirmDelete({{ $comment->id }})">Borrar</button>
+                                </form>
+                            </div>
+                            @endif
+                        </div>
+                        <div>
+                            <p class="fs-6 mt-3 fw-light">
+                                {{ $comment->msg }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+            
             @endforeach
         </div>
            
@@ -110,8 +128,30 @@
 @endsection
 
 @section('scripts')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
+
+
+
+<script>
+    function confirmDelete(commentId) {
+        Swal.fire({
+            title: '¿Estás seguro que quieres borrar el comentario?',
+            text: "No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#26555b',
+            cancelButtonColor: '#d62b36',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('deleteForm-' + commentId).submit();
+            }
+        })
+    }
+</script>
 
 @endsection

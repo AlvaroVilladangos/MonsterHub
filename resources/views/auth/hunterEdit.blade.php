@@ -23,7 +23,7 @@
 
 
         <div class="row">
-            <div class="col-2 mb-3">
+            <div class="col-12 col-md-2 mb-3">
 
             </div>
             <div class="col-12 col-md-8 mb-3">
@@ -36,11 +36,13 @@
                                 <div class="d-flex align-items-center">
                                     <img class="avatar mb-1" src="{{ URL('storage/' . Auth::user()->hunter->img) }}" />
                                     <div class="ms-3">
-                                        <h3 class="card-title mb-2 nombrePerfil">
-                                        </h3>
-                                        <input type="text" name="hunterName" class ="form-control" id="hunterName"
-                                            value="{{ Auth::user()->hunter->name }}"> </input>
+                                        <h3 class="card-title mb-2 nombrePerfil"></h3>
+                                        <input type="text" name="hunterName" class="form-control" id="hunterName"
+                                            value="{{ Auth::user()->hunter->name }}">
                                     </div>
+                                </div>
+                                <div class="d-flex align-items-center ml-auto">
+
                                 </div>
                             </div>
                             <div>
@@ -77,45 +79,52 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
 
                 @foreach ($comments as $comment)
-                <div class="mt-3">
-                    <div class="card mb-3 shadow">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center border-bottom">
-                                <div class="d-flex justify-content-between align-items-center w-100">
-                                    <h3 class="card-title mb-2">
-                                        <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
-                                        <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
-                                            {{ $comment->hunter->name }}
-                                        </a>
-                                    </h3>
-                                    <form id="deleteForm-{{ $comment->id }}"
-                                        action="{{ route('comment.destroy', $comment->id) }}" method="post" class="ml-auto">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="button" class="btn btn-cerrar"
-                                            onclick="confirmDelete({{ $comment->id }})">Borrar</button>
-                                    </form>
-                                </div>                                    
-                            </div>
-                            <div>
-                                <p class="fs-6 mt-3 fw-light">
-                                    {{ $comment->msg }}
-                                </p>
+                    <div class="mt-3">
+                        <div class="card mb-3 shadow">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center border-bottom">
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <h3 class="card-title mb-2">
+                                            <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
+                                            <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
+                                                {{ $comment->hunter->name }}
+                                            </a>
+                                        </h3>
+                                        <form id="deleteForm-{{ $comment->id }}"
+                                            action="{{ route('comment.destroy', $comment->id) }}" method="post"
+                                            class="ml-auto">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="button" class="btn btn-cerrar"
+                                                onclick="confirmDelete({{ $comment->id }})">Borrar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="fs-6 mt-3 fw-light">
+                                        {{ $comment->msg }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
                 @endforeach
             </div>
 
 
-        </div>
-        <div class="col-2 mb-3">
-
+            <div class="col-12 col-md-2 mb-3">
+                <form id="deleteUserForm-{{ Auth::user()->id }}" action="{{ route('user.destroy', Auth::user()->id) }}"
+                    method="post">
+                    @csrf
+                    @method('delete')
+                    <button type="button" class="btn btn-cerrar btn-lg"
+                        onclick="confirmDeleteUser({{ Auth::user()->id }})">Eliminar Usuario</button>
+                </form>
+            </div>
         </div>
     </div>
     </div>
@@ -131,6 +140,7 @@
 
     <script>
         function confirmDelete(commentId) {
+
             Swal.fire({
                 title: '¿Estás seguro que quieres borrar el comentario?',
                 text: "No podrás revertir esto!",
@@ -143,6 +153,24 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('deleteForm-' + commentId).submit();
+                }
+            })
+        }
+
+        function confirmDeleteUser(userId) {
+            console.log(userId)
+            Swal.fire({
+                title: '¿Estás seguro que quieres borrar el usuario?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#26555b',
+                cancelButtonColor: '#d62b36',
+                confirmButtonText: 'Sí',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteUserForm-' + userId).submit();
                 }
             })
         }

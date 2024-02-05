@@ -93,6 +93,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/hunter/{id}/comments', [adminController::class, 'hunterComments'])->name('hunterComments');
 
+
+
 });
 
 
@@ -163,4 +165,5 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/delete', [hunterController::class, 'deleteFriend'])->name('deleteFriend');
 
+    Route::delete('/user/{id}', [HunterController::class, 'destroyUser'])->name('user.destroy');
 });

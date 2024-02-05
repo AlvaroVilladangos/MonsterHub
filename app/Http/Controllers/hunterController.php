@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Hunter;
 use App\Models\Guild;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -101,7 +102,26 @@ class hunterController extends Controller
         return redirect()->route('dashboard');
     }
     
+    public function destroyUser(Request $request, $id){
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->withErrors(['hunterName' => 'El usuario no existe'])->withInput();
+        }
+        
+        $user->delete();
     
+        Auth::guard('web')->logout();
+    
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+
+    
+        return redirect('login')->with('success', 'El usuario ha sido eliminado con éxito');
+    }
+    
+
+
     public function destroyComment($id)
     {
         $comment = Comment::where('id', $id)->firstOrFail()->delete();
