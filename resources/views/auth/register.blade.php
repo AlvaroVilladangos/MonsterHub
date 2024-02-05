@@ -9,7 +9,7 @@
                         @csrf
 
                         <div class="text-center">
-                            <img class="avatarLogin" src="{{ URL('storage/monsterHub.svg') }}" />
+                            <img class="avatarLogin" src="{{ asset('img/bannersIconos/monsterHub.svg') }}" />
                         </div>
                         <h3 class="text-center tituloCard">Register</h3>
                         <div class="form-group">

@@ -12,7 +12,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounde imgBorder" src="{{ URL('storage/usersBanner.jpg') }}">
+                            <img class="img-fluid rounde imgBorder" src="{{ asset('img/bannersIconos/usersBanner.jpg') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/usersAdmin">Usuarios</a>
@@ -25,7 +25,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/armorsBanner.jpg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ asset('img/bannersIconos/armorsBanner.jpg') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/armorsAdmin">Armaduras</a>
@@ -41,7 +41,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/weaponsBanner.webp') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ asset('img/bannersIconos/weaponsBanner.webp') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/weaponsAdmin">Armas</a>
@@ -54,7 +54,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/monstersBanner.jpg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ asset('img/bannersIconos/monstersBanner.jpg') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/monstersAdmin">Monstruos</a>
@@ -69,7 +69,7 @@
                 <div class="cardAdmin">
                     <div class="cardAdmin-details">
                         <div>
-                            <img class="img-fluid rounded imgBorder" src="{{ URL('storage/guildsBanner.jpeg') }}">
+                            <img class="img-fluid rounded imgBorder" src="{{ asset('img/bannersIconos/guildsBanner.jpeg') }}">
                         </div>
                     </div>
                     <a class="cardAdmin-button nav-link" href ="/guildsAdmin">Guilds</a>

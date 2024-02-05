@@ -18,29 +18,29 @@
                         <ul class="nav nav-link-secondary flex-column fw-bold gap-2 text-start nav-item">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="/rooms">
-                                    <span><img class="icon" src="{{ URL('storage/roomIcon.svg') }}" /></span>
+                                    <span><img class="icon" src="img/bannersIconos/roomIcon.svg" /></span>
                                     <span class="link">Salas</span></a>
                             </li>
                             <li class="nav-item border-top">
                                 @if ($hunter->guild_id == null)
                                     <a class="nav-link text-dark" href="/guilds">
-                                        <span><img class="icon" src="{{ URL('storage/guildIcon.svg') }}" /></span>
+                                        <span><img class="icon" src="{{ asset('img/bannersIconos/guildIcon.svg') }}" /></span>
                                         <span class="link">Guild</span>
                                     </a>
                                 @else
                                     <a class="nav-link text-dark" href="/guild/{{ $hunter->guild_id }}">
-                                        <span><img class="icon" src="{{ URL('storage/guildIcon.svg') }}" /></span>
+                                        <span><img class="icon" src="{{ asset('img/bannersIconos/guildIcon.svg') }}" /></span>
                                         <span class="link">Guild</span></a>
                                 @endif
                             </li>
                             <li class="nav-item border-top">
                                 <a class="nav-link text-dark" href="/edit">
-                                    <span><img class="icon" src="{{ URL('storage/settingIcon.svg') }}" /></span>
+                                    <span><img class="icon" src="{{ asset('img/bannersIconos/settingIcon.svg') }}" /></span>
                                     <span class="link">Ajustes</span></a>
                             </li>
                             <li class="nav-item border-top">
                                 <a class="nav-link text-dark" href="/friends">
-                                    <span><img class="icon" src="{{ URL('storage/userIcon.svg') }}" /></span>
+                                    <span><img class="icon" src="{{ asset('img/bannersIconos/userIcon.svg') }}" /></span>
                                     <span class="link">Amigos</span>
                                     @if ($hunter->hasPendingRequest())
                                         <span class="badge bg-warning">Nueva solicitud</span>
@@ -66,19 +66,19 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <span><img class="avatar" src="{{ URL('storage/weaponIcon.svg') }}" /></span>
+                                <span><img class="avatar" src="{{ asset('img/bannersIconos/weaponIcon.svg') }}" /></span>
                                 <label for="armadura" class="fw-bold">ARMA</label>
                                 <p>{{ $hunter->weapon->name }}</p>
                             </div>
 
                             <div class="col">
-                                <span><img class="avatar" src="{{ URL('storage/armorIcon.svg') }}" /></span>
+                                <span><img class="avatar" src="{{ asset('img/bannersIconos/armorIcon.svg') }}" /></span>
                                 <label for="armadura" class="fw-bold">ARMADURA</label>
                                 <p>{{ $hunter->armor->name }}</p>
                             </div>
 
                             <div class="col">
-                                <span><img class="avatar" src="{{ URL('storage/guildIcon.svg') }}" /></span>
+                                <span><img class="avatar" src="{{ asset('img/bannersIconos/guildIcon.svg') }}" /></span>
                                 <label for="" class="fw-bold">GUILD</label>
 
                                 @isset($hunter->guild)

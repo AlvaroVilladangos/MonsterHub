@@ -18,12 +18,12 @@
                     <h5 class="card-title text-center text-light fw-bold">INFO</h5>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center lista">
                         <span class="mx-5"> Defensa: </span> <span class="mx-5">{{ $armor->def }} <img class="icon"
-                                src="{{ URL('storage/whiteShieldIcon.svg') }}" /></span>
+                                src="{{ asset('img/bannersIconos/whiteShieldIcon.svg') }}" /></span>
                     </li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center lista">
                         <span class="mx-5"> Monstruo: </span> <a href="{{ route('monster.show', $monster->id) }}"
                             class="link nombrePerfil mx-5">{{ $monster->name }} <img class="icon"
-                                src="{{ URL('storage/monsterIcon.svg') }}" /></a>
+                                src="{{ asset('img/bannersIconos/monsterIcon.svg') }}" /></a>
                     </li>
                 </ul>
             </div>

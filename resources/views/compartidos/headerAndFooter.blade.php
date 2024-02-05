@@ -8,7 +8,7 @@
     <title>MonsterHub</title>
     @vite('/resources/css/bootstrap.min.css')
 
-    <link rel="icon" href="{{ URL('storage/favicon.jpg') }}">
+    <link rel="icon" href="{{ asset('img/bannersIconos/favicon.jpg') }}">
 
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
@@ -31,7 +31,7 @@
 <body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg colorNavBar">
-        <span><img class="avatar mx-3 my-2" src="{{ URL('storage/monsterHub.svg') }}" /></span>
+        <span><img class="avatar mx-3 my-2" src="{{ asset('img/bannersIconos/monsterHub.svg') }}" /></span>
         @if (auth()->check())
             @if (auth()->user()->admin)
                 <a class="navbar-brand navbarTitle" href="/indexAdmin">MonsterHub</a>

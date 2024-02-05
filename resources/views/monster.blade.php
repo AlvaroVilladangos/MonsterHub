@@ -22,23 +22,23 @@
                             {{ $monster->element }}
                             @switch($monster->element)
                                 @case('Fuego')
-                                    <img class="icon" src="{{ URL('storage/fireIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/fireIcon.png') }}" />
                                 @break
 
                                 @case('Agua')
-                                    <img class="icon" src="{{ URL('storage/waterIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/waterIcon.png') }}" />
                                 @break
 
                                 @case('Hielo')
-                                    <img class="icon" src="{{ URL('storage/iceIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/iceIcon.png') }}" />
                                 @break
 
                                 @case('Eléctrico')
-                                    <img class="icon" src="{{ URL('storage/thunderIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/thunderIcon.png') }}" />
                                 @break
 
                                 @case('Dragón')
-                                    <img class="icon" src="{{ URL('storage/dragonIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/dragonIcon.png') }}" />
                                 @break
 
                                 @case('Neutro')
@@ -52,23 +52,23 @@
                             {{ $monster->weakness }}
                             @switch($monster->weakness)
                                 @case('Fuego')
-                                    <img class="icon" src="{{ URL('storage/fireIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/fireIcon.png') }}" />
                                 @break
 
                                 @case('Agua')
-                                    <img class="icon" src="{{ URL('storage/waterIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/waterIcon.png') }}" />
                                 @break
 
                                 @case('Hielo')
-                                    <img class="icon" src="{{ URL('storage/iceIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/iceIcon.png') }}" />
                                 @break
 
                                 @case('Eléctrico')
-                                    <img class="icon" src="{{ URL('storage/thunderIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/thunderIcon.png') }}" />
                                 @break
 
                                 @case('Dragón')
-                                    <img class="icon" src="{{ URL('storage/dragonIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/dragonIcon.png') }}" />
                                 @break
 
                                 @case('Neutro')
@@ -82,20 +82,20 @@
                         @isset($weapon)
                             <a href="{{ route('weapon.show', $weapon->id) }}"
                                 class="link nombrePerfil mx-5">{{ $weapon->name }} <img class="avatarRoom"
-                                    src="{{ URL('storage/weaponIcon.svg') }}" /></a>
+                                    src="{{ asset('img/bannersIconos/weaponIcon.svg') }}" /></a>
                         @else
                             <span class="nav-link mx-5">N/A <img class="avatarRoom"
-                                    src="{{ URL('storage/weaponIcon.svg') }}" /></span>
+                                    src="{{ asset('img/bannersIconos/weaponIcon.svg') }}" /></span>
                         @endisset
                     </li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center lista">
                         <span class="mx-5">Armadura:</span>
                         @isset($armor)
                             <a href="{{ route('armor.show', $armor->id) }}" class="link nombrePerfil mx-5">{{ $armor->name }}
-                                <img class="avatarRoom" src="{{ URL('storage/armorIcon.svg') }}" /></a>
+                                <img class="avatarRoom" src="{{ asset('img/bannersIconos/armorIcon.svg') }}" /></a>
                         @else
                             <span class="nav-link mx-5">N/A <img class="avatarRoom"
-                                    src="{{ URL('storage/armorIcon.svg') }}" /></span></span>
+                                    src="{{ asset('img/bannersIconos/armorIcon.svg') }}" /></span></span>
                         @endisset
                     </li>
                 </ul>

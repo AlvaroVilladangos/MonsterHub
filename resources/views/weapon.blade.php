@@ -19,30 +19,30 @@
                     <h5 class="card-title text-center text-light fw-bold">INFO</h5>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center lista">
                         <span class="mx-5"> Ataque: </span> <span class="mx-5">{{ $weapon->atk }} <img class="icon"
-                                src="{{ URL('storage/whiteSwordIcon.svg') }}" /></span>
+                                src="{{ asset('img/bannersIconos/whiteSwordIcon.svg') }}" /></span>
                     </li>
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center lista">
                         <span class="mx-5">Elemento: </span> <span class="mx-5">
                             {{ $weapon->element }}
                             @switch($weapon->element)
                                 @case('Fuego')
-                                    <img class="icon" src="{{ URL('storage/fireIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/fireIcon.png') }}" />
                                 @break
 
                                 @case('Agua')
-                                    <img class="icon" src="{{ URL('storage/waterIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/waterIcon.png') }}" />
                                 @break
 
                                 @case('Hielo')
-                                    <img class="icon" src="{{ URL('storage/iceIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/iceIcon.png') }}" />
                                 @break
 
                                 @case('Eléctrico')
-                                    <img class="icon" src="{{ URL('storage/thunderIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/thunderIcon.png') }}" />
                                 @break
 
                                 @case('Dragón')
-                                    <img class="icon" src="{{ URL('storage/dragonIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/dragonIcon.png') }}" />
                                 @break
 
                                 @case('Neutro')
@@ -58,7 +58,7 @@
                     <li class="list-group-item list-group-item d-flex justify-content-between align-items-center lista">
                         <span class="mx-5"> Monstruo: </span> <a href="{{ route('monster.show', $monster->id) }}"
                             class="link nombrePerfil mx-5">{{ $monster->name }} <img class="icon"
-                                src="{{ URL('storage/monsterIcon.svg') }}" /></a>
+                                src="{{ asset('img/bannersIconos/monsterIcon.svg') }}" /></a>
                     </li>
                 </ul>
             </div>

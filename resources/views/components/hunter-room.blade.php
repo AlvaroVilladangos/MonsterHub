@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
             <div class="list-unstyled d-flex align-items-center">
-                <img class="avatarRoom" src="{{ URL('storage/monsterIcon.svg') }}" />
+                <img class="avatarRoom" src="{{ asset('img/bannersIconos/monsterIcon.svg') }}" />
                 <h5 class="card-title mx-2 my-2">{{ $hunter->room->monster->name }}</h5>
             </div>
             <h5 class="mx-2 my-2 border-bottom">Cazadores</h5>

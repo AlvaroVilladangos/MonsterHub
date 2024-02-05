@@ -34,19 +34,19 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <span><img class="avatar" src="{{ URL('storage/weaponIcon.svg') }}" /></span>
+                            <span><img class="avatar" src="{{ asset('img/bannersIconos/weaponIcon.svg') }}" /></span>
                             <label for="armadura" class="fw-bold">ARMA</label>
                             <p>{{ $hunter->weapon->name }}</p>
                         </div>
         
                         <div class="col">
-                            <span><img class="avatar" src="{{ URL('storage/armorIcon.svg') }}" /></span>
+                            <span><img class="avatar" src="{{ asset('img/bannersIconos/armorIcon.svg') }}" /></span>
                             <label for="armadura" class="fw-bold">ARMADURA</label>
                             <p>{{ $hunter->armor->name }}</p>
                         </div>
         
                         <div class="col">
-                            <span><img class="avatar" src="{{ URL('storage/guildIcon.svg') }}" /></span>
+                            <span><img class="avatar" src="{{ asset('img/bannersIconos/guildIcon.svg') }}" /></span>
                             <label for="" class="fw-bold">GUILD</label>
                             @isset($hunter->guild)
                                 <p> <a class="nav-item nav-link"

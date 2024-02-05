@@ -33,7 +33,7 @@
                     <div class="row">
                         
                         <div class="col-12 my-3 col-md-5 text-center">
-                            <img class="avatarLogin" src="{{ URL('storage/monsterHub.svg') }}" />
+                            <img class="avatarLogin" src="{{ asset('img/bannersIconos/monsterHub.svg') }}" />
                             <h3 class="tituloCard">¡Cazar acompañado siempre es mejor!</h3>
                         </div>
 

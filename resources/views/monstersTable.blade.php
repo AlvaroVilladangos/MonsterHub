@@ -31,23 +31,23 @@
 
                             @switch($monster->element)
                                 @case('Fuego')
-                                    <img class="icon" src="{{ URL('storage/fireIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/fireIcon.png') }}" />
                                 @break
 
                                 @case('Agua')
-                                    <img class="icon" src="{{ URL('storage/waterIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/waterIcon.png') }}" />
                                 @break
 
                                 @case('Hielo')
-                                    <img class="icon" src="{{ URL('storage/iceIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/iceIcon.png') }}" />
                                 @break
 
                                 @case('Eléctrico')
-                                    <img class="icon" src="{{ URL('storage/thunderIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/thunderIcon.png') }}" />
                                 @break
 
                                 @case('Dragón')
-                                    <img class="icon" src="{{ URL('storage/dragonIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/dragonIcon.png') }}" />
                                 @break
 
                                 @case('Neutro')
@@ -59,23 +59,23 @@
                             {{ $monster->weakness }}
                             @switch($monster->weakness)
                                 @case('Fuego')
-                                    <img class="icon" src="{{ URL('storage/fireIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/fireIcon.png') }}" />
                                 @break
 
                                 @case('Agua')
-                                    <img class="icon" src="{{ URL('storage/waterIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/waterIcon.png') }}" />
                                 @break
 
                                 @case('Hielo')
-                                    <img class="icon" src="{{ URL('storage/iceIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/iceIcon.png') }}" />
                                 @break
 
                                 @case('Eléctrico')
-                                    <img class="icon" src="{{ URL('storage/thunderIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/thunderIcon.png') }}" />
                                 @break
 
                                 @case('Dragón')
-                                    <img class="icon" src="{{ URL('storage/dragonIcon.png') }}" />
+                                    <img class="icon" src="{{ asset('img/bannersIconos/dragonIcon.png') }}" />
                                 @break
 
                                 @case('Neutro')

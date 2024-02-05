@@ -51,7 +51,7 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                    <span><img class="avatar" src="{{ URL('storage/weaponIcon.svg') }}" /></span>
+                                    <span><img class="avatar" src="{{ asset('img/bannersIconos/weaponIcon.svg') }}" /></span>
                                     <label for="weapon" class="fw-bold">ARMA</label>
                                     <select size="1" name="weapon" id="weapon" class="select-control">
                                         @foreach ($weapons as $weapon)
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="col">
-                                    <span><img class="avatar" src="{{ URL('storage/armorIcon.svg') }}" /></span>
+                                    <span><img class="avatar" src="{{ asset('img/bannersIconos/armorIcon.svg') }}" /></span>
                                     <label for="armor" class="fw-bold">ARMADURA</label>
                                     <select size="1" name="armor" id="armor" class="select-control">
                                         @foreach ($armors as $armor)

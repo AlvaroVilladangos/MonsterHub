@@ -26,7 +26,7 @@
                     <td class="align-middle text-center border-bottom"><a
                             href="/armor/{{ $armor->id }}  "class="linkTabla">{{ $armor->name }}</a></td>
                     <td class="align-middle text-center border-bottom">{{ $armor->def }} <img class="icon"
-                            src="{{ URL('storage/blackShieldIcon.svg') }}" /></td>
+                            src="{{ asset('img/bannersIconos/blackShieldIcon.svg') }}" /></td>
                 </tr>
             @endforeach
         </table>
