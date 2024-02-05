@@ -1,0 +1,94 @@
+.cardAdmin {
+    width: 500px;
+    height: 300px;
+    border-radius: 20px;
+    background: #58a4ae;
+    position: relative;
+    padding: 1.8rem;
+    border: 2px solid #397489;
+    transition: 0.5s ease-out;
+    overflow: visible;
+   }
+   
+   .cardAdmin-details {
+    color: black;
+    height: 100%;
+    gap: .5em;
+    display: grid;
+    place-content: center;
+   }
+   
+   .cardAdmin-button {
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1rem;
+    border: solid;
+    border-color:#397489 ;
+    background-color: #397489;
+    color: white;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+    font-weight: bold;
+   }
+
+   .cardAdmin-button:hover {
+    background-color: #122626;
+   }
+   
+   .text-body {
+    color: rgb(134, 134, 134);
+   }
+   
+   /*Text*/
+   .text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+   }
+   
+   /*Hover*/
+   .cardAdmin:hover {
+    border-color: #397489;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+   }
+   
+   .cardAdmin:hover .cardAdmin-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+   }
+
+   a.cardAdmin-button.nav-link:hover {
+    color: #ffffff; /* Cambia esto al color que desees */
+}
+
+
+.modalCardAdmin{
+    color: white;
+    background-color: #58a4ae;
+    border: none;
+}
+
+.imagen{
+    background-color: white;
+    border-radius: 7px;
+}
+
+.imgBorder{
+    width: 100%;
+    max-height: 250px; 
+    object-fit: cover; 
+    border: solid 1px black !important;
+}
+
+
+
+.imgBorderMonster{
+    max-height: 250px;
+    max-width: 450px;
+    border: 3px solid #397489;
+    border-radius: 7px;
+}
