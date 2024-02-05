@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./public/img/monsterHubLogo.png">
+<img src="README.md/public/img/monsterHubLogo.png">
 </p>
 
 
