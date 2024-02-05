@@ -1,4 +1,4 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 @section('content')
     @if (session('error'))
@@ -40,13 +40,13 @@
                     @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-dark">search</button>
+                        <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
             </div>
 
             <div class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#monsterCreateModal">
+                <button type="button" class="btn btn-aceptar" data-bs-toggle="modal" data-bs-target="#monsterCreateModal">
                     Crear Monstruo
                 </button>
             </div>
@@ -54,7 +54,7 @@
 
 
 
-        <table class="table table-hover table-borderless">
+        <table class="table table-hover">
             <tr class="table-dark ">
                 <th class="text-center">Imagen</th>
                 <th class="text-center"> Monstruo</th>
@@ -66,13 +66,13 @@
             @foreach ($monsters as $monster)
                 <tr>
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
-                            style="width:150px; height:auto;" alt=""></td>
+                          class="monsterTable" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/monster/{{ $monster->id }}  "class="nav-link text-decoration-underline"
+                            href="/monster/{{ $monster->id }}  "class="linkTabla"
                             target="_blank">{{ $monster->name }}</a>
                     </td>
                     <td class="align-middle text-center">
-                        <button type="button" class="btn btn-warning btn-sm" data-id="{{ $monster->id }}"
+                        <button type="button" class="btn btn-editar btn-sm" data-id="{{ $monster->id }}"
                             data-bs-toggle="modal" data-bs-target="#monsterEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
@@ -80,7 +80,7 @@
                             action="{{ route('monsterDestroy', ['id' => $monster->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-primary btn-sm" type="button"
+                            <button class="btn btn-cerrar btn-sm" type="button"
                                 onclick="confirmDeleteMonster({{ $monster->id }})">ELIMINAR</button>
                         </form>
                     </td>
@@ -101,7 +101,7 @@
                             <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-primary" type="submit">Deshabilitar</button>
+                                <button class="btn btn-sm btn-cerrar" type="submit">Deshabilitar</button>
                             </form>
                         </td>
                     @endif
@@ -118,9 +118,9 @@
 
     <div class="modal fade" id="monsterEditModal" tabindex="-1"aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalCardAdmin">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="guildModalLabel">Modificar Monstruo</h1>
+                    <h1 class="tituloCard" id="guildModalLabel">Modificar Monstruo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -130,20 +130,20 @@
                         @csrf
                         @method('put')
                         
-                        <div class="mb-3">
+                        <div class="mb-3 imagen">
                             <img class="img-fluid mb-3" src="" alt="" name="monsterImg">
                             <input type="file" class="form-control mb-3" name="monsterImg">
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterName" class="form-label">Nombre del Monstruo</label>
+                            <label for="monsterName" class="form-label fs-5 fw-bold">Nombre del Monstruo</label>
                             <input type="text" class="form-control mb-3" id="monsterName" name="monsterName"
                                 required>
-                            <span id="errorMonsterName" class="text-primary"></span>
+                            <span id="errorMonsterName" class="error"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterElement" class="form-label">Elemento</label>
+                            <label for="monsterElement" class="form-label fs-5 fw-bold">Elemento</label>
                             <select name="monsterElement" id="monsterElement" class="form-select" required>
                                 <option value="Agua">Agua</option>
                                 <option value="Fuego">Fuego</option>
@@ -155,7 +155,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterWeakness" class="form-label">Debilidad</label>
+                            <label for="monsterWeakness" class="form-label fs-5 fw-bold">Debilidad</label>
                             <select name="monsterWeakness" id="monsterWeakness" class="form-select" required>
                                 <option value="Agua">Agua</option>
                                 <option value="Fuego">Fuego</option>
@@ -167,23 +167,23 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterPhysiology" class="form-label">Physiology</label>
+                            <label for="monsterPhysiology" class="form-label fs-5 fw-bold">Physiology</label>
                             <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology" required> </textarea>
-                            <span id="errorMonsterPhysiology" class="text-primary"></span>
+                            <span id="errorMonsterPhysiology" class="error"></span>
                         </div>
 
 
                         <div class="mb-3">
-                            <label for="monsterAbilities" class="form-label">Abilities</label>
+                            <label for="monsterAbilities" class="form-label fs-5 fw-bold">Abilities</label>
                             <textarea type="text" class="form-control mb-3" id="monsterAbilities" name="monsterAbilities" required></textarea>
-                            <span id="errorMonsterAbilities" class="text-primary"></span>
+                            <span id="errorMonsterAbilities" class="error"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-dark"> Actualizar</button>
+                        <button type="submit" class="btn btn-aceptar"> Actualizar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -191,9 +191,9 @@
 
     <div class="modal fade" id="monsterCreateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalCardAdmin">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="monsterModalLabel">Crear Monstruo</h1>
+                    <h1 class="tituloCard" id="monsterModalLabel">Crear Monstruo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -207,13 +207,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterName" class="form-label">Nombre del Monstruo</label>
+                            <label for="monsterName" class="form-label fs-5 fw-bold">Nombre del Monstruo</label>
                             <input type="text" class="form-control mb-3" id="monsterName" name="monsterName"
                                 required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterElement" class="form-label">Elemento</label>
+                            <label for="monsterElement" class="form-label fs-5 fw-bold">Elemento</label>
                             <select name="monsterElement" id="monsterElement" class="form-select" required>
                                 <option value="Agua">Agua</option>
                                 <option value="Fuego">Fuego</option>
@@ -225,7 +225,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterWeakness" class="form-label">Debilidad</label>
+                            <label for="monsterWeakness" class="form-label fs-5 fw-bold">Debilidad</label>
                             <select name="monsterWeakness" id="monsterWeakness" class="form-select" required>
                                 <option value="Agua">Agua</option>
                                 <option value="Fuego">Fuego</option>
@@ -238,20 +238,20 @@
 
 
                         <div class="mb-3">
-                            <label for="monsterPhysiology" class="form-label">Physiology</label>
+                            <label for="monsterPhysiology" class="form-label fs-5 fw-bold">Physiology</label>
                             <textarea type="text" class="form-control mb-3" id="monsterPhysiology" name="monsterPhysiology" required> </textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label for="monsterAbilities" class="form-label">Abilities</label>
+                            <label for="monsterAbilities" class="form-label fs-5 fw-bold">Abilities</label>
                             <textarea type="text" class="form-control mb-3" id="monsterAbilities" name="monsterAbilities" required></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-dark"> Crear</button>
+                        <button type="submit" class="btn btn-aceptar"> Crear</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -275,8 +275,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#183e43',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {

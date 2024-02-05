@@ -1,7 +1,7 @@
 /*  Ajax para rellenar formulario edicion armas */
 
 $(document).ready(function() {
-    $('.btn-warning').click(function() {
+    $('.btn-editar').click(function() {
         var weaponId = $(this).data('id');
 
         $.ajax({

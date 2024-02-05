@@ -115,6 +115,7 @@ class armorController extends Controller
             'armorImg' => 'sometimes|image',
             'armorDef' => 'required|numeric|max:200',
             'armorInfo' => 'required|min:10',
+            'armorMonster_id' => 'required|unique:armors,monster_id,' . $id
         ]);
     
         if ($validator->fails()) {

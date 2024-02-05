@@ -122,7 +122,7 @@
 
     <div class="modal fade" id="armorEditModal" tabindex="-1"aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content modalCard">
+            <div class="modal-content modalCardAdmin">
                 <div class="modal-header">
                     <h1 class="tituloCard" id="guildModalLabel">Modificar armadura</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -181,7 +181,7 @@
 
     <div class="modal fade" id="armorCreateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content modalCard">
+            <div class="modal-content modalCardAdmin">
                 <div class="modal-header">
                     <h1 class="tituloCard" id="armorModalLabel">Crear armadura</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

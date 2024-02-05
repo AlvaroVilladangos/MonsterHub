@@ -53,7 +53,7 @@
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/weaponsAdmin">Armas</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/armorsAdmin">Armaduras</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/usersAdmin">Usuarios</a>
-    
+                    <a class="nav-item nav-link opcionNavBar mx-2" href="/guildsAdmin">Guilds</a>
                     @else
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/monsters">Monstruos</a>
                     <a class="nav-item nav-link opcionNavBar mx-2" href="/weapons">Armas</a>

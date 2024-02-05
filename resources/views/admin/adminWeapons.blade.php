@@ -1,4 +1,4 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 @section('content')
 
@@ -41,13 +41,13 @@
                     @csrf
                     <div class="input-group mb-4 w-25" id="search-box">
                         <input name="search" type="search" class="form-control" placeholder="Search" />
-                        <button type="submit" class="btn btn-dark">search</button>
+                        <button type="submit" class="btn btn-aceptar">search</button>
                     </div>
                 </form>
             </div>
 
             <div class="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#weaponCreateModal">
+                <button type="button" class="btn btn-aceptar" data-bs-toggle="modal" data-bs-target="#weaponCreateModal">
                     Crear Arma
                 </button>
             </div>
@@ -55,7 +55,7 @@
 
 
 
-        <table class="table table-hover table-borderless">
+        <table class="table table-hover">
             <tr class="table-dark ">
                 <th class="text-center">Imagen</th>
                 <th class="text-center"> Arma</th>
@@ -71,15 +71,15 @@
                     <td class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center"><a
-                            href="/weapon/{{ $weapon->id }}  "class="nav-link text-decoration-underline"
+                            href="/weapon/{{ $weapon->id }}  "class="linkTabla"
                             target="_blank">{{ $weapon->name }}</a>
                     </td>
                     <td class="align-middle text-center"><a
-                            href="/monster/{{ $weapon->monster->id }}  "class="nav-link text-decoration-underline"
+                            href="/monster/{{ $weapon->monster->id }}  "class="linkTabla"
                             target="_blank"> {{ $weapon->monster->name }}</a>
                     </td>
                     <td class="align-middle text-center">
-                        <button type="button" class="btn btn-warning btn-sm" data-id="{{ $weapon->id }}"
+                        <button type="button" class="btn btn-editar btn-sm" data-id="{{ $weapon->id }}"
                             data-bs-toggle="modal" data-bs-target="#weaponEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
@@ -87,7 +87,7 @@
                             action="{{ route('weaponDestroy', ['id' => $weapon->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-primary btn-sm" type="button"
+                            <button class="btn btn-cerrar btn-sm" type="button"
                                 onclick="confirmDeleteWeapon({{ $weapon->id }})">ELIMINAR</button>
                         </form>
                     </td>
@@ -108,7 +108,7 @@
                             <form action="{{ route('blockWeapon', ['id' => $weapon->id]) }}" method="post">
                                 @csrf
                                 @method('put')
-                                <button class="btn btn-sm btn-primary" type="submit">Deshabilitar</button>
+                                <button class="btn btn-sm btn-cerrar" type="submit">Deshabilitar</button>
                             </form>
                         </td>
                     @endif
@@ -125,9 +125,9 @@
 
     <div class="modal fade" id="weaponEditModal" tabindex="-1"aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalCardAdmin">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="guildModalLabel">Modificar Arma</h1>
+                    <h1 class="tituloCard" id="guildModalLabel">Modificar Arma</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -145,19 +145,19 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="weaponName" class="form-label">Nombre de la arma</label>
+                                <label for="weaponName" class="form-label fs-5 fw-bold">Nombre de la arma</label>
                                 <input type="text" class="form-control mb-3" id="weaponName" name="weaponName">
-                                <span id="errorWeaponName" class="text-primary"></span>
+                                <span id="errorWeaponName" class="error"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label for="weaponAtk" class="form-label">Ataque</label>
+                                <label for="weaponAtk" class="form-label fs-5 fw-bold">Ataque</label>
                                 <input type="text" class="form-control mb-3" id="weaponAtk" name="weaponAtk">
-                                <span id="errorWeaponAtk" class="text-primary"></span>
+                                <span id="errorWeaponAtk" class="error"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label for="weaponElement" class="form-label">Elemento</label>
+                                <label for="weaponElement" class="form-label fs-5 fw-bold">Elemento</label>
                                 <select name="weaponElement" id="weaponElement" class="form-select" required>
                                     <option value="Agua">Agua</option>
                                     <option value="Fuego">Fuego</option>
@@ -169,32 +169,33 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="weaponCrit" class="form-label">Critico</label>
+                                <label for="weaponCrit" class="form-label fs-5 fw-bold">Critico</label>
                                 <input type="text" class="form-control mb-3" id="weaponCrit" name="weaponCrit">
-                                <span id="errorWeaponCrit" class="text-primary"></span>
+                                <span id="errorWeaponCrit" class="error"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label for="weaponInfo" class="form-label">Información</label>
+                                <label for="weaponInfo" class="form-label fs-5 fw-bold">Información</label>
                                 <textarea type="text" class="form-control mb-3" id="weaponInfo" name="weaponInfo"> </textarea>
                             </div>
 
                             <div class="mb-3">
                                 <select name="weaponMonster_id" id="weaponMonster_id" required>
+                                    <label for="weaponMonster_id" class="form-label fs-5 fw-bold">Monstruo</label> <br>
                                     @foreach ($monsters as $monster)
                                         <option value="{{ $monster->id }}"> {{ $monster->name }} </option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-dark"> Actualizar</button>
+                            <button type="submit" class="btn btn-aceptar"> Actualizar</button>
 
                         </form>
                     @else
                     @endisset
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -202,9 +203,9 @@
 
     <div class="modal fade" id="weaponCreateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content modalCardAdmin">
                 <div class="modal-header">
-                    <h1 class="modal-title" id="weaponModalLabel">Crear Arma</h1>
+                    <h1 class="tituloCard" id="weaponModalLabel">Crear Arma</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -218,17 +219,17 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="weaponName" class="form-label">Nombre del Arma</label>
+                            <label for="weaponName" class="form-label fs-5 fw-bold">Nombre del Arma</label>
                             <input type="text" class="form-control mb-3" id="weaponName" name="weaponName" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="weaponAtk" class="form-label">Ataque</label>
+                            <label for="weaponAtk" class="form-label fs-5 fw-bold">Ataque</label>
                             <input type="text" class="form-control mb-3" id="weaponAtk" name="weaponAtk" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="weaponElement" class="form-label">Elemento</label>
+                            <label for="weaponElement" class="form-label fs-5 fw-bold">Elemento</label>
                             <select name="weaponElement" id="weaponElement" class="form-select" required>
                                 <option value="Agua">Agua</option>
                                 <option value="Fuego">Fuego</option>
@@ -240,16 +241,17 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="weaponCrit" class="form-label">Crítico</label>
+                            <label for="weaponCrit" class="form-label fs-5 fw-bold">Crítico</label>
                             <input type="text" class="form-control mb-3" id="weaponCrit" name="weaponCrit" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="weaponInfo" class="form-label">Información</label>
+                            <label for="weaponInfo" class="form-label fs-5 fw-bold">Información</label>
                             <textarea type="text" class="form-control mb-3" id="weaponInfo" name="weaponInfo"> </textarea>
                         </div>
 
                         <div class="mb-3">
+                            <label for="weaponMonster_id" class="form-label fs-5 fw-bold">Monstruo</label> <br>
                             <select name="weaponMonster_id" id="weaponMonster_id" required>
                                 @foreach ($monstersNoWeapon as $monsterNoWeapon)
                                     <option value="{{ $monsterNoWeapon->id }}"> {{ $monsterNoWeapon->name }} </option>
@@ -257,7 +259,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-dark"> Crear</button>
+                        <button type="submit" class="btn btn-aceptar"> Crear</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -285,8 +287,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#183e43',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {

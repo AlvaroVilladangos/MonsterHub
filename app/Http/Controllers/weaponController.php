@@ -119,14 +119,17 @@ class weaponController extends Controller
     
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make($request->all(), [
             'weaponName' => 'required|unique:weapons,name,'.$id.'|min:2|regex:/^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúÁÉÍÓÚÑñ\s]*$/',
             'weaponImg' => 'sometimes|image',
             'weaponAtk' => 'required|numeric|min:100|max:1000',
             'weaponCrit' => 'required|numeric|max:100',
             'weaponInfo' => 'required|min:10',
+            'weaponMonster_id' => 'required|unique:weapons,monster_id,' . $id
         ]);
-    
+        
+        
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }

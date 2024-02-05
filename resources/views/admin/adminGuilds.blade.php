@@ -1,4 +1,4 @@
-@extends('compartidos.adminHeaderAndFooter')
+@extends('compartidos.headerAndFooter')
 
 
 @section('content')
@@ -8,12 +8,12 @@
             @csrf
             <div class="input-group mb-4 w-25" id="search-box">
                 <input name="search" type="search" class="form-control" placeholder="Search" />
-                <button type="submit" class="btn btn-dark">search</button>
+                <button type="submit" class="btn btn-aceptar">search</button>
             </div>
         </form>
 
 
-        <table class="table table-hover table-borderless">
+        <table class="table table-hover">
             <tr class="table-dark ">
                 <th class="text-center">Guilds</th>
                 <th class="text-center">Lider</th>
@@ -23,9 +23,9 @@
             @foreach ($guilds as $guild)
                 <tr>
                     <td class="align-middle text-center">
-                        <a class="nav-link text-decoration-underline"
+                        <a class="linkTabla"
                             href="/guild/{{ $guild->id }}">{{ $guild->name }}</a></td>
-                    <td class="align-middle text-center"><a class="nav-link text-decoration-underline"
+                    <td class="align-middle text-center"><a class="linkTabla"
                             href="/hunter/{{ $guild->leader->id }}">{{ $guild->leader->name }}</a></td>
         
                     <td class="align-middle text-center">
@@ -33,7 +33,7 @@
                             action="{{ route('guildDestroy', ['id' => $guild->id]) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-primary btn-sm" type="button"
+                            <button class="btn btn-cerrar btn-sm" type="button"
                                 onclick="confirmDeleteGuild({{ $guild->id }})">ELIMINAR</button>
                         </form>
                     </td>
@@ -59,8 +59,8 @@
                 text: "¡No podrás revertir esto!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#183e43',
+                cancelButtonColor: '#e43944',
                 confirmButtonText: 'Sí',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
