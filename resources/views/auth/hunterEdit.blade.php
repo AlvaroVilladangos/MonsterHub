@@ -34,7 +34,7 @@
                         <div class="px-3 pt-4 pb-2">
                             <div class="d-flex align-items-center justify-content-between border-bottom">
                                 <div class="d-flex align-items-center">
-                                    <img class="avatar mb-1" src="{{ URL('storage/' . Auth::user()->hunter->img) }}" />
+                                    <img class="avatar mb-1" src="{{Auth::user()->hunter->image_url }}" />
                                     <div class="ms-3">
                                         <h3 class="card-title mb-2 nombrePerfil"></h3>
                                         <input type="text" name="hunterName" class="form-control" id="hunterName"
@@ -89,7 +89,7 @@
                                 <div class="d-flex align-items-center border-bottom">
                                     <div class="d-flex justify-content-between align-items-center w-100">
                                         <h3 class="card-title mb-2">
-                                            <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
+                                            <img class="avatar mb-1" src="{{$comment->hunter->image_url }}" />
                                             <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">
                                                 {{ $comment->hunter->name }}
                                             </a>

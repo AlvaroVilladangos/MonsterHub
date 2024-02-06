@@ -28,7 +28,7 @@
                     @if ($hunterInRoom->id != Auth::user()->hunter->id)
                         <li class="list-unstyled">
                             <div class=" d-flex align-items-center mx-2 my-2">
-                                <img class="avatarRoom" src="{{ URL('storage/' . $hunterInRoom->img) }}" />
+                                <img class="avatarRoom" src="{{ $hunterInRoom->image_url }}" />
                                 <a href="/hunter/{{ $hunterInRoom->id }}" class="nav-link ms-3 link">
                                     {{ $hunterInRoom->name }}</a>
                             </div>

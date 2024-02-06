@@ -45,8 +45,8 @@
                                 </td>
                                 <td data-label="Amigo" class="align-middle text-center">
                                     <div style="display: flex; align-items: center; justify-content: center;">
-                                        <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                            src="{{ URL('storage/' . $acceptedFriend->img) }}" />
+                                        <img  class="avatar mx-2"
+                                            src="{{$acceptedFriend->image_url }}" />
                                         <a href="/hunter/{{ $acceptedFriend->id }}"
                                             class="linkTabla">{{ $acceptedFriend->name }}</a>
                                     </div>
@@ -76,6 +76,8 @@
                                     </td>
                                 @else
                                     N/A
+                                    <td></td>
+                                    <td></td>
                                 @endisset
                                 </td>
                                 <td class="align-middle text-center">
@@ -92,6 +94,7 @@
                                         @endisset
                                     @endisset
                                 </td>
+                                
                             </tr>
                         @endforeach
 
@@ -106,8 +109,8 @@
                         <li class="list-group-item">
                             <div style="display: flex; align-items: center; justify-content: space-between;">
                                 <div style="display: flex; align-items: center;">
-                                    <img style="width: 50px" class="me-3 avatar-sm rounded-circle"
-                                        src="{{ URL('storage/' . $pendingFriend->img) }}" />
+                                    <img  class="avatarRoom mx-2"
+                                        src="{{ $pendingFriend->image_url }}" />
                                     <a href="/hunter/{{ $pendingFriend->id }}"
                                         class="linkTabla">{{ $pendingFriend->name }}</a>
                                 </div>

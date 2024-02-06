@@ -76,7 +76,7 @@
                 @if (auth()->check())
                     @if (!auth()->user()->admin)
                         <div class="navbar-nav mx-2">
-                            <img class="avatar mx-2" src="{{ URL('storage/' . auth()->user()->hunter->img) }}" />
+                            <img class="avatar mx-2" src="{{auth()->user()->hunter->image_url }}" />
                             <a class="nav-item nav-link navbarName"
                                 href="/dashboard">{{ auth()->user()->hunter->name }}</a>
                         </div>

@@ -109,5 +109,14 @@ class Hunter extends Model
         return $hasPendingRequest;
     }
     
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->img == 'imgProfile/defaultMonster.webp') {
+            return asset($this->img);
+        } else {
+            return URL('storage/' . $this->img);
+        }
+    }
     
 }

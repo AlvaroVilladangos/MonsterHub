@@ -27,7 +27,7 @@
                     <td class="align-middle text-center">
                         <div class="d-flex align-items-center justify-content-center">
                             <img class="avatarRoom"
-                                src="{{ URL('storage/' . $hunter->img) }}" />
+                                src="{{$hunter->image_url }}" />
                             <a href="/hunter/{{ $hunter->id }}" class="linkTabla">{{ $hunter->name }}</a>
                         </div>
                     </td>

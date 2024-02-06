@@ -16,7 +16,7 @@
                 <div class="px-3 pt-4 pb-2">
                     <div class="d-flex align-items-center justify-content-between border-bottom">
                         <div class="d-flex align-items-center">
-                            <img class="avatar mb-1" src="{{ URL('storage/' . $hunter->img) }}" />
+                            <img class="avatar mb-1" src="{{$hunter->image_url }}" />
                             <div class="ms-3">
                                 <h3 class="card-title mb-2 nombrePerfil">
                                     <p> {{ $hunter->name }} </p>
@@ -82,7 +82,7 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center border-bottom justify-content-between">
                             <div class="d-flex align-items-center">
-                                <img class="avatar mb-1" src="{{ URL('storage/' . $comment->hunter->img) }}" />
+                                <img class="avatar mb-1" src="{{$comment->hunter->image_url}}" />
                                 <div class="ms-3">
                                     <h3 class="card-title mb-2">
                                         <a class="link nombrePerfil" href="/hunter/{{ $comment->hunter->id }}">

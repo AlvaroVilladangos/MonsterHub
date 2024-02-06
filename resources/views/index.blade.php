@@ -8,33 +8,33 @@
     <title>MonsterHub</title>
     @vite('/resources/css/bootstrap.min.css')
     <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <link rel="icon" href="{{ URL('storage/favicon.jpg') }}">
 
-        <style>
-            background-image: url("/storage/fondo.jpeg");
-            body {
-                background-image: url();
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-        </style>
+    <style>
+        background-image: url("/storage/fondo.jpeg");
 
+        body {
+            background-image: url();
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 
-@vite('resources/js/app.js')
-@vite('resources/css/app.css')
-@vite('resources/css/admin.css')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    @vite('resources/js/app.js')
+    @vite('resources/css/app.css')
+
 </head>
 
 
-{{-- d-flex flex-column min-vh-100
- --}}<body class="d-flex flex-column min-vh-100">
 
+<body class="d-flex flex-column min-vh-100">
+
+    <div>
+
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        @if (auth()->check())
-        <a class="navbar-brand" href="/indexAdmin">MonsterHub</a>
-        @else
-        <a class="navbar-brand" href="/">MonsterHub</a>
-        @endif
+        <a class="navbar-brand" href="/dashboard">MonsterHub</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,31 +43,66 @@
             <div class="navbar-nav">
             </div>
 
-            <div class="ms-auto d-flex align-items-center">
+            <div class="ms-auto">
                 @if (auth()->check())
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="/indexAdmin">{{ auth()->user()->name }}</a>
-                    </div>
-
                     <form method="post" action="{{ route('logout') }}">
                         @csrf
-                        <button class="btn btn-primary mx-3" type="submit">Logout</button>
+                        <button class="btn btn-danger mx-3" type="submit">Logout</button>
                     </form>
                 @else
                     <a class="btn btn-light mx-3" href="/login">Login</a>
-                    <a class="btn btn-light mx-3" href="/registrar">Registrar</a>
                 @endif
+
             </div>
         </div>
     </nav>
 
+    <div class="container d-flex flex-column align-items-center">
+
+        @guest
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/registerBanner.jpg') }}" class="img-top" alt="...">
+            <div class="card-body">
+                <p class="fs-2">Podrás tener acceso a un sistema de guilds, amigos, personalizar tu perfil y mucho
+                    más!</p>
+                <a href="/register" class="btn btn-dark">REGISTRAR</a>
+            </div>
+        </div>
+        @endguest
+
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/monsterBanner.webp') }}" class="img-top" alt="...">
+            <div class="card-body">
+                <h1 class="card-title">MONSTRUOS</h1>
+                <p class="card-text">Aquí encontrarás toda la infromación necesaria sobres los monstruos que te
+                    encontrarás en tus cazarías.</p>
+                <a href="/monsters" class="btn btn-dark">Ir a monstruos</a>
+            </div>
+        </div>
+
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/weaponsBanner.jpg') }}" class="img-top" alt="...">
+            <div class="card-body">
+                <h1 class="card-title">ARMAS</h1>
+                <p class="card-text">Aquí encontrarás toda la infromación sobre las armas</p>
+                <a href="/weapons" class="btn btn-dark">Ir a armas</a>
+            </div>
+        </div>
+
+        <div class="card my-3" style="width: 50rem;">
+            <img src="{{ URL('storage/armorsBanner.jpg') }}" class="img-top" alt="...">
+            <div class="card-body">
+                <h1 class="card-title">ARMADURAS</h1>
+                <p class="card-text">Aquí encontrarás toda la infromación sobre las armaduras.</p>
+                <a href="/armors" class="btn btn-dark">Ir a armaduras</a>
+            </div>
+        </div>
+
+    </div>
 
 
-    {{--contenido--}}
 
-    @yield('content')
 
-   
     <footer class="mt-auto bg-dark">
         <div class="container text-light">
             <div class="col-md-4 d-flex ">
@@ -83,16 +118,17 @@
         </div>
     </footer>
 
-{{--     <div id="cb-cookie-banner" class="alert alert-dark text-center bg-dark mb-0" role="alert">
+
+    <div id="cb-cookie-banner" class="alert alert-dark text-center bg-dark mb-0" role="alert">
         <p class="text-light"> 🍪 Esta paginautiliza cookies para un mejor uso de la página. </p>
         <a class="text-light" href="https://www.cookiesandyou.com/" target="blank">Aprender más</a>
         <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_esconderCookieBanner()">
             Entendido
         </button>
     </div>
- --}}
 
-    @yield('scripts')
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
