@@ -85,6 +85,9 @@
                             data-bs-toggle="modal" data-bs-target="#weaponEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
+                        @if ($weapon->id == 1)
+
+                        @else
                         <form id="deleteWeaponForm{{ $weapon->id }}"
                             action="{{ route('weaponDestroy', ['id' => $weapon->id]) }}" method="post">
                             @csrf
@@ -92,27 +95,31 @@
                             <button class="btn btn-cerrar btn-sm" type="button"
                                 onclick="confirmDeleteWeapon({{ $weapon->id }})">ELIMINAR</button>
                         </form>
+                        @endif
                     </td>
 
-                    @if ($weapon->blocked)
-                        <td class="align-middle text-center">
-
-                            <form action="{{ route('unBlockWeapon', ['id' => $weapon->id]) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
-                            </form>
-
-                        </td>
+                    @if ($weapon->id == 1)
+                        <td></td>
                     @else
-                        <td class="align-middle text-center">
+                        @if ($weapon->blocked)
+                            <td class="align-middle text-center">
+                                <form action="{{ route('unBlockWeapon', ['id' => $weapon->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
+                                </form>
 
-                            <form action="{{ route('blockWeapon', ['id' => $weapon->id]) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
-                            </form>
-                        </td>
+                            </td>
+                        @else
+                            <td class="align-middle text-center">
+
+                                <form action="{{ route('blockWeapon', ['id' => $weapon->id]) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
+                                </form>
+                            </td>
+                        @endif
                     @endif
                     <td></td>
                 </tr>

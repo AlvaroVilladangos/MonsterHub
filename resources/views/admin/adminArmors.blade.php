@@ -62,6 +62,7 @@
                     <th class="text-center"></th>
                     <th class="text-center"></th>
                     <th class="text-center"></th>
+                    <th></th>
                 </tr>
 
                 @foreach ($armors as $armor)
@@ -81,6 +82,10 @@
                                 data-bs-toggle="modal" data-bs-target="#armorEditModal">EDITAR</button>
                         </td>
                         <td class="align-middle text-center">
+
+                            @if ($armor->id == 1)
+                                
+                            @else
                             <form id="deleteArmorForm{{ $armor->id }}"
                                 action="{{ route('armorDestroy', ['id' => $armor->id]) }}" method="post">
                                 @csrf
@@ -88,26 +93,31 @@
                                 <button class="btn btn-cerrar btn-sm" type="button"
                                     onclick="confirmDeleteArmor({{ $armor->id }})">ELIMINAR</button>
                             </form>
+                            @endif
                         </td>
 
-
-                        @if ($armor->blocked)
-                            <td class="align-middle text-center">
-                                <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
-                                    @csrf
-                                    @method('put')
-                                    <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
-                                </form>
-
-                            </td>
+                        @if ($armor->id == 1)
+                            <td></td>
                         @else
-                            <td class="align-middle text-center">
-                                <form action="{{ route('blockArmor', ['id' => $armor->id]) }}" method="post">
-                                    @csrf
-                                    @method('put')
-                                    <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
-                                </form>
-                            </td>
+
+                            @if ($armor->blocked)
+                                <td class="align-middle text-center">
+                                    <form action="{{ route('unBlockArmor', ['id' => $armor->id]) }}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button class="btn btn-sm btn-aceptar" type="submit">Habilitar</button>
+                                    </form>
+
+                                </td>
+                            @else
+                                <td class="align-middle text-center">
+                                    <form action="{{ route('blockArmor', ['id' => $armor->id]) }}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
+                                    </form>
+                                </td>
+                            @endif
                         @endif
                         <td></td>
                     </tr>

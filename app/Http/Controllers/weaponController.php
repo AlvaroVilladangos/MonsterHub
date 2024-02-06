@@ -49,6 +49,9 @@ class weaponController extends Controller
     public function destroy($id)
     {
 
+        if ($id = 1){
+            redirect()->route('weaponsAdmin')->with('error', 'No se puede borrar el arma 1.');
+        }
         weapon::where('id', $id)->firstOrFail()->delete();
         return redirect()->route('weaponsAdmin');
     }
