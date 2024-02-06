@@ -58,14 +58,6 @@ class MonstersTableSeeder extends Seeder
                 'img' => 'imgMonsters/barioth.webp',
             ],
 
-            [
-                'name' => 'Chameleos',
-                'weakness' => 'Dragón',
-                'element' => 'Neutro',
-                'physiology' => 'El Chameleos es un dragón cuadrúpedo de piel morada y rosa que recuerda a un camaleón. Posee patas con pies zigodáctilos y grandes alas, su cola es ancha en la base, como la de un gecko, y la punta está enrollada en espiral. Tiene un capucha de pinchos en el cuello y un prominente cuerno nasal, además de grandes ojos saltones que se mueven de forma independiente y una larga lengua de camaleón.',
-                'abilities' => 'El Chameleos es conocido por su habilidad de volverse invisible al crear un pequeño campo eléctrico que refleja la luz en la niebla. Al no poder ser visto, puede lanzar ataques por sorpresa a los cazadores, especialmente su aliento venenoso. El Chameleos produce un veneno de larga duración que puede escupir a sus objetivos, generando una niebla venenosa que puede luego mover con sus alas. También puede atacar con su larga lengua, con la que puede robar objetos; embistiendo o golpeando con su cola. En la segunda generación, podía escupir ácido y emitir un gas que causaba fatiga.',
-                'img' => 'imgMonsters/chameleos.webp',
-            ],
 
             [
                 'name' => 'Diablos',
