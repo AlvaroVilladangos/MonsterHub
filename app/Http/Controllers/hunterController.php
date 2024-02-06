@@ -103,13 +103,17 @@ class hunterController extends Controller
     }
     
     public function destroyUser(Request $request, $id){
+
         $user = User::find($id);
         if (!$user) {
             return redirect()->back()->withErrors(['hunterName' => 'El usuario no existe'])->withInput();
         }
         
         $user->delete();
-    
+        if ( Auth::user()->admin){
+            return redirect()->route('usersAdmin')->with('success', 'El usuario ha sido eliminado con éxito');
+        }
+
         Auth::guard('web')->logout();
     
         $request->session()->invalidate();
@@ -125,7 +129,7 @@ class hunterController extends Controller
     public function destroyComment($id)
     {
         $comment = Comment::where('id', $id)->firstOrFail()->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Comentario borrado con éxito');
     }
 
 

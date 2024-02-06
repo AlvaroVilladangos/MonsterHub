@@ -2,6 +2,14 @@
 
 
 @section('content')
+    @if (session('success'))
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
     <div class="container py-4">
         <h2 class="tituloTabla">Lista de usuarios</h2>
         <form action="{{ route('usersAdmin') }}" method="get">
@@ -55,12 +63,12 @@
                             </td>
                         @endif
                         <td class="align-middle text-center">
-                            <form id="deleteUserForm-{{ Auth::user()->id }}"
-                                action="{{ route('user.destroy', Auth::user()->id) }}" method="post">
+                            <form id="deleteUserForm-{{ $user->id }}" action="{{ route('user.destroy', $user->id) }}"
+                                method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="button" class="btn btn-cerrar btn-sm"
-                                    onclick="confirmDeleteUser({{ Auth::user()->id }})">Eliminar Usuario</button>
+                                    onclick="confirmDeleteUser({{ $user->id }})">Eliminar Usuario</button>
                             </form>
                         </td>
                         <td></td>
