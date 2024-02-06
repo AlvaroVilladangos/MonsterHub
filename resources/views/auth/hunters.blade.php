@@ -35,14 +35,25 @@
                         <td class="align-middle text-center">
                             <div class="d-flex align-items-center justify-content-center">
                                 <img class="avatarRoom"
-                                src="{{ URL('storage/' . $hunter->guild->img) }}" />
+                                src="{{$hunter->guild->image_url }}" />
                                 <a class="linkTabla ms-3" href="/guild/{{ $hunter->guild->id }}">{{ $hunter->guild->name }}</a>
                             </div>
                         </td>
                     @else
                         <td class="align-middle text-center">N/A</td>
                     @endisset
-                    <td class="align-middle text-center"></td>
+                    <td class="align-middle text-center"> 
+
+                        @if (auth()->user()->hunter && !auth()->user()->hunter->isInRelation($hunter->id))
+                        <div class="mt-3">
+                            <form action="{{ route('addfriend', ['requesterId' => auth()->user()->hunter->id, 'receiverId' => $hunter->id]) }}" method="post">
+                                @csrf
+                                <button class="btn btn-aceptar btn-sm" type="submit">Agregar</button>
+                            </form>
+                        </div>
+                        @endif
+
+                    </td>
                 </tr>
             @endforeach
 

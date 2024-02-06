@@ -40,7 +40,7 @@
                             <td class="d-flex justify-content-center">
                                 <div  class="d-flex align-items-center">
                                     <img style="width: 50px" class="me-3 avatar-sm rounded"
-                                    src="{{URL('storage/' . $guild->img)}}" />
+                                    src="{{$guild->image_url}}" />
                                     <a href="/guild/{{ $guild->id }}"class="linkTabla">{{ $guild->name }}</a>
                                 </div>
                             </td>

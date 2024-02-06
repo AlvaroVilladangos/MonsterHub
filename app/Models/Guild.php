@@ -27,5 +27,13 @@ class Guild extends Model
         return $this->hunters()->count();
     }
 
+    public function getImageUrlAttribute()
+    {
+        if ($this->img == 'imgGuildProfile/defaultGuildProfile.jpg') {
+            return asset($this->img);
+        } else {
+            return URL('storage/' . $this->img);
+        }
+    }
 
 }

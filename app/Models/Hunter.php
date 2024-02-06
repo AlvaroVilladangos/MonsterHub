@@ -112,7 +112,7 @@ class Hunter extends Model
 
     public function getImageUrlAttribute()
     {
-        if ($this->img == 'imgProfile/defaultMonster.webp') {
+        if ($this->img == 'imgProfile/defaultProfile.webp') {
             return asset($this->img);
         } else {
             return URL('storage/' . $this->img);

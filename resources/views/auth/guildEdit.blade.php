@@ -16,7 +16,7 @@
                             <div class="d-flex align-items-center justify-content-between border-bottom">
                                 <div class="d-flex align-items-center">
                                     <img class="avatarGuild"
-                                        src="{{ URL('storage/' . $guild->img) }}" />
+                                        src="{{ $guild->image_url }}" />
                                     <div>
                                         <input class="form-control mx-3" name="guildName" type="text"
                                             value="{{ $guild->name }}">

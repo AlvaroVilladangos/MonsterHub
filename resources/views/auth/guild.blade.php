@@ -11,7 +11,7 @@
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <div class="d-flex align-items-center">
                                 <img class="avatarGuild"
-                                     src="{{URL('storage/' . $guild->img)}}" />
+                                     src="{{$guild->image_url}}" />
                                 <div class="ms-3">
                                     <h1 class="card-title mb-0 fw-bold">
                                         <p> {{ $guild->name }} </p>
