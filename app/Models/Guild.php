@@ -29,7 +29,7 @@ class Guild extends Model
 
     public function getImageUrlAttribute()
     {
-        if ($this->img == 'imgGuildProfile/defaultGuildProfile.jpg') {
+        if ($this->img == 'img/imgGuildProfile/defaultGuildProfile.jpg') {
             return asset($this->img);
         } else {
             return URL('storage/' . $this->img);

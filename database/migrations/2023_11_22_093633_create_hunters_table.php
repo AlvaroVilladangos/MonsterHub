@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name')->unique();
             $table->string('bio')->default('');
-            $table->string('img')->default('imgProfile/defaultProfile.webp');
+            $table->string('img')->default('img/imgProfile/defaultProfile.webp');
             $table->unsignedBigInteger('guild_id')->nullable();
             $table->unsignedBigInteger('weapon_id');
             $table->unsignedBigInteger('armor_id');
