@@ -12,19 +12,19 @@
 
 ## 1. Descripción General del Proyecto
 
-MonsterHub consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que vas caminando y puedes cazar monstruos en la calle. 
+MonsterHub consiste en una comunidad y base de datos auxiliar dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que cazas monstruos mientras caminas. 
 
-La aplicación tiene dos componentes principales: una wiki y una plataforma de comunidad. La wiki proporciona información y recursos sobre el juego, incluyendo detalles sobre los monstruos, armas y armaduras. La plataforma de comunidad permite a los usuarios interactuar entre ellos, agregar amigos y formar grupos. Esto facilita a los jugadores encontrar a otros con quienes jugar, especialmente si sus amigos no juegan o si están buscando salas específicas para cazar ciertos monstruos.
+La aplicación tiene dos componentes principales: una wiki y una plataforma de comunidad. La wiki proporciona información y recursos sobre el juego, incluyendo detalles sobre los monstruos, armas y armaduras. La plataforma de comunidad permite a los usuarios interactuar entre ellos, agregar amigos y formar grupos. Esto facilita a los jugadores encontrar a otros con quienes jugar, especialmente si sus amigos no juegan o si están buscando salas específicas para cazar ciertos monstruos de mayor dificultad qeu requieran cooperación entre varios jugadores.
 
 ## 2. Funcionalidad Principal de la Aplicación
 
-La funcionalidad principal de MonsterHub es servir como una wiki y un buscador de códigos de salas para el juego Monster Hunter Now, ya que el juego no tiene este sistema. Los jugadores también pueden acceder a información básica del juego, gestionar su gremio (un grupo grande de personas con un líder que gestiona roles, expulsa miembros o modifica los datos del gremio), gestionar su equipamiento (arma y armadura) y comentar en los perfiles de otros cazadores.
+La funcionalidad principal de MonsterHub es servir como una wiki y un buscador de códigos de salas para el juego Monster Hunter Now, ya que el juego carece de este sistema. Los jugadores también pueden acceder a información básica del juego, gestionar su gremio (un grupo grande de personas con un líder que gestiona roles, expulsa miembros o modifica los datos del gremio), gestionar su equipamiento (arma y armadura) y comentar en los perfiles de otros cazadores.
 
 
 Los visitantes de la página sólo podrán acceder a los recursos del juego (monstruos, armas y armaduras ) y al registrarse o iniciar sesión como usuarios, tendrán acceso a la parte de comunidad.
 
 
-Los administradores tienen un panel exclusivo donde pueden agregar nuevas entradas a la wiki, modificar las existentes, y gestionar a los usuarios (borrar comentarios, bloquear usuarios, borrar usuarios y gremios).
+Los administradores tienen un panel exclusivo donde pueden agregar nuevas entradas a la wiki, modificar las existentes y gestionar a los usuarios (borrar comentarios, bloquear usuarios, borrar usuarios y gremios).
 
 ## 3. Objetivos Generales
 
