@@ -11,7 +11,7 @@
                 </div>
 
                 <div style="background-color: #fcfcfc">
-                    <img class="card-img-top py-3 px-3" src="{{ URL('storage/' . $armor->img) }}" alt="Card image cap">
+                    <img class="card-img-top py-3 px-3" src="{{$armor->image_url }}" alt="Card image cap">
                 </div>
 
                 <ul class=" bg-dark list-group mb-3">

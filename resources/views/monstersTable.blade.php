@@ -18,12 +18,13 @@
                     <th class="text-center">Monstruo</th>
                     <th class="text-center">Elemento</th>
                     <th class="text-center">Debilidad</th>
+                    <th></th>
                 </tr>
 
                 @foreach ($monsters as $monster)
                     <tr class="">
                         <td data-label="IMG" class="d-flex justify-content-center border-bottom"> <img
-                                src="{{ URL('storage/' . $monster->img) }}" class="monsterTable" alt=""></td>
+                                src="{{$monster->image_url }}" class="monsterTable" alt=""></td>
                         <td data-label="MONSTRUO" class="align-middle text-center border-bottom"><a
                                 href="/monster/{{ $monster->id }} " class="linkTabla">{{ $monster->name }}</a></td>
                         <td data-label="ELEMENTO" class="align-middle text-center border-bottom">

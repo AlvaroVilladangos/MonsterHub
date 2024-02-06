@@ -51,8 +51,8 @@ class RegisteredUserController extends Controller
 
         $id = $user->id;
 
-        $armaduraBasica = DB::table('armors')->where('name', 'Armadura de novato')->first();
-        $armaBasica = DB::table('weapons')->where('name', 'Espada de novato')->first();
+        $armaduraBasica = DB::table('armors')->where('id', '1')->first();
+        $armaBasica = DB::table('weapons')->where('id', '1')->first();
 
         $hunter = DB::table('hunters')->insert([
             'user_id' => $id,

@@ -11,7 +11,7 @@
                 </div>
 
                 <div style="background-color: #fcfcfc;">
-                    <img style="max-height: 650px;" class="card-img-top py-3 px-3" src="{{ URL('storage/' . $monster->img) }}"
+                    <img style="max-height: 650px;" class="card-img-top py-3 px-3" src="{{$monster->image_url }}"
                         alt="Card image cap">
                 </div>
 

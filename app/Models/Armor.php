@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Armor extends Model
 {
@@ -19,5 +20,14 @@ class Armor extends Model
 
     public function hunters(){
         return $this->hasMany(Hunter::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (Str::startsWith($this->img, 'img/imgArmors/default')) {
+            return asset($this->img);
+        } else {
+            return URL('storage/' . $this->img);
+        }
     }
 }

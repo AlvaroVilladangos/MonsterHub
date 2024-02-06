@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 class Monster extends Model
 {
     use HasFactory;
@@ -29,5 +31,16 @@ class Monster extends Model
     {
         $monster = self::where('name', $name)->first();
         return $monster ? $monster->id : null;
+    }
+
+
+    public function getImageUrlAttribute()
+    {
+
+        if (Str::startsWith($this->img, 'img/imgMonsters/default')) {
+            return asset($this->img);
+        } else {
+            return URL('storage/' . $this->img);
+        }
     }
 }

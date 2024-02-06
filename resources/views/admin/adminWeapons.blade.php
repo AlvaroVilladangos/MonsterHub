@@ -64,12 +64,13 @@
                 <th class="text-center"></th>
                 <th class="text-center"></th>
                 <th class="text-center"></th>
+                <th></th>
 
             </tr>
 
             @foreach ($weapons as $weapon)
                 <tr>
-                    <td data-label="IMG" class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $weapon->img) }}"
+                    <td data-label="IMG" class="d-flex justify-content-center"> <img src="{{$weapon->image_url }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td data-label="NOMBRE" class="align-middle text-center"><a
                             href="/weapon/{{ $weapon->id }}  "class="linkTabla"

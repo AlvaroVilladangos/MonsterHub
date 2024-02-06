@@ -8,12 +8,17 @@ $(document).ready(function() {
             url: '/weapon/' + weaponId + '/data',
             method: 'GET',
             success: function(data) {
-                var imgPath = 'storage/' + data.img;
+                var imgPath;
+                if (data.img.startsWith("img/imgWeapons")) {
+                  imgPath = data.img;
+                } else {
+                  imgPath = "storage/" + data.img;
+                }
                 $('#weaponEditModal .modal-body img[name="weaponImg"]').attr('src',
                     imgPath);
                 $('#weaponEditModal .modal-body input[name="weaponName"]').val(data
                     .name);
-                $('#weaponEditModal .modal-body input[name="weaponElement"]').val(data
+                $('#weaponEditModal .modal-body select[name="weaponElement"]').val(data
                     .element);
                 $('#weaponEditModal .modal-body input[name="weaponAtk"]').val(
                     data.atk);

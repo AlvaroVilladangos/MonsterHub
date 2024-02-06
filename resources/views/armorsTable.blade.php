@@ -21,7 +21,7 @@
 
             @foreach ($armors as $armor)
                 <tr class="">
-                    <td class="d-flex justify-content-center border-bottom"> <img src="{{ URL('storage/' . $armor->img) }}"
+                    <td class="d-flex justify-content-center border-bottom"> <img src="{{$armor->image_url }}"
                             style="width:150px; height:auto;" alt=""></td>
                     <td class="align-middle text-center border-bottom"><a
                             href="/armor/{{ $armor->id }}  "class="linkTabla">{{ $armor->name }}</a></td>

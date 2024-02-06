@@ -9,8 +9,12 @@ $(document).ready(function() {
             url: '/armor/' + armorId + '/data',
             method: 'GET',
             success: function(data) {
-                var imgPath = 'storage/' + data.img;
-                $('#armorEditModal .modal-body img[name="armorImg"]').attr('src',
+                var imgPath;
+                if (data.img.startsWith("img/imgArmors")) {
+                  imgPath = data.img;
+                } else {
+                  imgPath = "storage/" + data.img;
+                }                $('#armorEditModal .modal-body img[name="armorImg"]').attr('src',
                     imgPath);
                 $('#armorEditModal .modal-body input[name="armorName"]').val(data
                     .name);

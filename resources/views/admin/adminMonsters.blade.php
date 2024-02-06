@@ -61,11 +61,12 @@
                     <th class="text-center"></th>
                     <th class="text-center"></th>
                     <th class="text-center"></th>
+                    <th class="text-center"></th>
                 </tr>
 
                 @foreach ($monsters as $monster)
                     <tr>
-                        <td class="align-middle text-center" class="d-flex justify-content-center"> <img src="{{ URL('storage/' . $monster->img) }}"
+                        <td class="align-middle text-center" class="d-flex justify-content-center"> <img src="{{ $monster->image_url}}"
                                 class="monsterTable" alt=""></td>
                         <td data-label="NOMBRE" class="align-middle text-center"><a href="/monster/{{ $monster->id }}  "class="linkTabla"
                                 target="_blank">{{ $monster->name }}</a>
