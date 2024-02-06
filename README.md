@@ -70,16 +70,28 @@ Este seria el perfil de un cazador, en el puede ver los ultimos comentariso que 
 <img src="/public/img/vistaListaMonstruos.png">
 </p>
 
-Esta seria la vista para buscar mosntruos con la informacion mínima a la hora de cazar un monstruos que es que elemento es fuer y cual es el débil.
+Esta seria la vista para buscar mosntruos con la informacion mínima a la hora de cazar un monstruos que es que elemento es fuer y cual es el débil. (Armas y armaduras se ven parecido)
 
--Vista mosntruo 
+-Vista monstruo 
 <p align="center">
-<img src="/public/img/vistaMonstruos.png">
+<img src="/public/img/vistaMonstruo.png">
 </p>
 
-Esta seria la vista de información mas detallada del mosntruo, alfgo de lore y habilidades, y las armas y armaduras que te puedes hacer con este mosntruo. 
+Esta seria la vista de información mas detallada del mosntruo, alfgo de lore y habilidades, y las armas y armaduras que te puedes hacer con este mosntruo.  (Armas y armaduras se ven parecido)
 
 
+-Vista index Admin 
+<p align="center">
+<img src="/public/img/vistaAdmin.png">
+
+Esto es el index del administrador, carta es un sitio que administrar. Usuarios, armaduras, armas, mosntruos y guilds.
+
+
+-Vista  gestion de monstruos 
+<p align="center">
+<img src="/public/img/vistaAdminMonsters.png">
+
+Esta es la vista en la que el admin puede editar, crear borrar o deshabilitar mosntruos. (Armas y armaduras se ven parecido)
 
 ## Configuración del Entorno
 ### Requisitos Previos
