@@ -12,18 +12,18 @@
 
 ## 1. Descripción General del Proyecto
 
-Monster consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Epropósito de disponer de información y recursos del juego, como los monstruos, armas y aramduras.
+MonsterHub consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que andas y puedes cazar mosntruos ya sea solo o con gente a través. Por el lado de wiki, el propósito es de disponer de información y recursos del juego, como los monstruos, armas y aramduras.
 
-Por el lado de comunidad, lo usuarios podrán interactuar entre ellos, agregar amigos y hacer grupos.
+Por el lado de comunidad, los usuarios podrán interactuar entre ellos, agregar amigos y hacer grupos. Con la idea de conocer a más gente que juegue a Monster Hunter y así no jugar solo si tus amigos no juegan, os simpleamente usar la aplicación para encontrar salas porque quieres matar X Monstruo y no puedes porque no tienes en el juego ninguna misión para ello.
 
 ## 2. Funcionalidad Principal de la Aplicación
 
-La funcionalidad principal de la aplicación es permitir a los jugadores de esta saga poder conseguir codigos, de otra gente para unirse a cazeŕias con ellos, ademas de poder acceder a la información básica del juego, gestionar su gremio/guild, gestionar el equipo.
+La funcionalidad principal de la aplicación es permitir a los jugadores de esta saga poder conseguir códigos del juego Monster Hunter Now y que esta pagina te sirva como wiki, y a parte un buscador de salas del juego, ya que el propio juego no tiene este sistema.Además de poder acceder a la información básica del juego, gestionar su gremio/guild (que viene a ser un grupo grande de personas en la que hay un lider que gestiona roles, expulsa gente o modifica los datos de la guild.), gestionar lo que llevas equipado (arma y armadura), comentar en perfiles de otros cazadores. 
 
 
-Los visitantes de la página solo podrán acceder a los recursos del juego (monstruos, armas y aramduras ) y, al registrarse o iniciar sesión como usuarios, tendrán acceso a la parte de comunidad. Podrán comentar, agregar amigos, hacer grupos y buscar salas para cazar. 
+Los visitantes de la página solo podrán acceder a los recursos del juego (monstruos, armas y armaduras ) y al registrarse o iniciar sesión como usuarios, tendrán acceso a la parte de comunidad.
 
-Los administradores tendrán un panel de administrácion, en el cual ellos seran los unicos capaces de agregar nuevas entras a la wiki y tambien podrán modificar las existentes. Y tambien tendran un control sobre los usuarios, podran borrar comentarios, bloquear usuarios, borrar usuarios y borrar gremios
+Los administradores tendrán un panel de administrácion, en el cual ellos serán los únicos capaces de agregar nuevas entradas a la wiki y también podrán modificar las existentes. También tendran un control sobre los usuarios, podran borrar comentarios, bloquear usuarios, borrar usuarios y borrar gremios
 
 
 ## 3. Objetivos Generales
@@ -32,18 +32,18 @@ Los administradores tendrán un panel de administrácion, en el cual ellos seran
 - **Casos de Uso:**
   - **Invitado (usuario no logueado):**
     - Registrarse.
-    - Buscar y ver información de la wiki, armas aramduras y monstruos.
-  - **Usuario Logueado:**
+    - Buscar y ver información de la wiki, armas armaduras y monstruos.
+  - **Usuario:**
     - Iniciar sesión.
     - Editar su perfil.
     - Crear/Unirse a una sala. 
     - Crear/Gestionar/Unirse a una Guild.
     - Agregar amigos.
-    - Comentar en un perfil.
+    - Comentar en un perfil de un cazador.
     - Ver un perfil.
-    - Buscar y ver información de la wiki, armas aramduras y monstruos.
+    - Buscar y ver información de la wiki, armas armaduras y monstruos.
   - **Administrador:**
-    - Crear ,modificar y borrar monstruos, armaduras y armas.
+    - Crear, modificar y borrar monstruos, armaduras y armas.
     - Bloquear usuarios.
     - Borrar usuarios.
     - Borrar gremios.
@@ -94,7 +94,7 @@ sudo -u postgres createdb -O **nombreUsusario nombreDB**
 La contraseña que asignaremos será: **contraseña**
 
 
-En el .env hay un ejemplo de como se podrian llamar las bases de datos asegurate de cambiar estos paramteros si las bases de datos no se llaman así.
+En el archivo .env  hay que modificar las bases de datos, te dejo un ejemplo de como se podrian llamar las bases de datos asegurate de cambiar estos paramteros si las bases de datos no se llaman así.
 
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
@@ -111,14 +111,20 @@ DB_PASSWORD=monsterhub
  composer install
 ```
 
-2. Con todo lo anterior hecho aqui ya deberias poder hacer las migraciones. Hay una base de datos minima en migraciones con la que  se puede ver como funciona la pagina. Son 5 monstruos 2 armaduras 2 armas.
+2. Con todos los pasos anterirores realizados,ya puedes hacer las migraciones. Hay una base de datos mínimas en migraciones con la que  se puede ver como funciona la pagina. Son 5 monstruos 2 armaduras 2 armas y el perfil de administrador.
 
-IMPORTANTE. Los Cazadores, siempre tienen que tener un arma y una armadura. Esto se ha hecho dandoles siempre la armadura y arma 1. Estas dos instancias siempre tienen que existir en la base de datos como minimo. 
-
-También en las migraciones hay un perfil de administrado "admin@admin.com" contraseña "admin". En caso de querer añadir mas administradores tiene que ser mediante inserciones a la base de datos.
 ```bash
  php artisan migrate:fresh --seed
 ```
+IMPORTANTE. Los Cazadores, siempre tienen que tener un arma y una armadura. Esto se ha hecho dandoles siempre la armadura y arma 1. Estas dos instancias siempre tienen que existir en la base de datos como minimo. 
+
+También en las migraciones hay un perfil de administrado. En caso de querer añadir mas administradores tiene que ser mediante inserciones a la base de datos.
+
+```bash
+ cuenta admin@admin.com
+ contraseña admin
+```
+
 
 
 # Ejecución de la Aplicación
