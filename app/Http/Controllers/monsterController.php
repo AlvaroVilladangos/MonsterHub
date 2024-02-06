@@ -80,7 +80,7 @@ class monsterController extends Controller
 
         $monster->save();
 
-        return redirect()->route('monstersAdmin');
+        return redirect()->route('monstersAdmin')->with('success', 'Monstruo actualizado con éxito');
     }
 
     public function destroy($id)
@@ -88,7 +88,7 @@ class monsterController extends Controller
 
         Monster::where('id', $id)->firstOrFail()->delete();
 
-        return redirect()->route('monstersAdmin');
+        return redirect()->route('monstersAdmin')->with('success', 'Monstruo borrado con éxito.');
     }
 
     public function blockMonster($id)

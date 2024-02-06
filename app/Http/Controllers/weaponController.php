@@ -49,11 +49,14 @@ class weaponController extends Controller
     public function destroy($id)
     {
 
-        if ($id = 1){
+        if ($id == 1){
             redirect()->route('weaponsAdmin')->with('error', 'No se puede borrar el arma 1.');
         }
-        weapon::where('id', $id)->firstOrFail()->delete();
-        return redirect()->route('weaponsAdmin');
+
+       Weapon::where('id', $id)->firstOrFail()->delete();;
+
+
+        return redirect()->route('weaponsAdmin')->with('success', 'Arma borrada con éxito');
     }
 
 
@@ -158,7 +161,7 @@ class weaponController extends Controller
     
         $weapon->save();
     
-        return redirect()->route('weaponsAdmin');
+        return redirect()->route('weaponsAdmin')->with('success', 'Arma actualizada con éxito');
     }
     
 }

@@ -45,12 +45,13 @@ class armorController extends Controller
 
 
     public function destroy($id)
-    {
-        if ($id = 1){
+    {   
+
+        if ($id == 1){
             redirect()->route('armorsAdmin')->with('error', 'No se puede borrar la armadura 1.');
         }
         armor::where('id', $id)->firstOrFail()->delete();
-        return redirect()->route('armorsAdmin');
+        return redirect()->route('armorsAdmin')->with('success', 'Armadura borrada con éxito');
     }
 
 
@@ -143,7 +144,7 @@ class armorController extends Controller
     
         $armor->save();
     
-        return redirect()->route('armorsAdmin');
+        return redirect()->route('armorsAdmin')->with('success', 'Armadura actualizada con éxito');
     }
     
 }

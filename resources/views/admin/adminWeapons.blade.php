@@ -85,7 +85,7 @@
                             data-bs-toggle="modal" data-bs-target="#weaponEditModal">EDITAR</button>
                     </td>
                     <td class="align-middle text-center">
-                        @if ($weapon->id == 1)
+                   @if ($weapon->id == 1)
 
                         @else
                         <form id="deleteWeaponForm{{ $weapon->id }}"
