@@ -66,9 +66,10 @@
 
                 @foreach ($monsters as $monster)
                     <tr>
-                        <td class="align-middle text-center" class="d-flex justify-content-center"> <img src="{{ $monster->image_url}}"
-                                class="monsterTable" alt=""></td>
-                        <td data-label="NOMBRE" class="align-middle text-center"><a href="/monster/{{ $monster->id }}  "class="linkTabla"
+                        <td class="align-middle text-center" class="d-flex justify-content-center"> <img
+                                src="{{ $monster->image_url }}" class="monsterTable" alt=""></td>
+                        <td data-label="NOMBRE" class="align-middle text-center"><a
+                                href="/monster/{{ $monster->id }}  "class="linkTabla"
                                 target="_blank">{{ $monster->name }}</a>
                         </td>
                         <td class="align-middle text-center">
@@ -76,13 +77,16 @@
                                 data-bs-toggle="modal" data-bs-target="#monsterEditModal">EDITAR</button>
                         </td>
                         <td class="align-middle text-center">
-                            <form id="deleteMonsterForm{{ $monster->id }}"
-                                action="{{ route('monsterDestroy', ['id' => $monster->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-cerrar btn-sm" type="button"
-                                    onclick="confirmDeleteMonster({{ $monster->id }})">ELIMINAR</button>
-                            </form>
+                            @if ($monster->id == 1)
+                            @else
+                                <form id="deleteMonsterForm{{ $monster->id }}"
+                                    action="{{ route('monsterDestroy', ['id' => $monster->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-cerrar btn-sm" type="button"
+                                        onclick="confirmDeleteMonster({{ $monster->id }})">ELIMINAR</button>
+                                </form>
+                            @endif
                         </td>
 
                         @if ($monster->blocked)
@@ -97,12 +101,14 @@
                             </td>
                         @else
                             <td class="align-middle text-center border-bottom">
-
-                                <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
-                                    @csrf
-                                    @method('put')
-                                    <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
-                                </form>
+                                @if ($monster->id == 1)
+                                @else
+                                    <form action="{{ route('blockMonster', ['id' => $monster->id]) }}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button class="btn btn-sm btn-deshabilitar" type="submit">Deshabilitar</button>
+                                    </form>
+                                @endif
                             </td>
                         @endif
                         <td></td>

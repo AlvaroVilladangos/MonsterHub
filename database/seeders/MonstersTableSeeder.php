@@ -15,6 +15,18 @@ class MonstersTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('monsters')->insert([
+
+            [
+                'name' => 'Felyne',
+                'weakness' => 'Neutro',
+                'element' => 'Neutro',
+                'physiology' => 'Los Felyne son gatos antropomorfos que caminan de forma bípeda como los humanos. Se caracterizan por su pelaje claro y su marca marrón en forma de zarpa. Los Felyne llevan un pequeño pico hecho con un diente o garra de wyvern, que utilizan para coger cosas, y una bellota donde almacenan lo que obtienen. Sus ojos suelen ser azules. ',
+                'abilities' => 'Forman aldeas junto a los Melynx en cualquier lugar, suelen aparecer en diferentes zonas buscando materiales valiosos. Son dóciles y no atacarán a no ser que se les provoque, o si aparece un monstruo grande en la misma área, en ese caso atacarán con sus picos o lanzando bombas.
+
+                Algunos Felynes se han adentrado en la sociedad humana y habitan en aldeas o ciudades, ya que son capaces de realizar acciones típicamente humanas, con lo cual suelen ejercer de ayudantes para los humanos, cocineros, vendedores, guías, etc. ',
+                'img' => 'img/imgMonsters/defaultFelyne.webp',
+            ],
+            
             [
                 'name' => 'Rathalos',
                 'weakness' => 'Dragón',
@@ -70,16 +82,6 @@ class MonstersTableSeeder extends Seeder
                 'img' => 'img/imgMonsters/defaultDiablos.webp',
             ],
 
-            [
-                'name' => 'Felyne',
-                'weakness' => 'Neutro',
-                'element' => 'Neutro',
-                'physiology' => 'Los Felyne son gatos antropomorfos que caminan de forma bípeda como los humanos. Se caracterizan por su pelaje claro y su marca marrón en forma de zarpa. Los Felyne llevan un pequeño pico hecho con un diente o garra de wyvern, que utilizan para coger cosas, y una bellota donde almacenan lo que obtienen. Sus ojos suelen ser azules. ',
-                'abilities' => 'Forman aldeas junto a los Melynx en cualquier lugar, suelen aparecer en diferentes zonas buscando materiales valiosos. Son dóciles y no atacarán a no ser que se les provoque, o si aparece un monstruo grande en la misma área, en ese caso atacarán con sus picos o lanzando bombas.
-
-                Algunos Felynes se han adentrado en la sociedad humana y habitan en aldeas o ciudades, ya que son capaces de realizar acciones típicamente humanas, con lo cual suelen ejercer de ayudantes para los humanos, cocineros, vendedores, guías, etc. ',
-                'img' => 'img/imgMonsters/defaultFelyne.webp',
-            ],
         ]);
     }
 }
