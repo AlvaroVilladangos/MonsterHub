@@ -36,7 +36,7 @@
                             <li class="nav-item border-top">
                                 <a class="nav-link text-dark" href="/edit">
                                     <span><img class="icon" src="{{ asset('img/bannersIconos/settingIcon.svg') }}" /></span>
-                                    <span class="link">Ajustes</span></a>
+                                    <span class="link">Editar Perfil</span></a>
                             </li>
                             <li class="nav-item border-top">
                                 <a class="nav-link text-dark" href="/friends">
@@ -56,11 +56,7 @@
                     <div class="px-3 pt-4 pb-2">
                         <div class="d-flex align-items-center justify-content-between border-bottom">
                             <div class="d-flex align-items-center">
-{{--                                 @if ($hunter->img == "imgProfile/defaultProfile.webp")
-                                    <img class="avatar mb-1" src="{{ asset($hunter->img )}}" />
-                                @else
-                                    <img class="avatar mb-1" src="{{  URL('storage/'. $hunter->img )}}" />
-                                @endif --}}
+
                                 <img class="avatar mb-1" src="{{ $hunter->image_url }}" />
                                 <div class="ms-3">
                                     <h3 class="card-title mb-2 nombrePerfil">

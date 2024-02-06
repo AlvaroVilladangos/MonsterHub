@@ -27,41 +27,61 @@
                 </form>
 
                 <h2 class = "tituloTabla"> Lista de salas disponibles</h2>
-                <table class="table table-hover table-borderless">
-                    <tr class="table-dark">
-                        <th class="text-center"></th>
-                        <th class="text-center"> Monstruo</th>
-                        <th class="text-center">Numero jugadores</th>
-                        <th class="text-center"></th>
-                    </tr>
-                    @foreach ($rooms as $room)
-                        @if ($room->roomCount() == 4)
-                            @continue
-                        @endif
-
-                        @if ($room->roomCount() == 4 || (isset(Auth::user()->hunter->room) && $room->id == Auth::user()->hunter->room->id))
-                            @continue
-                        @endif
-                        <tr class="border-bottom">
-                            <td class="d-flex justify-content-center"> <img
-                                    src="{{ URL('storage/' . $room->monster->img) }}" style="width:150px; height:auto;"
-                                    alt=""></td>
-                            <td class="align-middle text-center">{{ $room->monster->name }}</td>
-                            <td class="align-middle text-center">{{ $room->roomCount() }}</td>
-                            <td class="align-middle text-center">
-                                @if (!isset(Auth::user()->hunter->room))
-                                    <form action="{{ route('hunter.joinRoom') }}" method="post">
-                                        @csrf
-                                        @method('put')
-                                        <input type="" name="room_id" id="" value="{{ $room->id }}"
-                                            hidden>
-                                        <button class="btn btn-aceptar btn-sm" type="submit">Unirse</button>
-                                    </form>
-                                @endif
-                            </td>
+                <div class="table-responsive table-responsive-stack">
+                    <table class="table table-hover ">
+                        <tr class="table-dark">
+                            <th class="text-center"></th>
+                            <th class="text-center"> Monstruo</th>
+                            <th class="text-center">Numero jugadores</th>
+                            <th class="text-center"></th>
+                            <th></th>
                         </tr>
-                    @endforeach
-                </table>
+                        @foreach ($rooms as $room)
+                            @if ($room->roomCount() == 4)
+                                @continue
+                            @endif
+
+                            @if ($room->roomCount() == 4 || (isset(Auth::user()->hunter->room) && $room->id == Auth::user()->hunter->room->id))
+                                @continue
+                            @endif
+                            <tr class="border-bottom">
+                                <td class="d-flex justify-content-center"> <img class="monsterTable"
+                                        src="{{ $room->monster->image_url }}" alt="">
+                                </td>
+                                <td data-label="Monstruo" class="align-middle text-center"><a href="/monster/{{ $room->monster->id }} "
+                                        class="linkTabla">{{ $room->monster->name }}</a></td>
+                                <td data-label="jugadores" class="align-middle text-center">
+                                    <p class="fw-bold">{{ $room->roomCount() }}/4 </p>
+                                    <ul class="align-middle text-center">
+                                        @foreach ($room->hunters as $hunterInRoom)
+                                            @if ($hunterInRoom->id != Auth::user()->hunter->id)
+                                                <li class="list-unstyled">
+                                                    <div class=" d-flex align-items-center mx-2 my-2">
+                                                        <img class="avatarRoom m-2" src="{{ $hunterInRoom->image_url }}" />
+                                                        <a href="/hunter/{{ $hunterInRoom->id }}" class="linkTabla">
+                                                            {{ $hunterInRoom->name }}</a>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td class="align-middle text-center">
+                                    @if (!isset(Auth::user()->hunter->room))
+                                        <form action="{{ route('hunter.joinRoom') }}" method="post">
+                                            @csrf
+                                            @method('put')
+                                            <input type="" name="room_id" id="" value="{{ $room->id }}"
+                                                hidden>
+                                            <button class="btn btn-aceptar btn-sm" type="submit">Unirse</button>
+                                        </form>
+                                    @endif
+                                </td>
+                                <td></td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
                 {{ $rooms->links() }}
             </div>
             <div class="col-2">
@@ -86,7 +106,7 @@
                             <form id="formCreateRoom" method="post" action="{{ route('rooms.store') }}">
                                 @csrf
                                 <label for="codigo" class="form-label fs-5 fw-bold">Codigo</label>
-                                <input type="text" name="codigo" pattern="\d{5}"
+                                <input type="text" maxlength="5" minlength="5" name="codigo" pattern="\d{5}"
                                     title="Por favor, introduzca exactamente 5 dígitos." class="form-control">
 
                                 <div class="mb-3">

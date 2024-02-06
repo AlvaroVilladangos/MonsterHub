@@ -12,9 +12,9 @@
 
 ## 1. Descripción General del Proyecto
 
-MonsterHub consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que andas y puedes cazar mosntruos ya sea solo o con gente a través. Por el lado de wiki, el propósito es de disponer de información y recursos del juego, como los monstruos, armas y aramduras.
+MonsterHub consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que andas y puedes cazar monstruos ya sea solo o con gente. Por el lado de wiki, el propósito es de disponer de información y recursos del juego, como los monstruos, armas y armaduras.
 
-Por el lado de comunidad, los usuarios podrán interactuar entre ellos, agregar amigos y hacer grupos. Con la idea de conocer a más gente que juegue a Monster Hunter y así no jugar solo si tus amigos no juegan, os simpleamente usar la aplicación para encontrar salas porque quieres matar X Monstruo y no puedes porque no tienes en el juego ninguna misión para ello.
+Por el lado de comunidad, los usuarios podrán interactuar entre ellos, agregar amigos y hacer grupos. Con la idea de conocer a más gente que juegue a Monster Hunter y así no jugar solo si tus amigos no juegan, o simpleamente usar la aplicación para encontrar salas porque quieres matar X Monstruo y no puedes porque no tienes en el juego ninguna misión para ello. Con esto en mente se crea esta aplicación ya que no hay ningun buscador de salas online de este juego y el juego pues no te lo proporciona.
 
 ## 2. Funcionalidad Principal de la Aplicación
 
@@ -54,6 +54,33 @@ Los administradores tendrán un panel de administrácion, en el cual ellos será
 - Uso de framwork laravel.
 
 
+## Vistas aplicación
+
+-Vista perfil 
+
+<p align="center">
+<img src="/public/img/vistaPerfil.png">
+</p>
+
+Este seria el perfil de un cazador, en el puede ver los ultimos comentariso que ha recibido y  tambien aparece ahi una sala, con el código que habría que meter en el juego ya que está en una sala. 
+
+-Vista Lista mosntruos 
+
+<p align="center">
+<img src="/public/img/vistaListaMonstruos.png">
+</p>
+
+Esta seria la vista para buscar mosntruos con la informacion mínima a la hora de cazar un monstruos que es que elemento es fuer y cual es el débil.
+
+-Vista mosntruo 
+<p align="center">
+<img src="/public/img/vistaMonstruos.png">
+</p>
+
+Esta seria la vista de información mas detallada del mosntruo, alfgo de lore y habilidades, y las armas y armaduras que te puedes hacer con este mosntruo. 
+
+
+
 ## Configuración del Entorno
 ### Requisitos Previos
 
@@ -79,9 +106,7 @@ sudo apt install postgresql postgresql-client postgresql-contrib
     npm install
 ```
 
-
 Antes de ejecutar las migraciones, asegúrate de tener configurada la base de datos PostgreSQL creando un nuevo usuario y una base de datos.
-
 
 Ejecuta el siguiente comando para crear un nuevo usuario (serás solicitado a ingresar una contraseña para el nuevo usuario): 
 ```bash 

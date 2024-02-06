@@ -13,9 +13,9 @@
             </div>
         </div>
 
-        <div style="background-color: white; border-radius: 5px;" class="mx-2 my-2">
+        <div style="background-color: #ffffff; border-radius: 5px; width: auto;" class="mx-2 my-2">
             <img style="" class="card-img-top avatarMonsterRoom mx-1 my-2"
-                src="{{ URL('storage/' . $hunter->room->monster->img) }}" />
+                src="{{ $hunter->room->monster->image_url }}" />
         </div>
         <div class="card-body">
             <div class="list-unstyled d-flex align-items-center">
