@@ -12,19 +12,19 @@
 
 ## 1. Descripción General del Proyecto
 
-MonsterHub consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que andas y puedes cazar monstruos ya sea solo o con gente. Por el lado de wiki, el propósito es de disponer de información y recursos del juego, como los monstruos, armas y armaduras.
+MonsterHub consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Monster Hunter Now es un juego de movil en el que vas caminando y puedes cazar monstruos en la calle. 
 
-Por el lado de comunidad, los usuarios podrán interactuar entre ellos, agregar amigos y hacer grupos. Con la idea de conocer a más gente que juegue a Monster Hunter y así no jugar solo si tus amigos no juegan, o simpleamente usar la aplicación para encontrar salas porque quieres matar X Monstruo y no puedes porque no tienes en el juego ninguna misión para ello. Con esto en mente se crea esta aplicación ya que no hay ningun buscador de salas online de este juego y el juego pues no te lo proporciona.
+La aplicación tiene dos componentes principales: una wiki y una plataforma de comunidad. La wiki proporciona información y recursos sobre el juego, incluyendo detalles sobre los monstruos, armas y armaduras. La plataforma de comunidad permite a los usuarios interactuar entre ellos, agregar amigos y formar grupos. Esto facilita a los jugadores encontrar a otros con quienes jugar, especialmente si sus amigos no juegan o si están buscando salas específicas para cazar ciertos monstruos.
 
 ## 2. Funcionalidad Principal de la Aplicación
 
-La funcionalidad principal de la aplicación es permitir a los jugadores de esta saga poder conseguir códigos del juego Monster Hunter Now y que esta pagina te sirva como wiki, y a parte un buscador de salas del juego, ya que el propio juego no tiene este sistema.Además de poder acceder a la información básica del juego, gestionar su gremio/guild (que viene a ser un grupo grande de personas en la que hay un lider que gestiona roles, expulsa gente o modifica los datos de la guild.), gestionar lo que llevas equipado (arma y armadura), comentar en perfiles de otros cazadores. 
+La funcionalidad principal de MonsterHub es servir como una wiki y un buscador de códigos de salas para el juego Monster Hunter Now, ya que el juego no tiene este sistema. Los jugadores también pueden acceder a información básica del juego, gestionar su gremio (un grupo grande de personas con un líder que gestiona roles, expulsa miembros o modifica los datos del gremio), gestionar su equipamiento (arma y armadura) y comentar en los perfiles de otros cazadores.
 
 
-Los visitantes de la página solo podrán acceder a los recursos del juego (monstruos, armas y armaduras ) y al registrarse o iniciar sesión como usuarios, tendrán acceso a la parte de comunidad.
+Los visitantes de la página sólo podrán acceder a los recursos del juego (monstruos, armas y armaduras ) y al registrarse o iniciar sesión como usuarios, tendrán acceso a la parte de comunidad.
 
-Los administradores tendrán un panel de administrácion, en el cual ellos serán los únicos capaces de agregar nuevas entradas a la wiki y también podrán modificar las existentes. También tendran un control sobre los usuarios, podran borrar comentarios, bloquear usuarios, borrar usuarios y borrar gremios
 
+Los administradores tienen un panel exclusivo donde pueden agregar nuevas entradas a la wiki, modificar las existentes, y gestionar a los usuarios (borrar comentarios, bloquear usuarios, borrar usuarios y gremios).
 
 ## 3. Objetivos Generales
 
@@ -36,18 +36,18 @@ Los administradores tendrán un panel de administrácion, en el cual ellos será
   - **Usuario:**
     - Iniciar sesión.
     - Editar su perfil.
+    - Ver un perfil.
+    - Comentar en un perfil de un cazador.
+    - Agregar amigos.
     - Crear/Unirse a una sala. 
     - Crear/Gestionar/Unirse a una Guild.
-    - Agregar amigos.
-    - Comentar en un perfil de un cazador.
-    - Ver un perfil.
     - Buscar y ver información de la wiki, armas armaduras y monstruos.
   - **Administrador:**
     - Crear, modificar y borrar monstruos, armaduras y armas.
     - Bloquear usuarios.
     - Borrar usuarios.
-    - Borrar gremios.
     - Borrar comentarios usuarios.
+    - Borrar gremios.
 
 ## 4. Elementos de Innovación
 
@@ -56,42 +56,44 @@ Los administradores tendrán un panel de administrácion, en el cual ellos será
 
 ## Vistas aplicación
 
--Vista perfil 
+-Vista "perfil" 
 
 <p align="center">
 <img src="/public/img/vistaPerfil.png">
 </p>
 
-Este seria el perfil de un cazador, en el puede ver los ultimos comentariso que ha recibido y  tambien aparece ahi una sala, con el código que habría que meter en el juego ya que está en una sala. 
+Este seria el perfil de un cazador, en el puede ver los ultimos comentarios que ha recibido, también aparece ahí una sala, con el código que habría que meter en el juego, este código solo es visble si estás dentro de una sala. 
 
--Vista Lista mosntruos 
+-Vista "Lista monstruos" 
 
 <p align="center">
 <img src="/public/img/vistaListaMonstruos.png">
 </p>
 
-Esta seria la vista para buscar mosntruos con la informacion mínima a la hora de cazar un monstruos que es que elemento es fuer y cual es el débil. (Armas y armaduras se ven parecido)
+Esta seria la vista para buscar monstruos con la información mínima a la hora de cazar un monstruo (Elemento de este, y debilidad).
+
+(Armas y armaduras se ven parecido)
 
 -Vista monstruo 
 <p align="center">
 <img src="/public/img/vistaMonstruo.png">
 </p>
 
-Esta seria la vista de información mas detallada del mosntruo, alfgo de lore y habilidades, y las armas y armaduras que te puedes hacer con este mosntruo.  (Armas y armaduras se ven parecido)
+Esta seria la vista de información mas detallada del monstruo, algo de transfondo/informació y habilidades- También aparecen las armas y armaduras que te puedes hacer con este.  (Armas y armaduras se ven parecido)
 
 
--Vista index Admin 
+-Vista "index Admin" 
 <p align="center">
 <img src="/public/img/vistaAdmin.png">
 
-Esto es el index del administrador, carta es un sitio que administrar. Usuarios, armaduras, armas, mosntruos y guilds.
+Esto es el index del administrador, cada carta es un sitio que administrar. Usuarios, armaduras, armas, mosntruos y guilds.
 
 
--Vista  gestion de monstruos 
+-Vista  "gestión de monstruos" 
 <p align="center">
 <img src="/public/img/vistaAdminMonsters.png">
 
-Esta es la vista en la que el admin puede editar, crear borrar o deshabilitar mosntruos. (Armas y armaduras se ven parecido)
+Esta es la vista en la que el admin puede editar, crear borrar o deshabilitar monstruos. (Armas y armaduras se ven parecido)
 
 ## Configuración del Entorno
 ### Requisitos Previos
