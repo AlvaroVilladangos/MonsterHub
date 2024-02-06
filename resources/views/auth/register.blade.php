@@ -1,6 +1,18 @@
 @extends('compartidos.headerAndFooter')
 
 @section('content')
+
+@if ($errors->any())
+    <div class="position-fixed top-50 start-50 translate-middle-x" style="z-index: 9999;">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@endif
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-md-6">

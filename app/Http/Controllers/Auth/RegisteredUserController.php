@@ -35,38 +35,39 @@ class RegisteredUserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed'],
         ]);
 
-        
 
-        
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'admin' => false,
-        ]);
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'admin' => false,
+            ]);
 
-        $id = $user->id;
+            $id = $user->id;
 
-        $armaduraBasica = DB::table('armors')->where('id', '1')->first();
-        $armaBasica = DB::table('weapons')->where('id', '1')->first();
+            $armaduraBasica = DB::table('armors')->where('id', '1')->first();
+            $armaBasica = DB::table('weapons')->where('id', '1')->first();
 
-        $hunter = DB::table('hunters')->insert([
-            'user_id' => $id,
-            'name' =>' Hunter'.$id,
-            'guild_id' => null,
-            'weapon_id' => $armaBasica->id,
-            'armor_id' => $armaduraBasica->id,
-        ]);
+            $hunter = DB::table('hunters')->insert([
+                'user_id' => $id,
+                'name' => ' Hunter' . $id,
+                'guild_id' => null,
+                'weapon_id' => $armaBasica->id,
+                'armor_id' => $armaduraBasica->id,
+            ]);
 
-        event(new Registered($user));
+            event(new Registered($user));
 
-        Auth::login($user);
+            Auth::login($user);
 
-        return redirect()-> route('dashboard');
+            return redirect()->route('dashboard');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withErrors(['email' => 'El correo electrónico ya está registrado.']);
+        }
     }
-
 }
