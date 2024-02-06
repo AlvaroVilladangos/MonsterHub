@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Monster;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class roomController extends Controller
 {
@@ -26,22 +27,32 @@ class roomController extends Controller
         return view('auth.rooms', compact('rooms', 'monsters'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $validator = FacadesValidator::make($request->all(), [
+            'codigo' => [
+                'required',
+                'regex:/^\d{5}$/',
+                'unique:rooms,room_number',
+            ],
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
         $hunter = auth()->user()->hunter;
         $room = new Room();
-        
-        do {
-            $randomRoomNumber = rand(10000, 99999);
-        } while (Room::where('room_number', $randomRoomNumber)->exists());
     
-        $room->room_number = $randomRoomNumber;
-        $room->monster_id = request()->get('monster');
+        $room->room_number = $request->get('codigo');
+        $room->monster_id = $request->get('monster');
         $room->save();
-        
+    
         $hunter->room_id = $room->id;
         $hunter->save();
+    
         return redirect()->route('dashboard');
     }
+    
     
 }

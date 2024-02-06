@@ -1,6 +1,16 @@
 @extends('compartidos.headerAndFooter')
 
 @section('content')
+    @if ($errors->any())
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
     <div class="container py-4">
         <div class="row">
             <div class="col-2 mb-3">
@@ -33,7 +43,9 @@
                             @continue
                         @endif
                         <tr class="border-bottom">
-                            <td class="d-flex justify-content-center"> <img src="{{URL('storage/' . $room->monster->img)}}" style="width:150px; height:auto;" alt=""></td>
+                            <td class="d-flex justify-content-center"> <img
+                                    src="{{ URL('storage/' . $room->monster->img) }}" style="width:150px; height:auto;"
+                                    alt=""></td>
                             <td class="align-middle text-center">{{ $room->monster->name }}</td>
                             <td class="align-middle text-center">{{ $room->roomCount() }}</td>
                             <td class="align-middle text-center">
@@ -54,7 +66,7 @@
             </div>
             <div class="col-2">
                 @isset(Auth::user()->hunter->room)
-                <x-hunter-room :hunter="Auth::user()->hunter"/>
+                    <x-hunter-room :hunter="Auth::user()->hunter" />
                 @else
                     <button type="button" class="btn btn-aceptar btn-lg" data-bs-toggle="modal" data-bs-target="#guildRoom">
                         Crear sala
@@ -71,8 +83,12 @@
                         </div>
                         <div class="modal-body">
 
-                            <form method="post" action="{{ route('rooms.store') }}">
+                            <form id="formCreateRoom" method="post" action="{{ route('rooms.store') }}">
                                 @csrf
+                                <label for="codigo" class="form-label fs-5 fw-bold">Codigo</label>
+                                <input type="text" name="codigo" pattern="\d{5}"
+                                    title="Por favor, introduzca exactamente 5 dígitos." class="form-control">
+
                                 <div class="mb-3">
                                     <label for="name" class="form-label fs-5 fw-bold">Monstruo al que cazar</label> <br>
                                     <select size="1" name="monster" id="monster" class="select-control">
@@ -95,4 +111,41 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#formCreateRoom").validate({
+                rules: {
+                    codigo: {
+                        required: true,
+                        regex: /^\d{5}$/
+                    },
+
+                },
+                messages: {
+                    codigo: {
+                        required: "Por favor, introduce el código",
+                        regex: "Por favor, introduce exactamente 5 dígitos"
+                    },
+
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+
+            $.validator.addMethod("regex", function(value, element, regexpr) {
+                return regexpr.test(value);
+            }, "Por favor, introduce un valor válido (5 cifras)");
+        });
+    </script>
 @endsection
