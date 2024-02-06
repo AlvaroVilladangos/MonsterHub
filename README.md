@@ -1,33 +1,55 @@
-<p align="center"><img src="/public/monsterHubLogo.png" alt="MonsterHub Logo"></p>
+<p align="center">
+<img src="/public/img/monsterHubLogo.png">
+</p>
 
 
 <h1 align="center"> MonsterHub
 
 <p align="center">
-  &copy; Curso 2023/24 «MonsterHubn» | Álvaro Villadangos Romo
+  &copy; Curso 2023/24 «MonsterHub» | Álvaro Villadangos Romo
 </p>
 
 
-## Learning Laravel
+## 1. Descripción General del Proyecto
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is in-depth and complete, making it a breeze to get started learning the framework.
+Monster consiste en una comunidad y base de datos dedicada al videojuego Monster Hunter Now. Epropósito de disponer de información y recursos del juego, como los monstruos, armas y aramduras.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Por el lado de comunidad, lo usuarios podrán interactuar entre ellos, agregar amigos y hacer grupos.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials covering a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## 2. Funcionalidad Principal de la Aplicación
 
-## Contributing
+La funcionalidad principal de la aplicación es permitir a los jugadores de esta saga poder conseguir codigos, de otra gente para unirse a cazeŕias con ellos, ademas de poder acceder a la información básica del juego, gestionar su gremio/guild, gestionar el equipo.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+Los visitantes de la página solo podrán acceder a los recursos del juego (monstruos, armas y aramduras ) y, al registrarse o iniciar sesión como usuarios, tendrán acceso a la parte de comunidad. Podrán comentar, agregar amigos, hacer grupos y buscar salas para cazar. 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Los administradores tendrán un panel de administrácion, en el cual ellos seran los unicos capaces de agregar nuevas entras a la wiki y tambien podrán modificar las existentes. Y tambien tendran un control sobre los usuarios, podran borrar comentarios, bloquear usuarios, borrar usuarios y borrar gremios
 
-## Security Vulnerabilities
 
-Please review [our security policy](https://github.com/laravel/framework/security/policy) on how to report security vulnerabilities.
+## 3. Objetivos Generales
 
-## License
+- **Objetivo:** acceso a recursos del videojuego e interacción con su comunidad.
+- **Casos de Uso:**
+  - **Invitado (usuario no logueado):**
+    - Registrarse.
+    - Buscar y ver información de la wiki, armas aramduras y monstruos.
+  - **Usuario Logueado:**
+    - Iniciar sesión.
+    - Editar su perfil.
+    - Crear/Unirse a una sala. 
+    - Crear/Gestionar/Unirse a una Guild.
+    - Agregar amigos.
+    - Comentar en un perfil.
+    - Ver un perfil.
+    - Buscar y ver información de la wiki, armas aramduras y monstruos.
+  - **Administrador:**
+    - Crear ,modificar y borrar monstruos, armaduras y armas.
+    - Bloquear usuarios.
+    - Borrar usuarios.
+    - Borrar gremios.
+    - Borrar comentarios usuarios.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](LICENSE.md).
+## 4. Elementos de Innovación
+
+- Uso de framwork laravel.
+
